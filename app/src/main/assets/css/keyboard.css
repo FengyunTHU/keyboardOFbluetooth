@@ -1,0 +1,63 @@
+.KeyBoard img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+div.KeyBoard {
+    position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* map.image-map area {
+    outline: 2px solid salmon;
+} */
+/* .file-upload {
+    position: relative;
+    display: inline-block;
+}
+
+.file-upload-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+}
+
+.file-upload-input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+} */
+/* .KeyBoard .test {
+    transform: translate(15px,13px);
+} */
+/* .KeyBoard .esc {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #efd007;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+} */
