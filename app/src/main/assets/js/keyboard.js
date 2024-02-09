@@ -2,11 +2,25 @@
 let width_origin = 511;
 let height_origin = 191;
 // 定义一个原图片的对比尺寸
+let lines;
+
+function processCSVData(csvData) {
+    lines = csvData.split('\n');
+    for (var i = 0; i < lines.length; i++) {
+        lines[i] = lines[i].replace(/\r+$/, '');
+        lines[i] = lines[i].split(',');
+    }
+    console.log(lines);
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     
     let img1 = document.querySelector("img.Img");
     let map1 = document.getElementById("image-map");
+
+    if (lines && lines.length > 0) {
+        SetCoords(img1, map1);
+    }
 
     window.addEventListener("resize", function () {
         SetCoords(img1, map1);
@@ -16,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function SetCoords(img1, map1) {
     let newWidth = img1.clientWidth;
     let newHeight = img1.clientHeight;
-    let lines_origin = window.lines;
+    let lines_origin = lines;
     console.log(lines_origin);
     // console.log(newHeight, newWidth);
 

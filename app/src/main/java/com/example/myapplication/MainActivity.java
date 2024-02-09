@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -28,8 +33,23 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT > 11) {
             webView.getSettings().setDisplayZoomControls(false);
         }
-        webView.setWebViewClient(new WebViewClient());
+        webView.setWebViewClient(new WebViewClient(){});
         String url = "file:///android_asset/index.html";
         webView.loadUrl(url);
+
+        try {
+            InputStream inputStream = getAssets().open("data/position.csv");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder csvData = new StringBuilder();
+            String line;
+            while ((line = reader.readLine())!=null) {
+                csvData.append(line).append("\n");
+            }
+            reader.close();
+
+            webView.evaluateJavascript("javascript:processCSVData('"+csvData.toString()+"')",null);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
