@@ -37,19 +37,29 @@ public class MainActivity extends AppCompatActivity {
         String url = "file:///android_asset/index.html";
         webView.loadUrl(url);
 
-        try {
-            InputStream inputStream = getAssets().open("data/position.csv");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        try (
+                InputStream inputStream = getAssets().open("data/position.csv");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))
+        ) {
             StringBuilder csvData = new StringBuilder();
             String line;
-            while ((line = reader.readLine())!=null) {
-                csvData.append(line).append("\n");
-            }
-            reader.close();
+            String jsScript;
 
-            webView.evaluateJavascript("javascript:processCSVData('"+csvData.toString()+"')",null);
-        }catch (IOException e) {
+            while ((line = reader.readLine()) != null) {
+                // 转义单引号
+                line = line.replace("'", "\\'");
+                csvData.append(line).append("\\n"); // 使用双反斜杠来表示换行，以便在JavaScript中正确解析
+            }
+            // 将换行符转换为字符串字面量
+            jsScript = "javascript:processCSVData('" + csvData.toString() + "')";
+            // 确保WebView已经准备好接收JavaScript代码
+            if (webView != null) {
+                webView.evaluateJavascript(jsScript, null);
+            }
+        } catch (IOException e) {
+            // 处理异常
             e.printStackTrace();
         }
+
     }
 }

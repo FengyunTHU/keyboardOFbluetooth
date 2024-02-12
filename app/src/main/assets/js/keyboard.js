@@ -6,6 +6,7 @@ let lines = null;
 let linesReadyCallback = null;// 回调函数
 let img1 = document.querySelector("img.Img");
 let map1 = document.getElementById("image-map");
+let testc = document.querySelector("p.test");
 
 function processCSVData(csvData) {
     lines = csvData.split('\n');
@@ -14,6 +15,7 @@ function processCSVData(csvData) {
         lines[i] = lines[i].split(',');
     }
     console.log(lines);
+//    testc.textContent = csvData;
     if (linesReadyCallback) {
         linesReadyCallback();
     }
