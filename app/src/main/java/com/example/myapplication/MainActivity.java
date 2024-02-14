@@ -24,18 +24,21 @@ public class MainActivity extends AppCompatActivity {
     // 创建WebView
     @SuppressLint("SetJavaScriptEnabled")
     private void createWebView() {
-        final WebView webView = findViewById(R.id.webview);
+        final WebView webView = (WebView) findViewById(R.id.webview);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setBuiltInZoomControls(false);
+        webView.getSettings().setAllowFileAccess(true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true);
+        }
         if (Build.VERSION.SDK_INT > 11) {
             webView.getSettings().setDisplayZoomControls(false);
         }
-        webView.setWebViewClient(new WebViewClient(){});
+        // webView.setWebViewClient(new WebViewClient(){});
         String url = "file:///android_asset/index.html";
-        webView.loadUrl(url);
 
         try (
                 InputStream inputStream = getAssets().open("data/position.csv");
@@ -52,10 +55,18 @@ public class MainActivity extends AppCompatActivity {
             }
             // 将换行符转换为字符串字面量
             jsScript = "javascript:processCSVData('" + csvData.toString() + "')";
+            webView.loadUrl(url);
             // 确保WebView已经准备好接收JavaScript代码
-            if (webView != null) {
-                webView.evaluateJavascript(jsScript, null);
-            }
+            webView.setWebViewClient(new WebViewClient() {
+                @Override
+                public void onPageFinished(WebView view,String url) {
+                    super.onPageFinished(view,url);
+                    webView.evaluateJavascript(jsScript,null);
+                }
+            });
+//            if (webView != null) {
+//                webView.evaluateJavascript(jsScript, null);
+//            }
         } catch (IOException e) {
             // 处理异常
             e.printStackTrace();
