@@ -1,2 +1,5 @@
-package com.example.myapplication;public class MyHidDevice {
+package com.example.myapplication;
+
+public class MyHidDevice {
+
 }
