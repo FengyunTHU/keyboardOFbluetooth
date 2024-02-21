@@ -4,6 +4,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -17,6 +19,7 @@ import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,6 +31,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 import android.content.Context;
+
 import com.example.myapplication.HidConfig;// 描述符
 
 import java.io.BufferedReader;
@@ -44,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.createWebView();
+
+        // 蓝牙【目前有问题暂时不解决】
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.BLUETOOTH_CONNECT}, 0);
+        }
+        this.callBluetooth();
     }
 
     // 创建WebView
@@ -84,9 +94,9 @@ public class MainActivity extends AppCompatActivity {
             // 确保WebView已经准备好接收JavaScript代码
             webView.setWebViewClient(new WebViewClient() {
                 @Override
-                public void onPageFinished(WebView view,String url) {
-                    super.onPageFinished(view,url);
-                    webView.evaluateJavascript(jsScript,null);
+                public void onPageFinished(WebView view, String url) {
+                    super.onPageFinished(view, url);
+                    webView.evaluateJavascript(jsScript, null);
                 }
             });
 //            if (webView != null) {
@@ -100,21 +110,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-    * 2024/2/19 重新组织
-    * */
+     * 2024/2/19 重新组织
+     * */
     private static final String TAG = "BtMain";
 
     private static final int CONNECT_SUCCESS = 0x01;
     private static final int CONNECT_FAILURE = 0x02;
     private static final int DISCONNECT_SUCCESS = 0x03;
     private static final int SEND_SUCCESS = 0x04;
-    private static final int SEND_FAILURE= 0x05;
-    private static final int RECEIVE_SUCCESS= 0x06;
-    private static final int RECEIVE_FAILURE =0x07;
+    private static final int SEND_FAILURE = 0x05;
+    private static final int RECEIVE_SUCCESS = 0x06;
+    private static final int RECEIVE_FAILURE = 0x07;
     private static final int START_DISCOVERY = 0x08;
     private static final int STOP_DISCOVERY = 0x09;
     private static final int DISCOVERY_DEVICE = 0x0A;
-    private static final int DEVICE_BOND_NONE= 0x0B;
+    private static final int DEVICE_BOND_NONE = 0x0B;
     private static final int DEVICE_BONDING = 0x0C;
     private static final int DEVICE_BONDED = 0x0D;
 
@@ -136,18 +146,18 @@ public class MainActivity extends AppCompatActivity {
 
     // 实例化
     private void callBluetooth() {
-        Log.d(TAG,"callBluetooth");
-        mBtAdapter=BluetoothAdapter.getDefaultAdapter();
+        Log.d(TAG, "callBluetooth");
+        mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 
         // 获取BluetoothHidDevice
         mBtAdapter.getProfileProxy(this, new BluetoothProfile.ServiceListener() {
             @Override
             public void onServiceConnected(int profile, BluetoothProfile proxy) {
-                Log.d(TAG,"onServiceConnected: "+profile);
+                Log.d(TAG, "onServiceConnected: " + profile);
                 Toast.makeText(MainActivity.this, "Okk_connected", Toast.LENGTH_SHORT).show();
                 if (profile == BluetoothProfile.HID_DEVICE) {
                     if (!(proxy instanceof BluetoothHidDevice)) {
-                        Log.e(TAG,"Proxy received but it isn't hid");
+                        Log.e(TAG, "Proxy received but it isn't hid");
                         return;
                     }
                     mHidDevice = (BluetoothHidDevice) proxy;
@@ -161,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onServiceDisconnected(int profile) {// 断开连接
                 if (profile == BluetoothProfile.HID_DEVICE) {
-                    Log.d(TAG,"onServiceDisconnected:" + profile);
+                    Log.d(TAG, "onServiceDisconnected:" + profile);
                     mHidDevice = null;
                 }
             }
@@ -188,26 +198,48 @@ public class MainActivity extends AppCompatActivity {
 //                0, 0, 0, 0, BluetoothHidDeviceAppQosSettings.MAX);
 
         // 注册你的应用
-        mHidDevice.registerApp(Sdpsettings, null,qosSettings, Executors.newCachedThreadPool(), new BluetoothHidDevice.Callback() {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mHidDevice.registerApp(Sdpsettings, null, qosSettings, Executors.newCachedThreadPool(), new BluetoothHidDevice.Callback() {
             private final int[] mMatchingStates = new int[]{
-                BluetoothProfile.STATE_DISCONNECTED,
-                BluetoothProfile.STATE_CONNECTING,
-                BluetoothProfile.STATE_CONNECTED,
-                BluetoothProfile.STATE_DISCONNECTED
+                    BluetoothProfile.STATE_DISCONNECTED,
+                    BluetoothProfile.STATE_CONNECTING,
+                    BluetoothProfile.STATE_CONNECTED,
+                    BluetoothProfile.STATE_DISCONNECTED
             };
+
             @Override
             public void onAppStatusChanged(BluetoothDevice pluggedDevice, boolean registered) {
-                Log.d(TAG,"onAppStatusChanged: "+(pluggedDevice!=null ? pluggedDevice.getName():"null")+"registered:"+registered);
+                if (ActivityCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                Log.d(TAG, "onAppStatusChanged: " + (pluggedDevice != null ? pluggedDevice.getName() : "null") + "registered:" + registered);
                 if (registered) {
                     // 应用已注册
                     List<BluetoothDevice> matchingDevices = mHidDevice.getDevicesMatchingConnectionStates(mMatchingStates);
-                    Log.d(TAG,"paired devices: "+matchingDevices+"  "+mHidDevice.getConnectionState(pluggedDevice));
-                    if (pluggedDevice!=null && mHidDevice.getConnectionState(pluggedDevice)!=BluetoothProfile.STATE_CONNECTED){
+                    Log.d(TAG, "paired devices: " + matchingDevices + "  " + mHidDevice.getConnectionState(pluggedDevice));
+                    if (pluggedDevice != null && mHidDevice.getConnectionState(pluggedDevice) != BluetoothProfile.STATE_CONNECTED) {
                         boolean result = mHidDevice.connect(pluggedDevice);
-                        Log.d(TAG,"hidDevice connect:"+result);
-                    } else if (matchingDevices!=null && matchingDevices.size()>0) {
+                        Log.d(TAG, "hidDevice connect:" + result);
+                    } else if (matchingDevices != null && matchingDevices.size() > 0) {
                         // 选择连接的设备
-
+                        mHostDevice = matchingDevices.get(0);// 获得第一个
+                        System.out.println(mHostDevice);
                     } else {
                         // 注册成功未配对
                     }
@@ -218,10 +250,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onConnectionStateChanged(BluetoothDevice device, int state) {
+                Log.d(TAG, "omVonnectStateChanged:" + device + "  state:" + state);
                 if (state == BluetoothProfile.STATE_CONNECTED) {
                     mHostDevice = device;
                 } else if (state == BluetoothProfile.STATE_DISCONNECTED) {
                     mHostDevice = null;
+                } else if (state == BluetoothProfile.STATE_CONNECTING) {
+
                 }
             }
 
@@ -231,6 +266,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendReport(byte[] report) {
         if (mHidDevice != null && mHostDevice != null) {
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Bluetooth connect permission is denied", Toast.LENGTH_SHORT).show();
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             mHidDevice.sendReport(mHostDevice, 1, report);
         }
     }
