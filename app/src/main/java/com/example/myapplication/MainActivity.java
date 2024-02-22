@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -20,6 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.media.midi.MidiDeviceService;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,8 +29,10 @@ import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.Toast;
 import android.content.Context;
 
@@ -38,6 +42,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 
@@ -53,7 +58,38 @@ public class MainActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.BLUETOOTH_CONNECT}, 0);
         }
+        Toast.makeText(this, "Written by Alphabet@Gitee.THU come from a game of Tsinghua in winter vacation.", Toast.LENGTH_SHORT).show();
         this.callBluetooth();
+        this.enableBluetooth();// 启动蓝牙
+        Button buttona = findViewById(R.id.button_send_a);
+        buttona.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                sendReport();
+            }
+        });
+
+    }
+
+    // 申请权限
+    public ArrayList<String> requestList = new ArrayList<String>();
+    private static final int REQ_PERMISSION_CODE = 1;
+
+    public void getPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            requestList.add(android.Manifest.permission.INTERNET);
+            requestList.add(android.Manifest.permission.BLUETOOTH);
+            requestList.add(android.Manifest.permission.BLUETOOTH_ADMIN);
+            requestList.add(android.Manifest.permission.BLUETOOTH_ADVERTISE);
+            requestList.add(android.Manifest.permission.BLUETOOTH_SCAN);
+            requestList.add(android.Manifest.permission.BLUETOOTH_CONNECT);
+            requestList.add(android.Manifest.permission.ACCESS_FINE_LOCATION);
+            requestList.add(android.Manifest.permission.ACCESS_COARSE_LOCATION);
+            requestList.add(android.Manifest.permission.ACCESS_BACKGROUND_LOCATION);
+        }
+        if (requestList.size() != 0) {
+            ActivityCompat.requestPermissions(this, requestList.toArray(new String[0]), REQ_PERMISSION_CODE);
+        }
     }
 
     // 创建WebView
@@ -132,7 +168,6 @@ public class MainActivity extends AppCompatActivity {
     private BluetoothDevice mHostDevice;
     private BluetoothAdapter mBtAdapter;
 
-
     private final ActivityResultLauncher<Intent> mRequestDiscoverableLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -146,8 +181,14 @@ public class MainActivity extends AppCompatActivity {
 
     // 实例化
     private void callBluetooth() {
+        getPermission();
         Log.d(TAG, "callBluetooth");
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
+//        if (mBtAdapter == null) {
+//            Toast.makeText(this,"Device doesn't support bluetooth",Toast.LENGTH_SHORT).show();
+//        } else {
+//            if (!mBtAdapter)
+//        }
 
         // 获取BluetoothHidDevice
         mBtAdapter.getProfileProxy(this, new BluetoothProfile.ServiceListener() {
@@ -180,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Android设备注册为蓝牙设备
     private void registerApp() {
+        getPermission();
         // 创建一个BluetoothHidDeviceAppSdpSettings对象
         BluetoothHidDeviceAppSdpSettings Sdpsettings = new BluetoothHidDeviceAppSdpSettings(
                 HidConfig.KEYBOARD_NAME,
@@ -238,8 +280,8 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "hidDevice connect:" + result);
                     } else if (matchingDevices != null && matchingDevices.size() > 0) {
                         // 选择连接的设备
-                        mHostDevice = matchingDevices.get(0);// 获得第一个
-                        System.out.println(mHostDevice);
+                        mHostDevice = matchingDevices.get(0);// 获得第一个已经配对过的设备
+                        Toast.makeText(MainActivity.this, "device_is_ok: " + mHostDevice.getName() + mHostDevice.getAddress(), Toast.LENGTH_SHORT).show();
                     } else {
                         // 注册成功未配对
                     }
@@ -253,8 +295,20 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "omVonnectStateChanged:" + device + "  state:" + state);
                 if (state == BluetoothProfile.STATE_CONNECTED) {
                     mHostDevice = device;
+                    if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+                    Toast.makeText(MainActivity.this, "device_is_ok: " + mHostDevice.getName() + mHostDevice.getAddress(), Toast.LENGTH_SHORT).show();
                 } else if (state == BluetoothProfile.STATE_DISCONNECTED) {
                     mHostDevice = null;
+                    Toast.makeText(MainActivity.this, "device_is_null", Toast.LENGTH_SHORT).show();
                 } else if (state == BluetoothProfile.STATE_CONNECTING) {
 
                 }
@@ -264,7 +318,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void sendReport(byte[] report) {
+    public void sendReport() {
         if (mHidDevice != null && mHostDevice != null) {
             if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Bluetooth connect permission is denied", Toast.LENGTH_SHORT).show();
@@ -277,7 +331,34 @@ public class MainActivity extends AppCompatActivity {
                 // for ActivityCompat#requestPermissions for more details.
                 return;
             }
+            byte[] report = new byte[]{0x04};// a
             mHidDevice.sendReport(mHostDevice, 1, report);
+        }
+    }
+
+    private final ActivityResultLauncher<Intent> mRequestEnableBtLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    // 用户已开启蓝牙
+                } else {
+                    // 用户未开启蓝牙
+                }
+            }
+    );
+
+    private void enableBluetooth() {
+        getPermission();
+        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (bluetoothAdapter == null) {
+            // 设备不支持蓝牙
+            Toast.makeText(this, "Device doesn't support bluetooth", Toast.LENGTH_SHORT).show();
+        } else {
+            if (!bluetoothAdapter.isEnabled()) {
+                // 如果蓝牙未开启，请求用户开启蓝牙
+                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                mRequestEnableBtLauncher.launch(enableBtIntent);
+            }
         }
     }
 
