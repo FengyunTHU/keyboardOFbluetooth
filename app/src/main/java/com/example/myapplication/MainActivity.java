@@ -62,9 +62,9 @@ public class MainActivity extends AppCompatActivity {
         this.callBluetooth();
         this.enableBluetooth();// 启动蓝牙
         Button buttona = findViewById(R.id.button_send_a);
-        buttona.setOnClickListener(new View.OnClickListener(){
+        buttona.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 sendReport();
             }
         });
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onServiceConnected(int profile, BluetoothProfile proxy) {
                 Log.d(TAG, "onServiceConnected: " + profile);
-                Toast.makeText(MainActivity.this, "Okk_connected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Okk_connected_service", Toast.LENGTH_SHORT).show();
                 if (profile == BluetoothProfile.HID_DEVICE) {
                     if (!(proxy instanceof BluetoothHidDevice)) {
                         Log.e(TAG, "Proxy received but it isn't hid");
@@ -271,13 +271,16 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 Log.d(TAG, "onAppStatusChanged: " + (pluggedDevice != null ? pluggedDevice.getName() : "null") + "registered:" + registered);
+                Toast.makeText(MainActivity.this, "onAppStatusChanged", Toast.LENGTH_SHORT).show();
                 if (registered) {
                     // 应用已注册
                     List<BluetoothDevice> matchingDevices = mHidDevice.getDevicesMatchingConnectionStates(mMatchingStates);
                     Log.d(TAG, "paired devices: " + matchingDevices + "  " + mHidDevice.getConnectionState(pluggedDevice));
+                    Toast.makeText(MainActivity.this, "paired devices: " + matchingDevices + "  " + mHidDevice.getConnectionState(pluggedDevice), Toast.LENGTH_SHORT).show();
                     if (pluggedDevice != null && mHidDevice.getConnectionState(pluggedDevice) != BluetoothProfile.STATE_CONNECTED) {
-                        boolean result = mHidDevice.connect(pluggedDevice);
+                        boolean result = mHidDevice.connect(pluggedDevice);// pluggedDevice即为连接到模拟HID的设备
                         Log.d(TAG, "hidDevice connect:" + result);
+                        Toast.makeText(MainActivity.this, "hidDevice connect:" + result, Toast.LENGTH_SHORT).show();
                     } else if (matchingDevices != null && matchingDevices.size() > 0) {
                         // 选择连接的设备
                         mHostDevice = matchingDevices.get(0);// 获得第一个已经配对过的设备
@@ -293,7 +296,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onConnectionStateChanged(BluetoothDevice device, int state) {
                 Log.d(TAG, "omVonnectStateChanged:" + device + "  state:" + state);
-                if (state == BluetoothProfile.STATE_CONNECTED) {
+                Toast.makeText(MainActivity.this,state,Toast.LENGTH_SHORT).show();
+                if (state == BluetoothProfile.STATE_CONNECTED) {// 已经连接了
                     mHostDevice = device;
                     if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
                         // TODO: Consider calling
@@ -333,6 +337,7 @@ public class MainActivity extends AppCompatActivity {
             }
             byte[] report = new byte[]{0x04};// a
             mHidDevice.sendReport(mHostDevice, 1, report);
+            Toast.makeText(this, "has_sent_a", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -361,7 +366,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
+}
 
 
 //    private static final String TAG = "BtMain";
@@ -524,5 +529,3 @@ public class MainActivity extends AppCompatActivity {
 //    * 管理连接和数据收发
 //    * @param bluetoothSocket 已经建立的连接
 //    * */
-
-}
