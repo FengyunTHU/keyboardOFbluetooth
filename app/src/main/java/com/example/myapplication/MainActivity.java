@@ -17,10 +17,13 @@ import android.bluetooth.BluetoothHidDeviceAppQosSettings;
 import android.bluetooth.BluetoothHidDevice;  // HID库
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.media.midi.MidiDeviceService;
 import android.os.Build;
 import android.os.Bundle;
@@ -61,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Written by Alphabet@Gitee.THU come from a game of Tsinghua in winter vacation.", Toast.LENGTH_SHORT).show();
         this.callBluetooth();
         this.enableBluetooth();// 启动蓝牙
+
+        // 检测一下HID的支持情况
+        if(isSupportBluetoothHid()){
+            Toast.makeText(this,"系统支持蓝牙HID",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this,"系统不支持蓝牙HID",Toast.LENGTH_SHORT).show();
+        }
         Button buttona = findViewById(R.id.button_send_a);
         buttona.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,8 +212,12 @@ public class MainActivity extends AppCompatActivity {
                         return;
                     }
                     mHidDevice = (BluetoothHidDevice) proxy;
-                    registerApp();// 注册
-
+                    if (mHidDevice!=null){
+                        Toast.makeText(MainActivity.this,"OK for HID profile",Toast.LENGTH_SHORT).show();
+                        registerApp();// 注册
+                    } else {
+                        Toast.makeText(MainActivity.this,"Disable for HID profile",Toast.LENGTH_SHORT).show();
+                    }
                     // 启用设备发现
                     mRequestDiscoverableLauncher.launch(new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE));
                 }
@@ -363,8 +377,36 @@ public class MainActivity extends AppCompatActivity {
                 // 如果蓝牙未开启，请求用户开启蓝牙
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 mRequestEnableBtLauncher.launch(enableBtIntent);
+            } else {
+                // 蓝牙已经开启
+                Toast.makeText(this,"Bluetooth is already enabled",Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public boolean isSupportBluetoothHid(){
+        PackageManager pm = this.getPackageManager();
+        Intent intent = new Intent("android.bluetooth.IBluetoothHidDevice");
+        List<ResolveInfo> results = pm.queryIntentServices(intent,0);
+        if (results == null) {
+            return false;
+        }
+        ComponentName comp = null;
+        for (int i=0; i<results.size(); i++) {
+            ResolveInfo ri = results.get(i);
+            if ((ri.serviceInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+                continue;
+            }
+            ComponentName foundComp = new ComponentName(ri.serviceInfo.applicationInfo.packageName,
+                    ri.serviceInfo.name);
+
+            if (comp != null) {
+                throw new IllegalStateException("Multiple system services handle " + this
+                        + ": " + comp + ", " + foundComp);
+            }
+            comp = foundComp;
+        }
+        return comp != null;
     }
 }
 
