@@ -2,55 +2,30 @@ package com.example.myapplication;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
-import android.content.BroadcastReceiver;
-import android.bluetooth.BluetoothHidDeviceAppSdpSettings;
-import android.bluetooth.BluetoothHidDeviceAppQosSettings;
-import android.bluetooth.BluetoothHidDevice;  // HID库
-import android.bluetooth.BluetoothManager;
-import android.bluetooth.BluetoothProfile;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.media.midi.MidiDeviceService;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.Toast;
-import android.content.Context;
-
-import com.example.myapplication.HidConfig;// 描述符
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static final String TAG = "BtMain";
+    private callBluetooth callBluetooth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,20 +37,23 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.BLUETOOTH_CONNECT}, 0);
         }
         Toast.makeText(this, "Written by Alphabet@Gitee.THU come from a game of Tsinghua in winter vacation.", Toast.LENGTH_SHORT).show();
-        this.callBluetooth();
-        this.enableBluetooth();// 启动蓝牙
+        callBluetooth = new callBluetooth(this,mRequestLauncher);
+//        callBluetooth.CallBluetooth();
+//        callBluetooth.enableBluetooth();// 启动蓝牙
+        callBluetooth.RunBluetooth();
 
         // 检测一下HID的支持情况
-        if(isSupportBluetoothHid()){
+        if(callBluetooth.isSupportBluetoothHid()){
             Toast.makeText(this,"系统支持蓝牙HID",Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this,"系统不支持蓝牙HID",Toast.LENGTH_SHORT).show();
         }
+        Log.d(TAG,"END_Main");
         Button buttona = findViewById(R.id.button_send_a);
         buttona.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendReport();
+                callBluetooth.sendReport();
             }
         });
 
@@ -85,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<String> requestList = new ArrayList<String>();
     private static final int REQ_PERMISSION_CODE = 1;
 
-    public void getPermission() {
+    public void getPermission() {// 暂时先不用
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             requestList.add(android.Manifest.permission.INTERNET);
             requestList.add(android.Manifest.permission.BLUETOOTH);
@@ -155,30 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*
-     * 2024/2/19 重新组织
-     * */
-    private static final String TAG = "BtMain";
-
-    private static final int CONNECT_SUCCESS = 0x01;
-    private static final int CONNECT_FAILURE = 0x02;
-    private static final int DISCONNECT_SUCCESS = 0x03;
-    private static final int SEND_SUCCESS = 0x04;
-    private static final int SEND_FAILURE = 0x05;
-    private static final int RECEIVE_SUCCESS = 0x06;
-    private static final int RECEIVE_FAILURE = 0x07;
-    private static final int START_DISCOVERY = 0x08;
-    private static final int STOP_DISCOVERY = 0x09;
-    private static final int DISCOVERY_DEVICE = 0x0A;
-    private static final int DEVICE_BOND_NONE = 0x0B;
-    private static final int DEVICE_BONDING = 0x0C;
-    private static final int DEVICE_BONDED = 0x0D;
-
-    private BluetoothHidDevice mHidDevice;
-    private BluetoothDevice mHostDevice;
-    private BluetoothAdapter mBtAdapter;
-
-    private final ActivityResultLauncher<Intent> mRequestDiscoverableLauncher = registerForActivityResult(
+    private final ActivityResultLauncher<Intent> mRequestLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == RESULT_OK) {
@@ -189,225 +144,18 @@ public class MainActivity extends AppCompatActivity {
             }
     );
 
-    // 实例化
-    private void callBluetooth() {
-        getPermission();
-        Log.d(TAG, "callBluetooth");
-        mBtAdapter = BluetoothAdapter.getDefaultAdapter();
-//        if (mBtAdapter == null) {
-//            Toast.makeText(this,"Device doesn't support bluetooth",Toast.LENGTH_SHORT).show();
-//        } else {
-//            if (!mBtAdapter)
-//        }
 
-        // 获取BluetoothHidDevice
-        mBtAdapter.getProfileProxy(this, new BluetoothProfile.ServiceListener() {
-            @Override
-            public void onServiceConnected(int profile, BluetoothProfile proxy) {
-                Log.d(TAG, "onServiceConnected: " + profile);
-                Toast.makeText(MainActivity.this, "Okk_connected_service", Toast.LENGTH_SHORT).show();
-                if (profile == BluetoothProfile.HID_DEVICE) {
-                    if (!(proxy instanceof BluetoothHidDevice)) {
-                        Log.e(TAG, "Proxy received but it isn't hid");
-                        return;
-                    }
-                    mHidDevice = (BluetoothHidDevice) proxy;
-                    if (mHidDevice!=null){
-                        Toast.makeText(MainActivity.this,"OK for HID profile",Toast.LENGTH_SHORT).show();
-                        registerApp();// 注册
-                    } else {
-                        Toast.makeText(MainActivity.this,"Disable for HID profile",Toast.LENGTH_SHORT).show();
-                    }
-                    // 启用设备发现
-                    mRequestDiscoverableLauncher.launch(new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE));
-                }
-            }
+//    private final ActivityResultLauncher<Intent> mRequestEnableBtLauncher = registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(),
+//            result -> {
+//                if (result.getResultCode() == RESULT_OK) {
+//                    // 用户已开启蓝牙
+//                } else {
+//                    // 用户未开启蓝牙
+//                }
+//            }
+//    );
 
-            @Override
-            public void onServiceDisconnected(int profile) {// 断开连接
-                if (profile == BluetoothProfile.HID_DEVICE) {
-                    Log.d(TAG, "onServiceDisconnected:" + profile);
-                    mHidDevice = null;
-                }
-            }
-        }, BluetoothProfile.HID_DEVICE);
-    }
-
-    // Android设备注册为蓝牙设备
-    private void registerApp() {
-        getPermission();
-        // 创建一个BluetoothHidDeviceAppSdpSettings对象
-        BluetoothHidDeviceAppSdpSettings Sdpsettings = new BluetoothHidDeviceAppSdpSettings(
-                HidConfig.KEYBOARD_NAME,
-                HidConfig.DESCRIPTION,
-                HidConfig.PROVIDER,
-                BluetoothHidDevice.SUBCLASS1_KEYBOARD,
-                HidConfig.KEYBOARD_COMBO
-        );
-
-        // 创建一个BluetoothHidDeviceAppQosSettings对象，随机设置的(
-        BluetoothHidDeviceAppQosSettings qosSettings = new BluetoothHidDeviceAppQosSettings(
-                BluetoothHidDeviceAppQosSettings.SERVICE_BEST_EFFORT,
-                800, 9, 0, 11250, BluetoothHidDeviceAppQosSettings.MAX);
-//        BluetoothHidDeviceAppQosSettings qosOut = new BluetoothHidDeviceAppQosSettings(
-//                BluetoothHidDeviceAppQosSettings.SERVICE_GUARANTEED,
-//                0, 0, 0, 0, BluetoothHidDeviceAppQosSettings.MAX);
-
-        // 注册你的应用
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        mHidDevice.registerApp(Sdpsettings, null, qosSettings, Executors.newCachedThreadPool(), new BluetoothHidDevice.Callback() {
-            private final int[] mMatchingStates = new int[]{
-                    BluetoothProfile.STATE_DISCONNECTED,
-                    BluetoothProfile.STATE_CONNECTING,
-                    BluetoothProfile.STATE_CONNECTED,
-                    BluetoothProfile.STATE_DISCONNECTED
-            };
-
-            @Override
-            public void onAppStatusChanged(BluetoothDevice pluggedDevice, boolean registered) {
-                if (ActivityCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-                Log.d(TAG, "onAppStatusChanged: " + (pluggedDevice != null ? pluggedDevice.getName() : "null") + "registered:" + registered);
-                Toast.makeText(MainActivity.this, "onAppStatusChanged", Toast.LENGTH_SHORT).show();
-                if (registered) {
-                    // 应用已注册
-                    List<BluetoothDevice> matchingDevices = mHidDevice.getDevicesMatchingConnectionStates(mMatchingStates);
-                    Log.d(TAG, "paired devices: " + matchingDevices + "  " + mHidDevice.getConnectionState(pluggedDevice));
-                    Toast.makeText(MainActivity.this, "paired devices: " + matchingDevices + "  " + mHidDevice.getConnectionState(pluggedDevice), Toast.LENGTH_SHORT).show();
-                    if (pluggedDevice != null && mHidDevice.getConnectionState(pluggedDevice) != BluetoothProfile.STATE_CONNECTED) {
-                        boolean result = mHidDevice.connect(pluggedDevice);// pluggedDevice即为连接到模拟HID的设备
-                        Log.d(TAG, "hidDevice connect:" + result);
-                        Toast.makeText(MainActivity.this, "hidDevice connect:" + result, Toast.LENGTH_SHORT).show();
-                    } else if (matchingDevices != null && matchingDevices.size() > 0) {
-                        // 选择连接的设备
-                        mHostDevice = matchingDevices.get(0);// 获得第一个已经配对过的设备
-                        Toast.makeText(MainActivity.this, "device_is_ok: " + mHostDevice.getName() + mHostDevice.getAddress(), Toast.LENGTH_SHORT).show();
-                    } else {
-                        // 注册成功未配对
-                    }
-                } else {
-                    // 应用未注册
-                }
-            }
-
-            @Override
-            public void onConnectionStateChanged(BluetoothDevice device, int state) {
-                Log.d(TAG, "omVonnectStateChanged:" + device + "  state:" + state);
-                Toast.makeText(MainActivity.this,state,Toast.LENGTH_SHORT).show();
-                if (state == BluetoothProfile.STATE_CONNECTED) {// 已经连接了
-                    mHostDevice = device;
-                    if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    ActivityCompat#requestPermissions
-                        // here to request the missing permissions, and then overriding
-                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                        //                                          int[] grantResults)
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for ActivityCompat#requestPermissions for more details.
-                        return;
-                    }
-                    Toast.makeText(MainActivity.this, "device_is_ok: " + mHostDevice.getName() + mHostDevice.getAddress(), Toast.LENGTH_SHORT).show();
-                } else if (state == BluetoothProfile.STATE_DISCONNECTED) {
-                    mHostDevice = null;
-                    Toast.makeText(MainActivity.this, "device_is_null", Toast.LENGTH_SHORT).show();
-                } else if (state == BluetoothProfile.STATE_CONNECTING) {
-
-                }
-            }
-
-            // 你可以重写其他回调方法以处理连接、断开连接、报告等事件
-        });
-    }
-
-    public void sendReport() {
-        if (mHidDevice != null && mHostDevice != null) {
-            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Bluetooth connect permission is denied", Toast.LENGTH_SHORT).show();
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
-            byte[] report = new byte[]{0x04};// a
-            mHidDevice.sendReport(mHostDevice, 1, report);
-            Toast.makeText(this, "has_sent_a", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private final ActivityResultLauncher<Intent> mRequestEnableBtLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == RESULT_OK) {
-                    // 用户已开启蓝牙
-                } else {
-                    // 用户未开启蓝牙
-                }
-            }
-    );
-
-    private void enableBluetooth() {
-        getPermission();
-        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (bluetoothAdapter == null) {
-            // 设备不支持蓝牙
-            Toast.makeText(this, "Device doesn't support bluetooth", Toast.LENGTH_SHORT).show();
-        } else {
-            if (!bluetoothAdapter.isEnabled()) {
-                // 如果蓝牙未开启，请求用户开启蓝牙
-                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                mRequestEnableBtLauncher.launch(enableBtIntent);
-            } else {
-                // 蓝牙已经开启
-                Toast.makeText(this,"Bluetooth is already enabled",Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    public boolean isSupportBluetoothHid(){
-        PackageManager pm = this.getPackageManager();
-        Intent intent = new Intent("android.bluetooth.IBluetoothHidDevice");
-        List<ResolveInfo> results = pm.queryIntentServices(intent,0);
-        if (results == null) {
-            return false;
-        }
-        ComponentName comp = null;
-        for (int i=0; i<results.size(); i++) {
-            ResolveInfo ri = results.get(i);
-            if ((ri.serviceInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
-                continue;
-            }
-            ComponentName foundComp = new ComponentName(ri.serviceInfo.applicationInfo.packageName,
-                    ri.serviceInfo.name);
-
-            if (comp != null) {
-                throw new IllegalStateException("Multiple system services handle " + this
-                        + ": " + comp + ", " + foundComp);
-            }
-            comp = foundComp;
-        }
-        return comp != null;
-    }
 }
 
 
