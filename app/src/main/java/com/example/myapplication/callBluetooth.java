@@ -1,15 +1,18 @@
 package com.example.myapplication;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHidDevice;
 import android.bluetooth.BluetoothHidDeviceAppQosSettings;
 import android.bluetooth.BluetoothHidDeviceAppSdpSettings;
 import android.bluetooth.BluetoothProfile;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -19,6 +22,7 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.core.app.ActivityCompat;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 
@@ -48,17 +52,19 @@ public class callBluetooth {
     private BluetoothAdapter mBtAdapter;
     private Context context;
     private ActivityResultLauncher<Intent> requestLauncher;
+    private final List<BluetoothDevice> discoveredDevices = new ArrayList<>();
 
-    public callBluetooth(Context context,ActivityResultLauncher<Intent> requestLauncher) {
+    public callBluetooth(Context context, ActivityResultLauncher<Intent> requestLauncher) {
         this.context = context;
         this.requestLauncher = requestLauncher;
     }
 
     public void RunBluetooth() {// 写在一起
-        Log.d(TAG,"RUN_Start");
+        Log.d(TAG, "RUN_Start");
         enableBluetooth();
+        discoverAndPairDevice();
         CallBluetooth();
-        Log.d(TAG,"RUN_End");
+        Log.d(TAG, "RUN_End");
     }
 
     // 实例化
@@ -85,17 +91,17 @@ public class callBluetooth {
                         return;
                     }
                     mHidDevice = (BluetoothHidDevice) proxy;
-                    Log.d(TAG,"proxyOK");
-                    if (mHidDevice!=null){
-                        Toast.makeText(context,"OK for HID profile",Toast.LENGTH_SHORT).show();
-                        Log.d(TAG,"HID_OK");
+                    Log.d(TAG, "proxyOK");
+                    if (mHidDevice != null) {
+                        Toast.makeText(context, "OK for HID profile", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "HID_OK");
                         registerApp();// 注册
                     } else {
-                        Toast.makeText(context,"Disable for HID profile",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Disable for HID profile", Toast.LENGTH_SHORT).show();
                     }
                     // 启用设备发现
                     requestLauncher.launch(new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE));
-                    Log.d(TAG,"Discover");
+                    Log.d(TAG, "Discover");
                 }
             }
 
@@ -111,7 +117,7 @@ public class callBluetooth {
 
     // Android设备注册为蓝牙设备
     private void registerApp() {
-        Log.d(TAG,"Get in register");
+        Log.d(TAG, "Get in register");
         //getPermission();
         // 创建一个BluetoothHidDeviceAppSdpSettings对象
         BluetoothHidDeviceAppSdpSettings Sdpsettings = new BluetoothHidDeviceAppSdpSettings(
@@ -130,12 +136,12 @@ public class callBluetooth {
 //                BluetoothHidDeviceAppQosSettings.SERVICE_GUARANTEED,
 //                0, 0, 0, 0, BluetoothHidDeviceAppQosSettings.MAX);
 
-        // 注册你的应用
+        // 注册应用
         if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             return;
         }
-        Log.d(TAG,"Before callback");
+        Log.d(TAG, "Before callback");
         mHidDevice.registerApp(Sdpsettings, null, qosSettings, Executors.newCachedThreadPool(), new BluetoothHidDevice.Callback() {
             private final int[] mMatchingStates = new int[]{
                     BluetoothProfile.STATE_DISCONNECTED,
@@ -149,7 +155,7 @@ public class callBluetooth {
                 if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                 }
-                Log.d(TAG,"ccccc_str");
+                Log.d(TAG, "ccccc_str");
                 Log.d(TAG, "onAppStatusChanged: " + (pluggedDevice != null ? pluggedDevice.getName() : "null") + "registered:" + registered);
                 Toast.makeText(context, "onAppStatusChanged", Toast.LENGTH_SHORT).show();
                 if (registered) {
@@ -176,7 +182,7 @@ public class callBluetooth {
             @Override
             public void onConnectionStateChanged(BluetoothDevice device, int state) {
                 Log.d(TAG, "omVonnectStateChanged:" + device + "  state:" + state);
-                Toast.makeText(context,state,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, state, Toast.LENGTH_SHORT).show();
                 if (state == BluetoothProfile.STATE_CONNECTED) {// 已经连接了
                     mHostDevice = device;
                     if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
@@ -209,7 +215,6 @@ public class callBluetooth {
     }
 
 
-
     public void enableBluetooth() {
         //getPermission();
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -221,23 +226,23 @@ public class callBluetooth {
                 // 如果蓝牙未开启，请求用户开启蓝牙
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 requestLauncher.launch(enableBtIntent);
-                Log.d(TAG,"OpenBLE");
+                Log.d(TAG, "OpenBLE");
             } else {
                 // 蓝牙已经开启
-                Toast.makeText(context,"Bluetooth is already enabled",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Bluetooth is already enabled", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    public boolean isSupportBluetoothHid(){
+    public boolean isSupportBluetoothHid() {
         PackageManager pm = context.getPackageManager();
         Intent intent = new Intent("android.bluetooth.IBluetoothHidDevice");
-        List<ResolveInfo> results = pm.queryIntentServices(intent,0);
+        List<ResolveInfo> results = pm.queryIntentServices(intent, 0);
         if (results == null) {
             return false;
         }
         ComponentName comp = null;
-        for (int i=0; i<results.size(); i++) {
+        for (int i = 0; i < results.size(); i++) {
             ResolveInfo ri = results.get(i);
             if ((ri.serviceInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
                 continue;
@@ -252,5 +257,68 @@ public class callBluetooth {
             comp = foundComp;
         }
         return comp != null;
+    }
+
+
+    public void discoverAndPairDevice() {
+        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        Log.d(TAG,"PairStart");
+
+        // 注册设备发现的广播接收器
+        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+        context.registerReceiver(receiver, filter);
+
+        // 开始设备发现
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            return;
+        }
+        bluetoothAdapter.startDiscovery();
+    }
+
+    private final BroadcastReceiver receiver = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                // 发现设备
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                Log.d(TAG,"findDevice");
+
+                // 添加设备到列表
+                discoveredDevices.add(device);
+            } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
+                // 设备发现结束，显示设备列表
+                showDeviceList();
+            }
+        }
+    };
+
+    private void showDeviceList() {
+        // 创建设备名称列表
+        List<String> deviceNames = new ArrayList<>();
+        for (BluetoothDevice device : discoveredDevices) {
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                return;
+            }
+            deviceNames.add(device.getName());
+        }
+        Log.d(TAG, "Show");
+        // 创建并显示 AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Select a device")
+                .setItems(deviceNames.toArray(new String[0]), (dialog, which) -> {
+                    // 用户选择了一个设备，进行配对操作
+                    BluetoothDevice selectedDevice = discoveredDevices.get(which);
+                    if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        return;
+                    }
+                    if (selectedDevice.getBondState() != BluetoothDevice.BOND_BONDED) {
+                        selectedDevice.createBond();
+                    }
+                })
+                .show();
     }
 }
