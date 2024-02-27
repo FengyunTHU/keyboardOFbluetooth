@@ -79,11 +79,13 @@ public class callBluetooth {
                 Log.d(TAG, "onServiceConnected: " + profile);
                 Toast.makeText(context, "Okk_connected_service", Toast.LENGTH_SHORT).show();
                 if (profile == BluetoothProfile.HID_DEVICE) {
+                    Log.d(TAG, "Proxy received but it isn't hid_OUT");
                     if (!(proxy instanceof BluetoothHidDevice)) {
                         Log.e(TAG, "Proxy received but it isn't hid");
                         return;
                     }
                     mHidDevice = (BluetoothHidDevice) proxy;
+                    Log.d(TAG,"proxyOK");
                     if (mHidDevice!=null){
                         Toast.makeText(context,"OK for HID profile",Toast.LENGTH_SHORT).show();
                         Log.d(TAG,"HID_OK");
@@ -109,6 +111,7 @@ public class callBluetooth {
 
     // Android设备注册为蓝牙设备
     private void registerApp() {
+        Log.d(TAG,"Get in register");
         //getPermission();
         // 创建一个BluetoothHidDeviceAppSdpSettings对象
         BluetoothHidDeviceAppSdpSettings Sdpsettings = new BluetoothHidDeviceAppSdpSettings(
@@ -132,6 +135,7 @@ public class callBluetooth {
             // TODO: Consider calling
             return;
         }
+        Log.d(TAG,"Before callback");
         mHidDevice.registerApp(Sdpsettings, null, qosSettings, Executors.newCachedThreadPool(), new BluetoothHidDevice.Callback() {
             private final int[] mMatchingStates = new int[]{
                     BluetoothProfile.STATE_DISCONNECTED,

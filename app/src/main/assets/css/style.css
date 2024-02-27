@@ -9,3 +9,7 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+/* html {
+    overflow: hidden;
+} */

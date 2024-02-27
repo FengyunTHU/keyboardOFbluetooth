@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -26,11 +27,13 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "BtMain";
     private callBluetooth callBluetooth;
+    private WebView webView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.createWebView();
+        webView = (WebView) findViewById(R.id.webview);
+        this.createWebView(webView);
 
         // 蓝牙【目前有问题暂时不解决】
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
@@ -49,14 +52,26 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"系统不支持蓝牙HID",Toast.LENGTH_SHORT).show();
         }
         Log.d(TAG,"END_Main");
-        Button buttona = findViewById(R.id.button_send_a);
-        buttona.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                callBluetooth.sendReport();
-            }
-        });
+//        Button buttona = findViewById(R.id.button_send_a);
+//        buttona.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                callBluetooth.sendReport();
+//            }
+//        });
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // Check if the key event was the Back button and if there's history
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
+            webView.goBack();
+            return true;
+        }
+        // If it wasn't the Back key or there's no web page history, bubble up to the default
+        // system behavior (probably exit the activity)
+        return super.onKeyDown(keyCode, event);
     }
 
     // 申请权限
@@ -82,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
 
     // 创建WebView
     @SuppressLint("SetJavaScriptEnabled")
-    private void createWebView() {
-        final WebView webView = (WebView) findViewById(R.id.webview);
+    private void createWebView(WebView webView) {
+
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setDomStorageEnabled(true);

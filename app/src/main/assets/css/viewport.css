@@ -1,0 +1,77 @@
+.sidebar {
+    height: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color:darkslategray;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 0px;
+}
+
+.sidebar .check {
+    display: flex;
+}
+
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #f1f1f1;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #f1f1f1;
+    transition: 0.3s;
+}
+
+.openbtn {
+    /* font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white; */
+    padding: 0px 0px;
+    background: none;
+    border: none;
+}
+
+.openbtn .settings {
+    height: 40px;
+    width: auto;
+}
+
+/* .openbtn:hover {
+    background-color: #444;
+} */
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+/* 在高度小于 450px 的较小屏幕上，更改 sidenav 的样式*/
+@media screen and (max-height: 450px) {
+    .sidebar {
+        padding-top: 15px;
+    }
+
+    .sidebar a {
+        font-size: 18px;
+    }
+}
