@@ -28,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "BtMain";
     private callBluetooth callBluetooth;
     private WebView webView;
+    private JavaScriptInterfaces javaScriptInterfaces;
+    private ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                javaScriptInterfaces.SendResult(result.getResultCode(),result.getData());
+            }
+    );
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"系统不支持蓝牙HID",Toast.LENGTH_SHORT).show();
         }
         Log.d(TAG,"END_Main");
+
+        javaScriptInterfaces = new JavaScriptInterfaces(this,webView,resultLauncher);
+        webView.addJavascriptInterface(javaScriptInterfaces,"Android");
 //        Button buttona = findViewById(R.id.button_send_a);
 //        buttona.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -96,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 创建WebView
-    @SuppressLint("SetJavaScriptEnabled")
+    @SuppressLint({"SetJavaScriptEnabled", "JavascriptInterface"})
     private void createWebView(WebView webView) {
 
         webView.getSettings().setJavaScriptEnabled(true);
@@ -105,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setBuiltInZoomControls(false);
         webView.getSettings().setAllowFileAccess(true);
+        webView.addJavascriptInterface(MainActivity.this,"android");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(true);
         }
@@ -115,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         String url = "file:///android_asset/index.html";
 
         try (
-                InputStream inputStream = getAssets().open("data/position.csv");
+                InputStream inputStream = getAssets().open("data/position.csv");// initial
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))
         ) {
             StringBuilder csvData = new StringBuilder();
@@ -158,6 +168,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
     );
+
+
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        Log.d(TAG,"enterinonActR");
+//        super.onActivityResult(requestCode,resultCode,data);
+//        javaScriptInterfaces = new JavaScriptInterfaces(this,webView,mRequestLauncher);
+//        javaScriptInterfaces.SendResult(requestCode,resultCode,data);
+//    }
 
 
 //    private final ActivityResultLauncher<Intent> mRequestEnableBtLauncher = registerForActivityResult(

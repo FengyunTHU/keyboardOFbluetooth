@@ -62,7 +62,7 @@ public class callBluetooth {
     public void RunBluetooth() {// 写在一起
         Log.d(TAG, "RUN_Start");
         enableBluetooth();
-        discoverAndPairDevice();
+        // discoverAndPairDevice();
         CallBluetooth();
         Log.d(TAG, "RUN_End");
     }
