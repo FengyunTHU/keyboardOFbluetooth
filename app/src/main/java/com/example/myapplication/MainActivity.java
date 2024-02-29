@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private JavaScriptInterfaces javaScriptInterfaces;
     private ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                javaScriptInterfaces.SendResult(result.getResultCode(),result.getData());
+                javaScriptInterfaces.SendResult_pic(result.getResultCode(),result.getData());
             }
     );
     @Override
