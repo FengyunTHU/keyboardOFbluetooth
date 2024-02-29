@@ -18,13 +18,13 @@
 .sidebar a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     color: #f1f1f1;
     display: block;
     transition: 0.3s;
     box-sizing: border-box;
     cursor: pointer;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Liberation Sans", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, SimSun, "WenQuanYi Zen Hei Sharp", sans-serif;
+    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Liberation Sans", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, SimSun, "WenQuanYi Zen Hei Sharp", sans-serif; */
 }
 
 .sidebar a:hover {
@@ -39,11 +39,12 @@
     margin-left: 50px;
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     color: #f1f1f1;
     transition: 0.3s;
 }
 
+.RchangeB,
 .openbtn {
     /* font-size: 20px;
     cursor: pointer;
@@ -54,16 +55,31 @@
     border: none;
 }
 
+.RchangeB {
+    /* display: flex; */
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.RchangeB .sunANDmoon,
 .openbtn .settings {
     height: 40px;
     width: auto;
 }
 
-/* .openbtn:hover {
-    background-color: #444;
-} */
+img.sunANDmoon {
+    /* background-image: url('../img/sun.svg'),url('../img/moon.svg');
+    background-repeat: no-repeat,no-repeat;
+    background-position: left center,right center; */
+    transition: opacity 0.3s ease;
+}
+
+body {
+    transition: background-color 0.3s ease;
+}
 
 #main {
+    display: flex;
     transition: margin-left .5s;
     padding: 16px;
 }
@@ -75,6 +91,6 @@
     }
 
     .sidebar a {
-        font-size: 18px;
+        font-size: 15px;
     }
 }
