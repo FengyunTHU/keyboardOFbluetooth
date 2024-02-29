@@ -53,7 +53,7 @@ Android Studio开发的模拟蓝牙键盘
    right,481,160,510,189
    ```
 
-   - 提供键位的位置信息数字即可，如 `15,13,10`。会自动依据所给的数字个数分配 `area.shape`，包含 `=3->circle(圆),=4->rect(矩形),≥5->poly(多边形)`。推荐使用网站 `<a href="https://www.image-map.net">`image map generator `</a>`；
+   - 提供键位的位置信息数字即可，如 `15,13,10`。会自动依据所给的数字个数分配 `area.shape`，包含 `=3->circle(圆),=4->rect(矩形),≥5->poly(多边形)`。推荐使用网站 <a href="https://www.image-map.net">image map generator </a>；
 
 #### 开发历程
 
