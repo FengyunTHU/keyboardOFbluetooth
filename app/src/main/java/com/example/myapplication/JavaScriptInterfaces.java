@@ -40,6 +40,7 @@ public class JavaScriptInterfaces {
 
     @JavascriptInterface
     public void getPosition() {
+        Log.d(TAG,"position_enter");
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
         String[] mimeTypes = {"text/csv","text/plain"};// .csv & .txt

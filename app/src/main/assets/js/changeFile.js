@@ -1,6 +1,6 @@
 // 导入文件所采用的js脚本
 function setPictureOfKeyboard(base64Image, Type) {
-    let img = document.querySelector("Img");
+    let img = document.querySelector("img.Img");
     let src = '';
     if (Type === "image/png") {
         src = 'data:image/png;base64,' + base64Image;
