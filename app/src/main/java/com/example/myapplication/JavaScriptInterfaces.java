@@ -71,9 +71,9 @@ public class JavaScriptInterfaces {
             Log.d(TAG,"Url_position"+uri);
             String Type = getFileType(uri);
             Log.d(TAG,"GetType_img: "+Type);
-            String position = readPositionFile(uri).toString();
+            String position = readPositionFile(uri);
             Log.d(TAG,"GetString_position: "+position);
-            webView.loadUrl("javascript:");
+            webView.loadUrl("javascript:setPositionOfKeyboard('"+position+"')");
             Log.d(TAG,"AfterLoadJS_position");
         }
     }
@@ -91,7 +91,7 @@ public class JavaScriptInterfaces {
         }
     }
 
-    private StringBuilder readPositionFile(Uri uri) {
+    private String readPositionFile(Uri uri) {
         try {
             Log.d(TAG,"start read position");
             InputStream inputStream = activity.getContentResolver().openInputStream(uri);
@@ -105,7 +105,7 @@ public class JavaScriptInterfaces {
                 lines = lines.replace("'", "\\'");
                 positionData.append(lines).append("\\n"); // 使用双反斜杠来表示换行，以便在JavaScript中正确解析
             }
-            return positionData;
+            return positionData.toString();
         } catch (IOException e) {
             e.printStackTrace();
             return null;
