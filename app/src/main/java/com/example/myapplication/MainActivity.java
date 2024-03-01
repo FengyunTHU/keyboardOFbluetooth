@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -34,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
                 javaScriptInterfaces.SendResult_pic(result.getResultCode(),result.getData());
             }
     );
+    private ActivityResultLauncher<Intent> resultLauncher_forbluetooth = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    callBluetooth.CallBluetooth();
+            }
+        }
+    );
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +54,15 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.BLUETOOTH_CONNECT}, 0);
         }
         Toast.makeText(this, "Written by Alphabet@Gitee.THU come from a game of Tsinghua in winter vacation.", Toast.LENGTH_SHORT).show();
-        callBluetooth = new callBluetooth(this,mRequestLauncher);
+        callBluetooth = new callBluetooth(this,mRequestLauncher,resultLauncher_forbluetooth);
 //        callBluetooth.CallBluetooth();
 //        callBluetooth.enableBluetooth();// 启动蓝牙
+        Log.d(TAG, "RUN_Start");
         callBluetooth.RunBluetooth();
+        // discoverAndPairDevice();
+//        Log.d(TAG,"outENABLE enterCALL");
+//        callBluetooth.CallBluetooth();
+        Log.d(TAG, "RUN_End");
 
         // 检测一下HID的支持情况
         if(callBluetooth.isSupportBluetoothHid()){
