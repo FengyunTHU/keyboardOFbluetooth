@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 //        }
         // Toast.makeText(this, "Written by Alphabet@Gitee.THU come from a game of Tsinghua in winter vacation.", Toast.LENGTH_SHORT).show();
         callBluetooth = new callBluetooth(this,this,mRequestLauncher,resultLauncher_forbluetooth);
+        webView.addJavascriptInterface(callBluetooth,"bluetooth");
 //        callBluetooth.CallBluetooth();
 //        callBluetooth.enableBluetooth();// 启动蓝牙
         Log.d(TAG, "RUN_Start");
@@ -88,18 +89,18 @@ public class MainActivity extends AppCompatActivity {
                 callBluetooth.CallBluetooth();
             }
         });
-
-        Button button_send = findViewById(R.id.button_send);
-        button_send.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "check permission");
-                String[] list = new String[]{android.Manifest.permission.BLUETOOTH_SCAN, android.Manifest.permission.BLUETOOTH_CONNECT};
-                requestPermissions(list, 1);
-                callBluetooth.SendBKToHost();    //readData();
-            }
-        });
-
+//
+//        Button button_send = findViewById(R.id.button_send);
+//        button_send.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                Log.d(TAG, "check permission");
+//                String[] list = new String[]{android.Manifest.permission.BLUETOOTH_SCAN, android.Manifest.permission.BLUETOOTH_CONNECT};
+//                requestPermissions(list, 1);
+//                callBluetooth.SendBKToHost();    //readData();
+//            }
+//        });
+//
         Button btnconnect = findViewById(R.id.btn_connect);
         btnconnect.setOnClickListener(new View.OnClickListener() {
             @Override

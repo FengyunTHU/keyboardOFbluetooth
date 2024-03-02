@@ -5,9 +5,11 @@ import java.util.Map;
 
 public class KeyMap {
     public Map<String,Byte> KEY2BYTE = new HashMap<String,Byte>();
-    public Map<String,Boolean> SHITBYTE = new HashMap<String,Boolean>();
+    public Map<String,Boolean> SHITBYTE = new HashMap<String,Boolean>();// 需要shift才可以按下的按键
 
     public void initHashMap() {
+        KEY2BYTE.put("LEFT_SHIFT", (byte) 0x02);
+        KEY2BYTE.put("RIGHT_SHIFT", (byte) 0x20);
         KEY2BYTE.put("A", (byte) 4);
         KEY2BYTE.put("B",(byte)5);
         KEY2BYTE.put("C",(byte)6);
@@ -35,6 +37,19 @@ public class KeyMap {
         KEY2BYTE.put("Y",(byte)28);
         KEY2BYTE.put("Z",(byte)29);
 
+        KEY2BYTE.put("F1", (byte) 0x3A);
+        KEY2BYTE.put("F2", (byte) 0x3B);
+        KEY2BYTE.put("F3", (byte) 0x3C);
+        KEY2BYTE.put("F4", (byte) 0x3D);
+        KEY2BYTE.put("F5", (byte) 0x3E);
+        KEY2BYTE.put("F6", (byte) 0x3F);
+        KEY2BYTE.put("F7", (byte) 0x40);
+        KEY2BYTE.put("F8", (byte) 0x41);
+        KEY2BYTE.put("F9", (byte) 0x42);
+        KEY2BYTE.put("F10", (byte) 0x43);
+        KEY2BYTE.put("F11", (byte) 0x44);
+        KEY2BYTE.put("F12", (byte) 0x45);
+
         KEY2BYTE.put("1",(byte)30);
         KEY2BYTE.put("2",(byte)31);
         KEY2BYTE.put("3",(byte)32);
@@ -51,6 +66,9 @@ public class KeyMap {
         KEY2BYTE.put("BACK_SPACE",(byte)42);
         KEY2BYTE.put("TAB",(byte)43);
         KEY2BYTE.put("SPACE",(byte)44);
+        KEY2BYTE.put("CAPS_LOCK", (byte) 0x39);
+        KEY2BYTE.put("LEFT_CTRL", (byte) 0x01);
+        KEY2BYTE.put("RIGHT_CTRL", (byte) 0x10);
         KEY2BYTE.put("-",(byte)45);
         KEY2BYTE.put("=",(byte)46);
         KEY2BYTE.put("[",(byte)47);
@@ -65,15 +83,17 @@ public class KeyMap {
         KEY2BYTE.put("SCROLL_LOCK",(byte)71);
         KEY2BYTE.put("INSERT ",(byte)73);
         KEY2BYTE.put("HOME ",(byte)74);
-        KEY2BYTE.put("PAGE_UP  ",(byte)75);
-        KEY2BYTE.put("DELETE ",(byte)76);
-        KEY2BYTE.put("END ",(byte)77);
-        KEY2BYTE.put("PAGE_DOWN ",(byte)78);
-        KEY2BYTE.put("DPAD_RIGHT ",(byte)79);
-        KEY2BYTE.put("KEYCODE_DPAD_LEFT ",(byte)80);
-        KEY2BYTE.put("KEYCODE_DPAD_DOWN ",(byte)81);
-        KEY2BYTE.put("KEYCODE_DPAD_UP ",(byte)82);
-        KEY2BYTE.put("NUM_LOCK ",(byte)83);
+        KEY2BYTE.put("PAGE_UP",(byte)75);
+        KEY2BYTE.put("DELETE",(byte)76);
+        KEY2BYTE.put("END",(byte)77);
+        KEY2BYTE.put("LEFT_ALT", (byte) 0x04);
+        KEY2BYTE.put("RIGHT_ALT", (byte) 0x40);
+        KEY2BYTE.put("PAGE_DOWN",(byte)78);
+        KEY2BYTE.put("KEYCODE_DPAD_RIGHT",(byte)79);
+        KEY2BYTE.put("KEYCODE_DPAD_LEFT",(byte)80);
+        KEY2BYTE.put("KEYCODE_DPAD_DOWN",(byte)81);
+        KEY2BYTE.put("KEYCODE_DPAD_UP",(byte)82);
+        KEY2BYTE.put("NUM_LOCK",(byte)83);
 
 
         KEY2BYTE.put("!",(byte)30);
