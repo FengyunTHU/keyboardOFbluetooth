@@ -304,7 +304,7 @@ public class callBluetooth {
 
     @SuppressLint("MissingPermission")
     public void ConnectotherBluetooth() {
-        mHostDevice = mBtAdapter.getRemoteDevice("D8:63:0D:8E:2A:76");
+        mHostDevice = mBtAdapter.getRemoteDevice("B0:3C:DC:27:A9:29");
         if (mHostDevice!=null) {
             Log.d(TAG,"Connected is OK");
             Log.d(TAG,mHostDevice.getName());

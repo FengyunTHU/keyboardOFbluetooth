@@ -90,16 +90,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 //
-//        Button button_send = findViewById(R.id.button_send);
-//        button_send.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                Log.d(TAG, "check permission");
-//                String[] list = new String[]{android.Manifest.permission.BLUETOOTH_SCAN, android.Manifest.permission.BLUETOOTH_CONNECT};
-//                requestPermissions(list, 1);
-//                callBluetooth.SendBKToHost();    //readData();
-//            }
-//        });
+        Button button_send = findViewById(R.id.button_send);
+        button_send.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "check permission");
+                String[] list = new String[]{android.Manifest.permission.BLUETOOTH_SCAN, android.Manifest.permission.BLUETOOTH_CONNECT};
+                requestPermissions(list, 1);
+                callBluetooth.sendKey("m");    //readData();
+            }
+        });
 //
         Button btnconnect = findViewById(R.id.btn_connect);
         btnconnect.setOnClickListener(new View.OnClickListener() {
