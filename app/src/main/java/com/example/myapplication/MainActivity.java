@@ -7,10 +7,12 @@ import androidx.core.app.ActivityCompat;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.bluetooth.BluetoothManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -50,38 +52,62 @@ public class MainActivity extends AppCompatActivity {
         this.createWebView(webView);
 
         // 蓝牙【目前有问题暂时不解决】
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.BLUETOOTH_CONNECT}, 0);
-        }
-        Toast.makeText(this, "Written by Alphabet@Gitee.THU come from a game of Tsinghua in winter vacation.", Toast.LENGTH_SHORT).show();
-        callBluetooth = new callBluetooth(this,mRequestLauncher,resultLauncher_forbluetooth);
+//        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.BLUETOOTH_CONNECT}, 0);
+//        }
+        // Toast.makeText(this, "Written by Alphabet@Gitee.THU come from a game of Tsinghua in winter vacation.", Toast.LENGTH_SHORT).show();
+        callBluetooth = new callBluetooth(this,this,mRequestLauncher,resultLauncher_forbluetooth);
 //        callBluetooth.CallBluetooth();
 //        callBluetooth.enableBluetooth();// 启动蓝牙
         Log.d(TAG, "RUN_Start");
-        callBluetooth.RunBluetooth();
+        callBluetooth.initMap();
+        callBluetooth.mBtManager = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);
+        callBluetooth.mBtAdapter = callBluetooth.mBtManager.getAdapter();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         // discoverAndPairDevice();
 //        Log.d(TAG,"outENABLE enterCALL");
 //        callBluetooth.CallBluetooth();
         Log.d(TAG, "RUN_End");
 
         // 检测一下HID的支持情况
-        if(callBluetooth.isSupportBluetoothHid()){
-            Toast.makeText(this,"系统支持蓝牙HID",Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this,"系统不支持蓝牙HID",Toast.LENGTH_SHORT).show();
-        }
-        Log.d(TAG,"END_Main");
+//        if(callBluetooth.isSupportBluetoothHid()){
+//            Toast.makeText(this,"系统支持蓝牙HID",Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(this,"系统不支持蓝牙HID",Toast.LENGTH_SHORT).show();
+//        }
+//        Log.d(TAG,"END_Main");
 
         javaScriptInterfaces = new JavaScriptInterfaces(this,webView,resultLauncher);
         webView.addJavascriptInterface(javaScriptInterfaces,"Android");
-//        Button buttona = findViewById(R.id.button_send_a);
-//        buttona.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                callBluetooth.sendReport();
-//            }
-//        });
 
+        Button button_init = findViewById(R.id.button_init);
+        button_init.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callBluetooth.CallBluetooth();
+            }
+        });
+
+        Button button_send = findViewById(R.id.button_send);
+        button_send.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "check permission");
+                String[] list = new String[]{android.Manifest.permission.BLUETOOTH_SCAN, android.Manifest.permission.BLUETOOTH_CONNECT};
+                requestPermissions(list, 1);
+                callBluetooth.SendBKToHost();    //readData();
+            }
+        });
+
+        Button btnconnect = findViewById(R.id.btn_connect);
+        btnconnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Connect other BlueTooth");
+                callBluetooth.ConnectotherBluetooth();
+            }
+        });
     }
 
     @Override
