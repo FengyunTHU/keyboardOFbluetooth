@@ -42,7 +42,7 @@ public class callBluetooth {
     boolean connected;// 连接状态
     private Activity activity;
     private KeyMap keyMap;
-    int id = 2;
+    int id = 8;
     private byte[] mBuffer = new byte[8];
 
     private static final int CONNECT_SUCCESS = 0x01;
@@ -293,10 +293,10 @@ public class callBluetooth {
         }
         Log.d(TAG,"pre_send: "+key);
 
-        mHidDevice.sendReport(mHostDevice,2,new byte[]{
+        mHidDevice.sendReport(mHostDevice,8,new byte[]{
                 b1,0,keyMap.KEY2BYTE.get(key.toUpperCase()),0,0,0,0,0
         });
-        mHidDevice.sendReport(mHostDevice,2,new byte[]{
+        mHidDevice.sendReport(mHostDevice,8,new byte[]{
                 0,0,0,0,0,0,0,0
         });
         Log.d(TAG,"after_send: "+key);
@@ -304,7 +304,7 @@ public class callBluetooth {
 
     @SuppressLint("MissingPermission")
     public void ConnectotherBluetooth() {
-        mHostDevice = mBtAdapter.getRemoteDevice("B0:3C:DC:27:A9:29");
+        mHostDevice = mBtAdapter.getRemoteDevice("B4:8C:9D:AD:9B:9A");
         if (mHostDevice!=null) {
             Log.d(TAG,"Connected is OK");
             Log.d(TAG,mHostDevice.getName());
