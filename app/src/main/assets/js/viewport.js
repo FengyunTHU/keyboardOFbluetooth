@@ -1,13 +1,3 @@
-// function openNav() {
-//     document.getElementById("mySidebar").style.height = "40px";
-//     document.getElementById("main").style.marginTop = "40px";
-// }
-
-// function closeNav() {
-//     document.getElementById("mySidebar").style.height = "0";
-//     document.getElementById("main").style.marginTop = "0";
-// }
-
 function showCheck() {
     let div_back = document.createElement('div');
     div_back.setAttribute('class', 'modal');
@@ -119,6 +109,15 @@ function changeBODY_ori() {
 
 let count = 0;
 let count2 = 0;
+// let Mac = "B0:3C:DC:27:A9:29";
+// function getMac() {
+//     let userInput = prompt("输入需要连接的设备的蓝牙Mac地址,使用':'分隔,否则为默认地址: ", "B0:3C:DC:27:A9:29");
+//     if (userInput === null) {
+//         return;
+//     }
+//     Mac = userInput;
+// }
+
 function StartBluetooth() {
     let IMGF = document.querySelector("img.Init");
     IMGF.style.transform = 'rotate(360deg)';
@@ -131,6 +130,17 @@ function StartBluetooth() {
         newButton2.className = "ButtonRight";
         newButton.style.animation = 'slideLeft 1s forwards'; // 设置按钮的动画
         newButton2.style.animation = 'slideRight 1s forwards'; // 设置按钮的动画
+        // 设置样式
+        newButton.style.border = "3px solid gray";
+        newButton.style.background = 'repeating-linear-gradient(135deg, transparent, transparent 10px, bisque 10px, bisque 12px)';
+        newButton.style.borderRadius = '10px';
+        newButton.style.fontWeight = "bold";
+        newButton.style.fontSize = '20px';
+        newButton2.style.fontWeight = 'bold';
+        newButton2.style.border = '3px solid gray';
+        newButton2.style.background = 'repeating-linear-gradient(135deg, transparent, transparent 10px, bisque 10px, bisque 12px)';
+        newButton2.style.borderRadius = '10px';
+        newButton2.style.fontSize = '20px';
         newButton.onclick = function () {
             bluetooth.CallBluetooth();
         }

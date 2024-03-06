@@ -16,13 +16,16 @@ import android.bluetooth.BluetoothProfile;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.text.InputType;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -306,13 +309,40 @@ public class callBluetooth {
     @SuppressLint("MissingPermission")
     @JavascriptInterface
     public void ConnectotherBluetooth() {
-        mHostDevice = mBtAdapter.getRemoteDevice("B0:3C:DC:27:A9:29");// B0:3C:DC:27:A9:29// xhm:B4:8C:9D:AD:9B:9A
-        // pad: D8:63:0D:8E:2A:76
-        if (mHostDevice!=null) {
-            Log.d(TAG,"Connected is OK");
-            Log.d(TAG,mHostDevice.getName());
-        }
-        mHidDevice.connect(mHostDevice);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("输入需要连接的设备的蓝牙Mac地址");
+
+        // 设置输入框
+        final EditText input = new EditText(context);
+        input.setText("B0:3C:DC:27:A9:29");
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+        // 设置按钮
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String mac = "B0:3C:DC:27:A9:29";
+                mac = input.getText().toString();
+                input.setText(mac);
+                if (mac != null) {
+                    mHostDevice = mBtAdapter.getRemoteDevice(mac);// B0:3C:DC:27:A9:29// xhm:B4:8C:9D:AD:9B:9A// pad: D8:63:0D:8E:2A:76
+                    if (mHostDevice != null) {
+                        Log.d(TAG, "Connected is OK");
+                        Log.d(TAG, mHostDevice.getName());
+                    }
+                    mHidDevice.connect(mHostDevice);
+                }
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
     }
 
 
