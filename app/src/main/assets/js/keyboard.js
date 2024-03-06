@@ -79,23 +79,25 @@ function setButton() {
         btn.style.backgroundColor = 'transparent';
         btn.style.borderColor = 'transparent';
         var Coords = AreaAll[i].coords.split(',');
-        if (AreaAll[i].shape === 'circle') {
-            btn.style.left = ImageRect.left + parseInt(Coords[0]) - parseInt(Coords[2]) + 'px';
-            btn.style.top = ImageRect.top + parseInt(Coords[1]) - parseInt(Coords[2]) + 'px';
-            btn.style.width = parseInt(Coords[2]) * 2 + 'px';
-            btn.style.height = parseInt(Coords[2]) * 2 + 'px';
-            btn.onclick = function () {
-                Addd(AreaAll[i]);
+        (function (i) {
+            if (AreaAll[i].shape === 'circle') {
+                btn.style.left = ImageRect.left + parseInt(Coords[0]) - parseInt(Coords[2]) + 'px';
+                btn.style.top = ImageRect.top + parseInt(Coords[1]) - parseInt(Coords[2]) + 'px';
+                btn.style.width = parseInt(Coords[2]) * 2 + 'px';
+                btn.style.height = parseInt(Coords[2]) * 2 + 'px';
+                btn.onclick = function () {
+                    Addd(AreaAll[i]);
+                }
+            } else if (AreaAll[i].shape === 'rect') {
+                btn.style.left = ImageRect.left + parseInt(Coords[0]) + 'px';
+                btn.style.top = ImageRect.top + parseInt(Coords[1]) + 'px';
+                btn.style.width = (parseInt(Coords[2]) - parseInt(Coords[0])) + 'px';
+                btn.style.height = (parseInt(Coords[3]) - parseInt(Coords[1])) + 'px';
+                btn.onclick = function () {
+                    Addd(AreaAll[i]);
+                }
             }
-        } else if (AreaAll[i].shape === 'rect') {
-            btn.style.left = ImageRect.left + parseInt(Coords[0]) + 'px';
-            btn.style.top = ImageRect.top + parseInt(Coords[1]) + 'px';
-            btn.style.width = (parseInt(Coords[2]) - parseInt(Coords[0])) + 'px';
-            btn.style.height = (parseInt(Coords[3]) - parseInt(Coords[1])) + 'px';
-            btn.onclick = function () {
-                Addd(AreaAll[i]);
-            }
-        }
+        })(i);
         BTN_SET.appendChild(btn);
     }
 }

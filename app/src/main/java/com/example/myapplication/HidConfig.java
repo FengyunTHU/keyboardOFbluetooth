@@ -9,7 +9,7 @@ public class HidConfig {
 
     // HID码表【不知道干啥的】
     public static final byte[] KEYBOARD_COMBO =
-        {
+            {
 
 //                (byte) 0x05, (byte) 0x01, //USAGE_PAGE (Generic Desktop)
 //                (byte) 0x09, (byte) 0x06, //USAGE (Keyboard)
@@ -40,39 +40,39 @@ public class HidConfig {
 //                (byte) 0xC0  //END_COLLECTION
 //
 //
-                (byte) 0x05, (byte) 0x01,                         // Usage Page (Generic Desktop)
-                (byte) 0x09, (byte) 0x06,                         // Usage (Keyboard)
-                (byte) 0xA1, (byte) 0x01,                         // Collection (Application)
-                (byte) 0x85, (byte) 0x08,                         //   REPORT_ID (Keyboard)
-                (byte) 0x05, (byte) 0x07,                         //   Usage Page (Key Codes)
-                (byte) 0x19, (byte) 0xE0,                         //   Usage Minimum (224)
-                (byte) 0x29, (byte) 0xE7,                         //   Usage Maximum (231)
-                (byte) 0x15, (byte) 0x00,                         //   Logical Minimum (0)
-                (byte) 0x25, (byte) 0x01,                         //   Logical Maximum (1)
-                (byte) 0x75, (byte) 0x01,                         //   Report Size (1)
-                (byte) 0x95, (byte) 0x08,                         //   Report Count (8)
-                (byte) 0x81, (byte) 0x02,                         //   Input (Data, Variable, Absolute)
-                (byte) 0x95, (byte) 0x01,                         //   Report Count (1)
-                (byte) 0x75, (byte) 0x08,                         //   Report Size (8)
-                (byte) 0x81, (byte) 0x01,                         //   Input (Constant) reserved byte(1)
-                (byte) 0x95, (byte) 0x05,                         //   Report Count (5)
-                (byte) 0x75, (byte) 0x01,                         //   Report Size (1)
-                (byte) 0x05, (byte) 0x08,                         //   Usage Page (Page# for LEDs)
-                (byte) 0x19, (byte) 0x01,                         //   Usage Minimum (1)
-                (byte) 0x29, (byte) 0x05,                         //   Usage Maximum (5)
-                (byte) 0x91, (byte) 0x02,                         //   Output (Data, Variable, Absolute), Led report
-                (byte) 0x95, (byte) 0x01,                         //   Report Count (1)
-                (byte) 0x75, (byte) 0x03,                         //   Report Size (3)
-                (byte) 0x91, (byte) 0x01,                         //   Output (Data, Variable, Absolute), Led report padding
-                (byte) 0x95, (byte) 0x06,                         //   Report Count (6)
-                (byte) 0x75, (byte) 0x08,                         //   Report Size (8)
-                (byte) 0x15, (byte) 0x00,                         //   Logical Minimum (0)
-                (byte) 0x25, (byte) 0x65,                         //   Logical Maximum (101)
-                (byte) 0x05, (byte) 0x07,                         //   Usage Page (Key codes)
-                (byte) 0x19, (byte) 0x00,                         //   Usage Minimum (0)
-                (byte) 0x29, (byte) 0x65,                         //   Usage Maximum (101)
-                (byte) 0x81, (byte) 0x00,                         //   Input (Data, Array) Key array(6 bytes)
-                (byte) 0xC0                                       // End Collection (Application)
+//                (byte) 0x05, (byte) 0x01,                         // Usage Page (Generic Desktop)
+//                (byte) 0x09, (byte) 0x06,                         // Usage (Keyboard)
+//                (byte) 0xA1, (byte) 0x01,                         // Collection (Application)
+//                (byte) 0x85, (byte) 0x08,                         //   REPORT_ID (Keyboard)
+//                (byte) 0x05, (byte) 0x07,                         //   Usage Page (Key Codes)
+//                (byte) 0x19, (byte) 0xE0,                         //   Usage Minimum (224)
+//                (byte) 0x29, (byte) 0xE7,                         //   Usage Maximum (231)
+//                (byte) 0x15, (byte) 0x00,                         //   Logical Minimum (0)
+//                (byte) 0x25, (byte) 0x01,                         //   Logical Maximum (1)
+//                (byte) 0x75, (byte) 0x01,                         //   Report Size (1)
+//                (byte) 0x95, (byte) 0x08,                         //   Report Count (8)
+//                (byte) 0x81, (byte) 0x02,                         //   Input (Data, Variable, Absolute)
+//                (byte) 0x95, (byte) 0x01,                         //   Report Count (1)
+//                (byte) 0x75, (byte) 0x08,                         //   Report Size (8)
+//                (byte) 0x81, (byte) 0x01,                         //   Input (Constant) reserved byte(1)
+//                (byte) 0x95, (byte) 0x05,                         //   Report Count (5)
+//                (byte) 0x75, (byte) 0x01,                         //   Report Size (1)
+//                (byte) 0x05, (byte) 0x08,                         //   Usage Page (Page# for LEDs)
+//                (byte) 0x19, (byte) 0x01,                         //   Usage Minimum (1)
+//                (byte) 0x29, (byte) 0x05,                         //   Usage Maximum (5)
+//                (byte) 0x91, (byte) 0x02,                         //   Output (Data, Variable, Absolute), Led report
+//                (byte) 0x95, (byte) 0x01,                         //   Report Count (1)
+//                (byte) 0x75, (byte) 0x03,                         //   Report Size (3)
+//                (byte) 0x91, (byte) 0x01,                         //   Output (Data, Variable, Absolute), Led report padding
+//                (byte) 0x95, (byte) 0x06,                         //   Report Count (6)
+//                (byte) 0x75, (byte) 0x08,                         //   Report Size (8)
+//                (byte) 0x15, (byte) 0x00,                         //   Logical Minimum (0)
+//                (byte) 0x25, (byte) 0x65,                         //   Logical Maximum (101)
+//                (byte) 0x05, (byte) 0x07,                         //   Usage Page (Key codes)
+//                (byte) 0x19, (byte) 0x00,                         //   Usage Minimum (0)
+//                (byte) 0x29, (byte) 0x65,                         //   Usage Maximum (101)
+//                (byte) 0x81, (byte) 0x00,                         //   Input (Data, Array) Key array(6 bytes)
+//                (byte) 0xC0                                       // End Collection (Application)
 
 //                (byte) 0x05, (byte) 0x01,
 //                (byte) 0x09, (byte) 0x02,
@@ -197,5 +197,38 @@ public class HidConfig {
 //                (byte) 0x81,
 //                (byte) 0x00,                    //   INPUT (Data,Ary,Abs)
 //                (byte) 0xc0,                           // END_COLLECTION
-        };
+                    (byte) 0x05, (byte) 0x01,                         // Usage Page (Generic Desktop)
+                    (byte) 0x09, (byte) 0x06,                         // Usage (Keyboard)
+                    (byte) 0xA1, (byte) 0x01,                         // Collection (Application)
+                    (byte) 0x85, (byte) 0x08,                         //   REPORT_ID (Keyboard)
+                    (byte) 0x05, (byte) 0x07,                         //   Usage Page (Key Codes)
+                    (byte) 0x19, (byte) 0xE0,                         //   Usage Minimum (224)
+                    (byte) 0x29, (byte) 0xE7,                         //   Usage Maximum (231)
+                    (byte) 0x15, (byte) 0x00,                         //   Logical Minimum (0)
+                    (byte) 0x25, (byte) 0x01,                         //   Logical Maximum (1)
+                    (byte) 0x75, (byte) 0x01,                         //   Report Size (1)
+                    (byte) 0x95, (byte) 0x08,                         //   Report Count (8)
+                    (byte) 0x81, (byte) 0x02,                         //   Input (Data, Variable, Absolute)
+                    (byte) 0x95, (byte) 0x01,                         //   Report Count (1)
+                    (byte) 0x75, (byte) 0x08,                         //   Report Size (8)
+                    (byte) 0x81, (byte) 0x01,                         //   Input (Constant) reserved byte(1)
+                    (byte) 0x95, (byte) 0x05,                         //   Report Count (5)
+                    (byte) 0x75, (byte) 0x01,                         //   Report Size (1)
+                    (byte) 0x05, (byte) 0x08,                         //   Usage Page (Page# for LEDs)
+                    (byte) 0x19, (byte) 0x01,                         //   Usage Minimum (1)
+                    (byte) 0x29, (byte) 0x05,                         //   Usage Maximum (5)
+                    (byte) 0x91, (byte) 0x02,                         //   Output (Data, Variable, Absolute), Led report
+                    (byte) 0x95, (byte) 0x01,                         //   Report Count (1)
+                    (byte) 0x75, (byte) 0x03,                         //   Report Size (3)
+                    (byte) 0x91, (byte) 0x01,                         //   Output (Data, Variable, Absolute), Led report padding
+                    (byte) 0x95, (byte) 0x06,                         //   Report Count (6)
+                    (byte) 0x75, (byte) 0x08,                         //   Report Size (8)
+                    (byte) 0x15, (byte) 0x00,                         //   Logical Minimum (0)
+                    (byte) 0x25, (byte) 0x65,                         //   Logical Maximum (101)
+                    (byte) 0x05, (byte) 0x07,                         //   Usage Page (Key codes)
+                    (byte) 0x19, (byte) 0x00,                         //   Usage Minimum (0)
+                    (byte) 0x29, (byte) 0x65,                         //   Usage Maximum (101)
+                    (byte) 0x81, (byte) 0x00,                         //   Input (Data, Array) Key array(6 bytes)
+                    (byte) 0xC0
+            };
 }

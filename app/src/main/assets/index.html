@@ -12,32 +12,20 @@
     <script src="./js/keyboard.js" defer></script>
     <script src="./js/viewport.js" defer></script>
     <script src="./js/changeFile.js" defer></script>
+    <link href="./css/animations.css" rel="stylesheet" />
     <link href="./css/keyboard.css" rel="stylesheet" />
     <link href="./css/style.css" rel="stylesheet" type="text/css" />
     <link href="./css/viewport.css" rel="stylesheet" />
 </head>
 
 <body>
-    <!--滑动菜单写一个-->
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">▲</a>
-        <div class="check">
-            <a href="#" onclick="Android.getImage()">更换键盘</a>
-            <a href="#" onclick="Android.getPosition()">添加键位文件</a>
-            <a href="#">按键反馈</a>
-            <a href="#">恢复默认</a>
-            <!-- <a href="./html/appinfo.html" onclick="delayedRedirect(this.href, 500); return false;">APP INFO</a> -->
-            <a href="./html/appinfo.html">APP INFO</a>
-        </div>
-    </div>
     <div id="main">
-        <button class="openbtn" onclick="openNav()">
-            <img src="./img/settings.gif" class="settings">
-        </button>
-        <button class="RchangeB" onclick="changepic()">
-            <img src="./img/sun.svg" class="sunANDmoon">
-        </button>
+        <img src="./img/settings.gif" class="settings" onclick="showCheck()">
+        <img src="./img/bluetooth.svg" class="Init" onclick="SETBluetooth()">
+        <img src="./img/sun.svg" class="sunANDmoon" onclick="changepic()">
     </div>
+    <!--滑动菜单写一个-->
+    <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">▲</a> -->
     <!-- 重构map,使用button -->
     <div id="KeyBoard" class="KeyBoard">
         <img src="./img/k1.svg" alt="KeyBoard" class="Img" id="Img" usemap="#image-map">

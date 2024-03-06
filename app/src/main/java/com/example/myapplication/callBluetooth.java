@@ -88,6 +88,7 @@ public class callBluetooth {
     }
 
     // 实例化
+    @JavascriptInterface
     public void CallBluetooth() {
         //getPermission();
         Log.d(TAG, "callBluetooth");
@@ -303,8 +304,10 @@ public class callBluetooth {
     }
 
     @SuppressLint("MissingPermission")
+    @JavascriptInterface
     public void ConnectotherBluetooth() {
-        mHostDevice = mBtAdapter.getRemoteDevice("B4:8C:9D:AD:9B:9A");
+        mHostDevice = mBtAdapter.getRemoteDevice("B0:3C:DC:27:A9:29");// B0:3C:DC:27:A9:29// xhm:B4:8C:9D:AD:9B:9A
+        // pad: D8:63:0D:8E:2A:76
         if (mHostDevice!=null) {
             Log.d(TAG,"Connected is OK");
             Log.d(TAG,mHostDevice.getName());

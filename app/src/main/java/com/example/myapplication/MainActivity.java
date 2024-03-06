@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 //        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
 //            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.BLUETOOTH_CONNECT}, 0);
 //        }
-        // Toast.makeText(this, "Written by Alphabet@Gitee.THU come from a game of Tsinghua in winter vacation.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "注意需要打开系统蓝牙", Toast.LENGTH_SHORT).show();
         callBluetooth = new callBluetooth(this,this,mRequestLauncher,resultLauncher_forbluetooth);
         webView.addJavascriptInterface(callBluetooth,"bluetooth");
 //        callBluetooth.CallBluetooth();
@@ -82,33 +82,33 @@ public class MainActivity extends AppCompatActivity {
         javaScriptInterfaces = new JavaScriptInterfaces(this,webView,resultLauncher);
         webView.addJavascriptInterface(javaScriptInterfaces,"Android");
 
-        Button button_init = findViewById(R.id.button_init);
-        button_init.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                callBluetooth.CallBluetooth();
-            }
-        });
-//
-        Button button_send = findViewById(R.id.button_send);
-        button_send.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "check permission");
-                String[] list = new String[]{android.Manifest.permission.BLUETOOTH_SCAN, android.Manifest.permission.BLUETOOTH_CONNECT};
-                requestPermissions(list, 1);
-                callBluetooth.sendKey("m");    //readData();
-            }
-        });
-//
-        Button btnconnect = findViewById(R.id.btn_connect);
-        btnconnect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "Connect other BlueTooth");
-                callBluetooth.ConnectotherBluetooth();
-            }
-        });
+//        Button button_init = findViewById(R.id.button_init);
+//        button_init.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                callBluetooth.CallBluetooth();
+//            }
+//        });
+////
+//        Button button_send = findViewById(R.id.button_send);
+//        button_send.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                Log.d(TAG, "check permission");
+//                String[] list = new String[]{android.Manifest.permission.BLUETOOTH_SCAN, android.Manifest.permission.BLUETOOTH_CONNECT};
+//                requestPermissions(list, 1);
+//                callBluetooth.sendKey("m");    //readData();
+//            }
+//        });
+////
+//        Button btnconnect = findViewById(R.id.btn_connect);
+//        btnconnect.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.d(TAG, "Connect other BlueTooth");
+//                callBluetooth.ConnectotherBluetooth();
+//            }
+//        });
     }
 
     @Override
