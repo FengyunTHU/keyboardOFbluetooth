@@ -138,7 +138,12 @@ public class callBluetooth {
                         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
                             // TODO: Consider calling
                             Log.d(TAG, "return before register");
-                            //webView.loadUrl("javascript:Showinformation('赋予权限后，你需要再次点击init初始化')");
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    webView.loadUrl("javascript:Showinformation('赋予权限后，你需要再次点击init初始化')");
+                                }
+                            });
                             String[] list = new String[] {
                                     Manifest.permission.BLUETOOTH_SCAN,
                                     Manifest.permission.BLUETOOTH_CONNECT
@@ -156,6 +161,12 @@ public class callBluetooth {
                         // registerApp();// 注册
                     } else {
                         Toast.makeText(context, "Disable for HID profile", Toast.LENGTH_SHORT).show();
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                webView.loadUrl("javascript:Showinformation('手机厂商可能禁用了本机的HID服务')");
+                            }
+                        });
                     }
                     // 启用设备发现
                     // requestLauncher.launch(new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE));
