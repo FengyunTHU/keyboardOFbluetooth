@@ -1,3 +1,4 @@
+/*   定义一些关键帧动画   */
 @keyframes popup {
     0% {
         opacity: 0;
@@ -84,4 +85,94 @@
 
 .button-right-re {
     animation: slideRight_re 1s forwards;
+}
+
+@media screen and (max-height: 450px) {
+    @keyframes popup {
+        0% {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+    
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    
+    @keyframes popdown {
+        0% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    
+        100% {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+    }
+    
+    @keyframes slideLeft {
+        from {
+            transform: translateX(0);
+            opacity: 0;
+        }
+    
+        to {
+            transform: translateX(-100px);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideRight {
+        from {
+            transform: translateX(0);
+            opacity: 0;
+        }
+    
+        to {
+            transform: translateX(100px);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideLeft_re {
+        from {
+            transform: translateX(-100px);
+            opacity: 1;
+        }
+    
+        to {
+            transform: translateX(0);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes slideRight_re {
+        from {
+            transform: translateX(100px);
+            opacity: 1;
+        }
+    
+        to {
+            transform: translateX(0);
+            opacity: 0;
+        }
+    }
+    
+    .button-left {
+        animation: slideLeft 1s forwards;
+    }
+    
+    .button-right {
+        animation: slideRight 1s forwards;
+    }
+    
+    .button-left-re {
+        animation: slideLeft_re 1s forwards;
+    }
+    
+    .button-right-re {
+        animation: slideRight_re 1s forwards;
+    }
 }

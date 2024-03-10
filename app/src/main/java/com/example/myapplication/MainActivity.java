@@ -16,6 +16,8 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private callBluetooth callBluetooth;
     private WebView webView;
     private JavaScriptInterfaces javaScriptInterfaces;
+    private Vibrators vibrators;
     private ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 javaScriptInterfaces.SendResult_pic(result.getResultCode(),result.getData());
@@ -47,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         webView = (WebView) findViewById(R.id.webview);
         this.createWebView(webView);
@@ -56,8 +61,10 @@ public class MainActivity extends AppCompatActivity {
 //            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.BLUETOOTH_CONNECT}, 0);
 //        }
         Toast.makeText(this, "注意需要打开系统蓝牙", Toast.LENGTH_SHORT).show();
-        callBluetooth = new callBluetooth(this,this,mRequestLauncher,resultLauncher_forbluetooth);
+        callBluetooth = new callBluetooth(webView,this,this,mRequestLauncher,resultLauncher_forbluetooth);
         webView.addJavascriptInterface(callBluetooth,"bluetooth");
+        vibrators = new Vibrators(this);
+        webView.addJavascriptInterface(vibrators,"Vibra");
 //        callBluetooth.CallBluetooth();
 //        callBluetooth.enableBluetooth();// 启动蓝牙
         Log.d(TAG, "RUN_Start");
@@ -154,6 +161,8 @@ public class MainActivity extends AppCompatActivity {
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setBuiltInZoomControls(false);
         webView.getSettings().setAllowFileAccess(true);
+        webView.getSettings().setDefaultTextEncodingName("GBK");//设置字符编码
+        webView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
         webView.addJavascriptInterface(MainActivity.this,"android");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(true);

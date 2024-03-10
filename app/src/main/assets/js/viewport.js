@@ -10,38 +10,76 @@ function showCheck() {
     let div_contain = document.createElement('div');
     div_contain.className = "Contain";
     div_contain.innerHTML += "<a href='#' onclick='Android.getImage()'>更换键盘</a><a href='#' onclick='Android.getPosition()'>添加键位文件</a><a href='#'>按键反馈</a><a href='#'>恢复默认</a><a href='./html/appinfo.html'>APP INFO</a>";
-    div_contain.style.width = "404px";
-    div_contain.style.height = "512px";
-    div_contain.style.backgroundColor = "#fff";
-    div_contain.style.position = "absolute";
-    div_contain.style.left = "0";
-    div_contain.style.right = "0";
-    div_contain.style.bottom = "0";
-    div_contain.style.top = "0";
-    div_contain.style.margin = "auto";
-    div_contain.style.boxSizing = "border-box";
-    div_contain.style.borderRadius = "6px";
-    div_contain.style.padding = "1em";
-    div_contain.style.display = "flex";
-    div_contain.style.flexDirection = "column";
-    div_contain.style.fontSize = "25px";
+    if (window.innerHeight <= 450) {
+        div_contain.style.width = "250px";
+        div_contain.style.height = "300px";
+        div_contain.style.backgroundColor = "#fff";
+        div_contain.style.position = "absolute";
+        div_contain.style.left = "0";
+        div_contain.style.right = "0";
+        div_contain.style.bottom = "0";
+        div_contain.style.top = "0";
+        div_contain.style.margin = "auto";
+        div_contain.style.boxSizing = "border-box";
+        div_contain.style.borderRadius = "5px";
+        div_contain.style.padding = "1em";
+        div_contain.style.display = "flex";
+        div_contain.style.flexDirection = "column";
+        div_contain.style.fontSize = "15px";
+    }
+    else {
+        div_contain.style.width = "404px";
+        div_contain.style.height = "512px";
+        div_contain.style.backgroundColor = "#fff";
+        div_contain.style.position = "absolute";
+        div_contain.style.left = "0";
+        div_contain.style.right = "0";
+        div_contain.style.bottom = "0";
+        div_contain.style.top = "0";
+        div_contain.style.margin = "auto";
+        div_contain.style.boxSizing = "border-box";
+        div_contain.style.borderRadius = "6px";
+        div_contain.style.padding = "1em";
+        div_contain.style.display = "flex";
+        div_contain.style.flexDirection = "column";
+        div_contain.style.fontSize = "25px";
+    }
     let close = document.createElement('div');
-    close.innerHTML += "×";
-    close.className = "close";
-    close.style.width = "30px";
-    close.style.height = "30px";
-    close.style.borderRadius = "50%";
-    close.style.position = "absolute";
-    close.style.right = "-10px";
-    close.style.top = "-10px";
-    close.style.border = "2px solid #fff";
-    close.style.cursor = "pointer";
-    close.style.backgroundColor = "#008c8c";
-    close.style.textAlign = "center";
-    close.style.lineHeight = "30px";
-    close.style.color = "#ffffff";
-    close.style.fontSize = "20px";
-    close.style.fontWeight = "bold";
+    if (window.innerHeight <= 450) {
+        close.innerHTML += "×";
+        close.className = "close";
+        close.style.width = "20px";
+        close.style.height = "20px";
+        close.style.borderRadius = "50%";
+        close.style.position = "absolute";
+        close.style.right = "-10px";
+        close.style.top = "-10px";
+        close.style.border = "2px solid #fff";
+        close.style.cursor = "pointer";
+        close.style.backgroundColor = "#008c8c";
+        close.style.textAlign = "center";
+        close.style.lineHeight = "20px";
+        close.style.color = "#ffffff";
+        close.style.fontSize = "15px";
+        close.style.fontWeight = "bold";
+    } else {
+        close.innerHTML += "×";
+        close.className = "close";
+        close.style.width = "30px";
+        close.style.height = "30px";
+        close.style.borderRadius = "50%";
+        close.style.position = "absolute";
+        close.style.right = "-10px";
+        close.style.top = "-10px";
+        close.style.border = "2px solid #fff";
+        close.style.cursor = "pointer";
+        close.style.backgroundColor = "#008c8c";
+        close.style.textAlign = "center";
+        close.style.lineHeight = "30px";
+        close.style.color = "#ffffff";
+        close.style.fontSize = "20px";
+        close.style.fontWeight = "bold";
+    }
     div_contain.appendChild(close);
     div_back.appendChild(div_contain);
     div_back.style.animation += "popup 0.5s";
@@ -92,7 +130,7 @@ function changeBODY_black() {
 }
 
 function changeBODY_ori() {
-    document.body.style.backgroundColor = "";
+    document.body.style.backgroundColor = '';
     let imag = document.querySelector("img.Img");
     imag.style.border = "2px solid wheat";
 }

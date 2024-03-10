@@ -85,7 +85,15 @@ function setButton() {
                 btn.style.top = ImageRect.top + parseInt(Coords[1]) - parseInt(Coords[2]) + 'px';
                 btn.style.width = parseInt(Coords[2]) * 2 + 'px';
                 btn.style.height = parseInt(Coords[2]) * 2 + 'px';
+                btn.style.transition = "background-color 0.15s ease";
+                btn.addEventListener('mousedown', function () {
+                    this.style.backgroundColor = "rgba(211,211,211,0.5)";
+                });
+                btn.addEventListener('mouseup', function () {
+                    this.style.backgroundColor = 'transparent';
+                });
                 btn.onclick = function () {
+                    Vibra.vibraOnce();
                     Addd(AreaAll[i]);
                 }
             } else if (AreaAll[i].shape === 'rect') {
@@ -93,7 +101,15 @@ function setButton() {
                 btn.style.top = ImageRect.top + parseInt(Coords[1]) + 'px';
                 btn.style.width = (parseInt(Coords[2]) - parseInt(Coords[0])) + 'px';
                 btn.style.height = (parseInt(Coords[3]) - parseInt(Coords[1])) + 'px';
+                btn.style.transition = "background-color 0.15s ease";
+                btn.addEventListener('mousedown', function () {
+                    this.style.backgroundColor = "rgba(211,211,211,0.5)";
+                });
+                btn.addEventListener('mouseup', function () {
+                    this.style.backgroundColor = 'transparent';
+                });
                 btn.onclick = function () {
+                    Vibra.vibraOnce();
                     Addd(AreaAll[i]);
                 }
             }

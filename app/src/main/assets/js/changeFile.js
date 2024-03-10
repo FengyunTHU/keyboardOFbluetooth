@@ -80,3 +80,11 @@ function setPositionOfKeyboard(position) {
         }
     }
 }
+
+
+function Showinformation(info) {
+    let Infom = document.getElementById("info");
+    let ptemp = document.createElement('p');
+    ptemp.textContent = info;
+    Infom.appendChild(ptemp);
+}

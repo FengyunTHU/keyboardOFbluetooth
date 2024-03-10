@@ -12,6 +12,22 @@
     display: flex;
 } */
 
+.info {
+    width: 1000px;
+    height: 50px;
+    overflow-y: auto;
+    font-size: 15px;
+    font-weight: bold;
+    color: blueviolet;
+    border: 2px solid gray;
+    border-radius: 10px;
+}
+
+.info p {
+    margin-left: 10px;
+    line-height: 8px;
+}
+
 .Init,
 .sunANDmoon,
 .settings {
@@ -25,6 +41,7 @@ img.settings {
     margin-left: 0;
     margin-right: auto;
 }
+
 /*   太阳月亮图像   */
 img.sunANDmoon {
     /* background-image: url('../img/sun.svg'),url('../img/moon.svg');
@@ -51,4 +68,60 @@ body {
 }
 
 /* 在高度小于 450px 的较小屏幕上，更改 sidenav 的样式*/
-@media screen and (max-height: 450px) {}
+@media screen and (max-height: 450px) {
+
+    .Init,
+    .sunANDmoon,
+    .settings {
+        height: 30px;
+        width: auto;
+    }
+
+
+    img.settings {
+        object-fit: contain;
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    /*   太阳月亮图像   */
+    img.sunANDmoon {
+        /* background-image: url('../img/sun.svg'),url('../img/moon.svg');
+    background-repeat: no-repeat,no-repeat;
+    background-position: left center,right center; */
+        margin-right: 0;
+        margin-left: auto;
+        transition: opacity 0.3s ease;
+        object-fit: contain;
+    }
+
+    img.Init {
+        transition: transform 1.5s;
+    }
+
+    body {
+        transition: background-color 0.3s ease;
+    }
+
+    #main {
+        display: flex;
+        transition: margin-left .5s;
+        padding: 6px;
+    }
+
+    .info {
+        width: 600px;
+        height: 40px;
+        overflow-y: auto;
+        font-size: 10px;
+        font-weight: bold;
+        color: blueviolet;
+        border: 2px solid gray;
+        border-radius: 10px;
+    }
+
+    .info p {
+        margin-left: 6px;
+        line-height: 5px;
+    }
+}

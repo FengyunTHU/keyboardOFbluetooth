@@ -25,6 +25,7 @@ import android.content.pm.ResolveInfo;
 import android.text.InputType;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -45,7 +46,9 @@ public class callBluetooth {
     boolean connected;// 连接状态
     private Activity activity;
     private KeyMap keyMap;
+    private WebView webView;
     int id = 8;
+    private int count = 0;
     private byte[] mBuffer = new byte[8];
 
     private static final int CONNECT_SUCCESS = 0x01;
@@ -71,7 +74,8 @@ public class callBluetooth {
     private ActivityResultLauncher<Intent> requestLauncher_for_bluetooth;
     private final List<BluetoothDevice> discoveredDevices = new ArrayList<>();
 
-    public callBluetooth(Context context, Activity activity,ActivityResultLauncher<Intent> requestLauncher, ActivityResultLauncher<Intent> requestLauncher_for_bluetooth) {
+    public callBluetooth(WebView webView,Context context, Activity activity, ActivityResultLauncher<Intent> requestLauncher, ActivityResultLauncher<Intent> requestLauncher_for_bluetooth) {
+        this.webView = webView;
         this.context = context;
         this.activity = activity;
         this.requestLauncher = requestLauncher;
@@ -114,7 +118,7 @@ public class callBluetooth {
                         Log.e(TAG, "Proxy received but it isn't hid");
                         return;
                     }
-                    Log.d(TAG,"Connecting HID…");
+                    Log.d(TAG, "Connecting HID…");
                     mHidDevice = (BluetoothHidDevice) proxy;
                     Log.d(TAG, "proxyOK");
                     BluetoothHidDeviceAppSdpSettings Sdpsettings = new BluetoothHidDeviceAppSdpSettings(
@@ -133,12 +137,13 @@ public class callBluetooth {
 
                         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
                             // TODO: Consider calling
-                            Log.d(TAG,"return before register");
+                            Log.d(TAG, "return before register");
+                            //webView.loadUrl("javascript:Showinformation('赋予权限后，你需要再次点击init初始化')");
                             String[] list = new String[] {
                                     Manifest.permission.BLUETOOTH_SCAN,
                                     Manifest.permission.BLUETOOTH_CONNECT
                             };
-                            requestPermissions(activity,list,1);
+                            requestPermissions(activity, list, 1);
                             return;
                         }
                         BluetoothHidDeviceAppQosSettings inQos = new BluetoothHidDeviceAppQosSettings(
@@ -168,8 +173,14 @@ public class callBluetooth {
                 }
             }
         }, BluetoothProfile.HID_DEVICE);
+        Toast.makeText(context, "Init Success!", Toast.LENGTH_SHORT).show();
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                webView.loadUrl("javascript:Showinformation('init success!')");
+            }
+        });
     }
-
 
 
     public final BluetoothHidDevice.Callback mCallback = new BluetoothHidDevice.Callback() {
@@ -178,6 +189,7 @@ public class callBluetooth {
                 BluetoothProfile.STATE_CONNECTING,
                 BluetoothProfile.STATE_CONNECTED
         };
+
         @Override
         public void onAppStatusChanged(BluetoothDevice pluggedDevice, boolean registered) {
             Log.d(TAG, "ccccc_str");
@@ -191,6 +203,13 @@ public class callBluetooth {
             if (registered) {
                 // 应用已注册
                 Log.d(TAG, "register OK!.......");
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        webView.loadUrl("javascript:Showinformation('register OK!成功在本机注册HID服务')");
+                    }
+                });
+                Log.d(TAG,"AFTER WEBVIEWSEND");
 //                List<BluetoothDevice> matchingDevices = mHidDevice.getDevicesMatchingConnectionStates(mMatchingStates);
 //                Log.d(TAG, "paired devices: " + matchingDevices + "  " + mHidDevice.getConnectionState(pluggedDevice));
 //                Toast.makeText(context, "paired devices: " + matchingDevices + "  " + mHidDevice.getConnectionState(pluggedDevice), Toast.LENGTH_SHORT).show();
@@ -222,17 +241,45 @@ public class callBluetooth {
                     // TODO: Consider calling
                     return;
                 }
-                Log.d(TAG,"hid state is connected");
-                Log.d(TAG,"-----------------------------------connected HID");
-                Log.d(TAG,device.getName().toString());
+                Log.d(TAG, "hid state is connected");
+                Log.d(TAG, "-----------------------------------connected HID");
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        webView.loadUrl("javascript:Showinformation('已经连接到了所连接设备的HID服务')");
+                    }
+                });
+                Log.d(TAG, device.getName().toString());
+                // Toast.makeText(context, "Connected to " + device.getName().toString(), Toast.LENGTH_SHORT).show();
                 // Toast.makeText(context, "device_is_ok: " + mHostDevice.getName() + mHostDevice.getAddress(), Toast.LENGTH_SHORT).show();
             } else if (state == BluetoothProfile.STATE_DISCONNECTED) {
                 connected = false;
-                Log.d(TAG,"hid state is disconnected");
+                Log.d(TAG, "hid state is disconnected");
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        webView.loadUrl("javascript:Showinformation('所连接设备HID服务断开')");
+                    }
+                });
+                // 继续发起连接
+//                if (count <= 5) {
+//                    mHidDevice.connect(mHostDevice);
+//                    count++;
+//                }
+                // count = 0;
+                Log.d(TAG, "connect failed");
+                // Toast.makeText(context, "连接意外中断。你可以点击Connect按钮继续发起连接", Toast.LENGTH_SHORT).show();
                 // mHostDevice = null;
                 // Toast.makeText(context, "device_is_null", Toast.LENGTH_SHORT).show();
             } else if (state == BluetoothProfile.STATE_CONNECTING) {
-                Log.d(TAG,"hid state is connecting");
+                Log.d(TAG, "hid state is connecting");
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        webView.loadUrl("javascript:Showinformation('正在尝试连接到所连接设备的HID服务')");
+                    }
+                });
+                // Toast.makeText(context, "Trying connecting...", Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -243,11 +290,11 @@ public class callBluetooth {
             Log.e(TAG, "check permission Error ,Exit SendBKtohost Function");
             String[] list = new String[]{Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.BLUETOOTH_CONNECT};
 
-            ActivityCompat.requestPermissions(activity,list, 1);
+            ActivityCompat.requestPermissions(activity, list, 1);
 
             return;
         }
-        Log.d(TAG,"-----------------preparing send key");
+        Log.d(TAG, "-----------------preparing send key");
         sendKey("s");
         try {
             Thread.sleep(100);
@@ -286,24 +333,30 @@ public class callBluetooth {
     @SuppressLint("MissingPermission")
     public void sendKey(String key) {
         byte b1 = 0;
-        if (key.length()<=1) {
+        if (key.length() <= 1) {
             char keychar = key.charAt(0);
-            if ((keychar>=65)&&(keychar<=90)){
+            if ((keychar >= 65) && (keychar <= 90)) {
                 b1 = 2;
             }
         }
         if (keyMap.SHITBYTE.containsKey(key)) {
             b1 = 2;
         }
-        Log.d(TAG,"pre_send: "+key);
+        Log.d(TAG, "pre_send: " + key);
 
-        mHidDevice.sendReport(mHostDevice,8,new byte[]{
-                b1,0,keyMap.KEY2BYTE.get(key.toUpperCase()),0,0,0,0,0
+        mHidDevice.sendReport(mHostDevice, 8, new byte[]{
+                b1, 0, keyMap.KEY2BYTE.get(key.toUpperCase()), 0, 0, 0, 0, 0
         });
-        mHidDevice.sendReport(mHostDevice,8,new byte[]{
-                0,0,0,0,0,0,0,0
+        mHidDevice.sendReport(mHostDevice, 8, new byte[]{
+                0, 0, 0, 0, 0, 0, 0, 0
         });
-        Log.d(TAG,"after_send: "+key);
+        Log.d(TAG, "after_send: " + key);
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                webView.loadUrl("javascript:Showinformation('你在本机发送了："+key+"')");
+            }
+        });
     }
 
     @SuppressLint("MissingPermission")
@@ -314,7 +367,7 @@ public class callBluetooth {
 
         // 设置输入框
         final EditText input = new EditText(context);
-        input.setText("B0:3C:DC:27:A9:29");
+        input.setText("B4:8C:9D:AD:9B:9A");
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
 
@@ -322,7 +375,7 @@ public class callBluetooth {
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String mac = "B0:3C:DC:27:A9:29";
+                String mac = "B4:8C:9D:AD:9B:9A";
                 mac = input.getText().toString();
                 input.setText(mac);
                 if (mac != null) {
@@ -330,6 +383,13 @@ public class callBluetooth {
                     if (mHostDevice != null) {
                         Log.d(TAG, "Connected is OK");
                         Log.d(TAG, mHostDevice.getName());
+                        String finalMac = mac;
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                webView.loadUrl("javascript:Showinformation('你发起连接的设备名："+mHostDevice.getName()+"  设备Mac地址："+ finalMac +"')");
+                            }
+                        });
                     }
                     mHidDevice.connect(mHostDevice);
                 }
@@ -364,7 +424,7 @@ public class callBluetooth {
 
 
     public void enableBluetooth() {
-        Log.d(TAG,"enableBluetooth");
+        Log.d(TAG, "enableBluetooth");
         //getPermission();
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBtAdapter == null) {
@@ -412,7 +472,7 @@ public class callBluetooth {
 
     public void discoverAndPairDevice() {
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        Log.d(TAG,"PairStart");
+        Log.d(TAG, "PairStart");
 
         // 注册设备发现的广播接收器
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
@@ -433,7 +493,7 @@ public class callBluetooth {
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 // 发现设备
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                Log.d(TAG,"findDevice");
+                Log.d(TAG, "findDevice");
 
                 // 添加设备到列表
                 discoveredDevices.add(device);
@@ -472,43 +532,7 @@ public class callBluetooth {
                 .show();
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ;
 
 
     // 以下为废稿
@@ -596,9 +620,4 @@ public class callBluetooth {
             // 你可以重写其他回调方法以处理连接、断开连接、报告等事件
         });
     }
-
-
-
-
-
 }
