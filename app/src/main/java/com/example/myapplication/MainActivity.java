@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -47,12 +48,34 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     );
+    private final ActivityResultLauncher<Intent> mRequestLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    // 用户已启用设备发现
+                } else {
+                    this.finish();// 关闭APP
+                }
+            }
+    );
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
+        // 开启蓝牙申请
+        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (bluetoothAdapter==null){
+            this.finish();// 退出
+        } else {
+            if (!bluetoothAdapter.isEnabled()){
+                Intent enableBt = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                mRequestLauncher.launch(enableBt);
+            }
+        }
+
         webView = (WebView) findViewById(R.id.webview);
         this.createWebView(webView);
 
@@ -207,16 +230,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private final ActivityResultLauncher<Intent> mRequestLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == RESULT_OK) {
-                    // 用户已启用设备发现
-                } else {
-                    // 用户未启用设备发现
-                }
-            }
-    );
+
+
 
 
 

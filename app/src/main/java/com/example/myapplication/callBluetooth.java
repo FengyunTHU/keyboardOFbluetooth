@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import static androidx.core.app.ActivityCompat.requestPermissions;
+import static androidx.core.content.ContextCompat.registerReceiver;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -74,7 +75,11 @@ public class callBluetooth {
     private ActivityResultLauncher<Intent> requestLauncher_for_bluetooth;
     private final List<BluetoothDevice> discoveredDevices = new ArrayList<>();
 
-    public callBluetooth(WebView webView,Context context, Activity activity, ActivityResultLauncher<Intent> requestLauncher, ActivityResultLauncher<Intent> requestLauncher_for_bluetooth) {
+    // 建立设备列表
+    private List<String> list_devices_name;// 名称
+    private List<String> list_devices_mac;// mac地址
+
+    public callBluetooth(WebView webView, Context context, Activity activity, ActivityResultLauncher<Intent> requestLauncher, ActivityResultLauncher<Intent> requestLauncher_for_bluetooth) {
         this.webView = webView;
         this.context = context;
         this.activity = activity;
@@ -95,15 +100,25 @@ public class callBluetooth {
     }
 
     // 实例化
-    @JavascriptInterface
+    @JavascriptInterface//init
     public void CallBluetooth() {
         //getPermission();
         Log.d(TAG, "callBluetooth");
-        // mBtAdapter = BluetoothAdapter.getDefaultAdapter();
+        // 在这里先初始化并打开蓝牙->见MainActivity.java文件
+        mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 //        if (mBtAdapter == null) {
-//            Toast.makeText(this,"Device doesn't support bluetooth",Toast.LENGTH_SHORT).show();
-//        } else {
-//            if (!mBtAdapter)
+//            Log.d(TAG, "设备没有蓝牙适配器");
+//            activity.finish();
+//        }
+//        if (mBtAdapter.getState() != BluetoothAdapter.STATE_ON) {
+//            // 发起开启蓝牙弹窗
+//        }
+//        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+//            // TODO: Consider calling
+//            return;
+//        }
+//        if (!mBtAdapter.isDiscovering()) {
+//            mBtAdapter.startDiscovery();
 //        }
 
         // 获取BluetoothHidDevice
@@ -144,7 +159,7 @@ public class callBluetooth {
                                     webView.loadUrl("javascript:Showinformation('赋予权限后，你需要再次点击init初始化')");
                                 }
                             });
-                            String[] list = new String[] {
+                            String[] list = new String[]{
                                     Manifest.permission.BLUETOOTH_SCAN,
                                     Manifest.permission.BLUETOOTH_CONNECT
                             };
@@ -220,7 +235,7 @@ public class callBluetooth {
                         webView.loadUrl("javascript:Showinformation('register OK!成功在本机注册HID服务')");
                     }
                 });
-                Log.d(TAG,"AFTER WEBVIEWSEND");
+                Log.d(TAG, "AFTER WEBVIEWSEND");
 //                List<BluetoothDevice> matchingDevices = mHidDevice.getDevicesMatchingConnectionStates(mMatchingStates);
 //                Log.d(TAG, "paired devices: " + matchingDevices + "  " + mHidDevice.getConnectionState(pluggedDevice));
 //                Toast.makeText(context, "paired devices: " + matchingDevices + "  " + mHidDevice.getConnectionState(pluggedDevice), Toast.LENGTH_SHORT).show();
@@ -365,13 +380,13 @@ public class callBluetooth {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                webView.loadUrl("javascript:Showinformation('你在本机发送了："+key+"')");
+                webView.loadUrl("javascript:Showinformation('你在本机发送了：" + key + "')");
             }
         });
     }
 
     @SuppressLint("MissingPermission")
-    @JavascriptInterface
+    @JavascriptInterface//connect
     public void ConnectotherBluetooth() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("输入需要连接的设备的蓝牙Mac地址");
@@ -398,7 +413,7 @@ public class callBluetooth {
                         activity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                webView.loadUrl("javascript:Showinformation('你发起连接的设备名："+mHostDevice.getName()+"  设备Mac地址："+ finalMac +"')");
+                                webView.loadUrl("javascript:Showinformation('你发起连接的设备名：" + mHostDevice.getName() + "  设备Mac地址：" + finalMac + "')");
                             }
                         });
                     }
@@ -415,6 +430,48 @@ public class callBluetooth {
 
         builder.show();
     }
+
+    /*  2024/03/19  */
+    /*  加入蓝牙扫描功能  */
+    public void StartScanDevice() {
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            return;
+        }
+        if (!mBtAdapter.isDiscovering()) {
+            mBtAdapter.startDiscovery();// 开始扫描
+        }
+        // 将扫描设备存入列表，进行读取
+        //注册Receiver
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(BluetoothDevice.ACTION_FOUND);
+        intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+        intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        registerReceiver();
+    }
+
+    private BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+        }
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     // Android设备注册为蓝牙设备
