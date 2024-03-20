@@ -25,16 +25,22 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.text.InputType;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.Executors;
 
 // 注册信息
@@ -49,6 +55,7 @@ public class callBluetooth {
     private KeyMap keyMap;
     private WebView webView;
     int id = 8;
+    private String mac;// 当前连接的设备mac地址
     private int count = 0;
     private byte[] mBuffer = new byte[8];
 
@@ -76,8 +83,9 @@ public class callBluetooth {
     private final List<BluetoothDevice> discoveredDevices = new ArrayList<>();
 
     // 建立设备列表
-    private List<String> list_devices_name;// 名称
-    private List<String> list_devices_mac;// mac地址
+    private List<String> list_devices_name = new ArrayList<>();// 名称
+    private List<String> list_devices_mac = new ArrayList<>();// mac地址
+    private List<Boolean> list_devices_state = new ArrayList<>();// 状态
 
     public callBluetooth(WebView webView, Context context, Activity activity, ActivityResultLauncher<Intent> requestLauncher, ActivityResultLauncher<Intent> requestLauncher_for_bluetooth) {
         this.webView = webView;
@@ -431,6 +439,11 @@ public class callBluetooth {
         builder.show();
     }
 
+
+    /*  2021/03/20  */
+    /*  处理前端列表弹窗  */
+
+
     /*  2024/03/19  */
     /*  加入蓝牙扫描功能  */
     public void StartScanDevice() {
@@ -447,16 +460,116 @@ public class callBluetooth {
         intentFilter.addAction(BluetoothDevice.ACTION_FOUND);
         intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
         intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-        registerReceiver();
+        context.registerReceiver(broadcastReceiver, intentFilter);
     }
 
-    private BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
+            if (action.equals(BluetoothDevice.ACTION_FOUND)) {
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    return;
+                }
+                String str_name = device.getName();
+                String str_mac = device.getAddress();
+
+                Log.d(TAG, "Name: " + str_name + " Mac: " + str_mac);
+                // 存入列表
+                if (list_devices_name.indexOf(str_name) == -1 && list_devices_mac.indexOf(str_mac) == -1) {// 即不在list中
+                    list_devices_name.add(str_name);
+                    list_devices_mac.add(str_mac);
+                    list_devices_state.add(true);// 蓝牙处于打开状态
+                }
+                else if (list_devices_name.indexOf(str_name) != -1 && list_devices_mac.indexOf(str_mac) != -1) {// 在列表中，此时为配对的设备
+                    list_devices_state.set(list_devices_name.indexOf(str_name),true);// 将state置为true
+                }
+                // 后面做前端处理
+            } else if (action.equals(BluetoothAdapter.ACTION_DISCOVERY_STARTED)) {
+                Log.d(TAG, "正在扫描");
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        webView.loadUrl("javascript:Showinformation('Scanning for Bluetooth Devices...')");
+                        Toast.makeText(context, "Scanning...", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else if (action.equals(BluetoothAdapter.ACTION_DISCOVERY_FINISHED)) {
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        webView.loadUrl("javascript:Showinformation('Scan finish')");
+                        Toast.makeText(context, "Finish,点击列表发起连接...", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         }
     };
 
+    /*  处理已经配对的设备  */
+    private void SelectPairedDevices() {
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            return;
+        }
+        Set<BluetoothDevice> paired = mBtAdapter.getBondedDevices();
+        if (paired.size()>0) {
+            for (BluetoothDevice device:paired){
+                // 判断是否在蓝牙开启列表中
+                String str_name = device.getName();
+                String str_mac = device.getAddress();
+                // 统一存为false
+                list_devices_name.add(str_name);
+                list_devices_mac.add(str_mac);
+                list_devices_state.add(false);
+            }
+        }
+    }
+
+    /*  前端处理  */
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView Name;
+        TextView Mac;
+        TextView State;
+
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            Name=itemView.findViewById(R.id.textName);
+            Mac=itemView.findViewById(R.id.textMac);
+            State=itemView.findViewById(R.id.textState);
+        }
+    }
+
+    public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
+
+        @NonNull
+        @Override
+        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent,int viewType) {
+            View view = View.inflate(context, R.layout.item_list, null);
+            MyViewHolder myViewHolder = new MyViewHolder(view);
+            return myViewHolder;
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull MyViewHolder holder,int position){
+            holder.Name.setText(list_devices_name.get(position));
+            holder.Mac.setText(list_devices_mac.get(position));
+            if (list_devices_state.get(position)==true){
+                holder.State.setText("设备蓝牙处于打开状态");
+            }
+            else if (list_devices_state.get(position)==false){
+                holder.State.setText("设备已配对，蓝牙未打开");
+            }
+        }
+
+        @Override
+        public int getItemCount() {
+            return list_devices_name.size();
+        }
+    }
 
 
 

@@ -11,6 +11,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -23,6 +24,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -111,34 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
         javaScriptInterfaces = new JavaScriptInterfaces(this,webView,resultLauncher);
         webView.addJavascriptInterface(javaScriptInterfaces,"Android");
-
-//        Button button_init = findViewById(R.id.button_init);
-//        button_init.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                callBluetooth.CallBluetooth();
-//            }
-//        });
-////
-//        Button button_send = findViewById(R.id.button_send);
-//        button_send.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                Log.d(TAG, "check permission");
-//                String[] list = new String[]{android.Manifest.permission.BLUETOOTH_SCAN, android.Manifest.permission.BLUETOOTH_CONNECT};
-//                requestPermissions(list, 1);
-//                callBluetooth.sendKey("m");    //readData();
-//            }
-//        });
-////
-//        Button btnconnect = findViewById(R.id.btn_connect);
-//        btnconnect.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.d(TAG, "Connect other BlueTooth");
-//                callBluetooth.ConnectotherBluetooth();
-//            }
-//        });
     }
 
     @Override
@@ -228,6 +203,14 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+    public void doClick(View view){
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        View view1 = getLayoutInflater().inflate(R.layout.dialog_bottom,null);
+        bottomSheetDialog.setContentView(view1);
+        bottomSheetDialog.getWindow().findViewById(com.google.android.material.R.id.design_bottom_sheet).setBackgroundColor(Color.TRANSPARENT);
+        bottomSheetDialog.show();
     }
 
 
