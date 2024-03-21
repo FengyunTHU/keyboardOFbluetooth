@@ -23,6 +23,7 @@ import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Color;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
@@ -36,7 +37,11 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +57,7 @@ public class callBluetooth {
     boolean IsRegisted;// 注册状态
     boolean connected;// 连接状态
     private Activity activity;
+    private MainActivity mainActivity;
     private KeyMap keyMap;
     private WebView webView;
     int id = 8;
@@ -77,6 +83,8 @@ public class callBluetooth {
     private BluetoothDevice mHostDevice;
     public BluetoothAdapter mBtAdapter;
     public BluetoothManager mBtManager;
+    public RecyclerView mrecyclerView;
+    public MyAdapter myAdapter;
     private Context context;
     private ActivityResultLauncher<Intent> requestLauncher;
     private ActivityResultLauncher<Intent> requestLauncher_for_bluetooth;
@@ -87,12 +95,13 @@ public class callBluetooth {
     private List<String> list_devices_mac = new ArrayList<>();// mac地址
     private List<Boolean> list_devices_state = new ArrayList<>();// 状态
 
-    public callBluetooth(WebView webView, Context context, Activity activity, ActivityResultLauncher<Intent> requestLauncher, ActivityResultLauncher<Intent> requestLauncher_for_bluetooth) {
+    public callBluetooth(MainActivity mainActivity,WebView webView, Context context, Activity activity, ActivityResultLauncher<Intent> requestLauncher, ActivityResultLauncher<Intent> requestLauncher_for_bluetooth) {
         this.webView = webView;
         this.context = context;
         this.activity = activity;
         this.requestLauncher = requestLauncher;
         this.requestLauncher_for_bluetooth = requestLauncher_for_bluetooth;
+        this.mainActivity = mainActivity;
     }
 
     public void initMap() {// 写在一起
@@ -395,7 +404,7 @@ public class callBluetooth {
 
     @SuppressLint("MissingPermission")
     @JavascriptInterface//connect
-    public void ConnectotherBluetooth() {
+    public void ConnectotherBluetooth_temp() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("输入需要连接的设备的蓝牙Mac地址");
 
@@ -439,10 +448,41 @@ public class callBluetooth {
         builder.show();
     }
 
-
+    /*  重新组织连接函数  */
+    @JavascriptInterface
+    public void ConnectotherBluetooth() {
+        list_devices_name.add("mc1");
+        list_devices_name.add("mc2");
+        list_devices_mac.add("123");
+        list_devices_mac.add("456");
+        list_devices_state.add(true);
+        list_devices_state.add(false);
+        createDia();
+    }
     /*  2021/03/20  */
     /*  处理前端列表弹窗  */
+    protected void createDia() {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG,"enter create");
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(activity);
+                View view1 = activity.getLayoutInflater().inflate(R.layout.dialog_bottom,null);
+                bottomSheetDialog.setContentView(view1);
+                bottomSheetDialog.getWindow().findViewById(com.google.android.material.R.id.design_bottom_sheet).setBackgroundColor(Color.TRANSPARENT);
 
+                mrecyclerView = view1.findViewById(R.id.recycler_view);
+                myAdapter = new MyAdapter();
+                mrecyclerView.setAdapter(myAdapter);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+                mrecyclerView.setLayoutManager(linearLayoutManager);
+                DividerItemDecoration mDivider = new DividerItemDecoration(context,DividerItemDecoration.VERTICAL);
+                mrecyclerView.addItemDecoration(mDivider);
+
+                bottomSheetDialog.show();
+            }
+        });
+    }
 
     /*  2024/03/19  */
     /*  加入蓝牙扫描功能  */
@@ -558,10 +598,10 @@ public class callBluetooth {
             holder.Name.setText(list_devices_name.get(position));
             holder.Mac.setText(list_devices_mac.get(position));
             if (list_devices_state.get(position)==true){
-                holder.State.setText("设备蓝牙处于打开状态");
+                holder.State.setText("设备蓝牙已开启，可以连接");
             }
             else if (list_devices_state.get(position)==false){
-                holder.State.setText("设备已配对，蓝牙未打开");
+                holder.State.setText("设备蓝牙未开启，已配对");
             }
         }
 

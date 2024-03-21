@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 //            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.BLUETOOTH_CONNECT}, 0);
 //        }
         Toast.makeText(this, "注意需要打开系统蓝牙", Toast.LENGTH_SHORT).show();
-        callBluetooth = new callBluetooth(webView,this,this,mRequestLauncher,resultLauncher_forbluetooth);
+        callBluetooth = new callBluetooth(this,webView,this,this,mRequestLauncher,resultLauncher_forbluetooth);
         webView.addJavascriptInterface(callBluetooth,"bluetooth");
         vibrators = new Vibrators(this);
         webView.addJavascriptInterface(vibrators,"Vibra");
