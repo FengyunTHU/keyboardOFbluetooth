@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="ori_btn">#FFF0F5</color>
+    <color name="down_btn">#EBDCE1</color>
 </resources>

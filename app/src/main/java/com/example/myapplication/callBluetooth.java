@@ -24,12 +24,16 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Color;
+import android.os.Build;
 import android.text.InputType;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +45,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
@@ -406,19 +411,19 @@ public class callBluetooth {
     @JavascriptInterface//connect
     public void ConnectotherBluetooth_temp() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("输入需要连接的设备的蓝牙Mac地址");
-
+        //builder.setTitle("连接的设备的蓝牙Mac地址：");
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_mac,null);
         // 设置输入框
-        final EditText input = new EditText(context);
-        input.setText("B4:8C:9D:AD:9B:9A");
-        input.setInputType(InputType.TYPE_CLASS_TEXT);
-        builder.setView(input);
+        final EditText input = view.findViewById(R.id.input);
+        input.setText(mac);
+        //input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(view);
+        AlertDialog dialog = builder.create();
 
-        // 设置按钮
-        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        Button positiveBtn = view.findViewById(R.id.positive_button);
+        positiveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String mac = "B4:8C:9D:AD:9B:9A";
+            public void onClick(View v) {
                 mac = input.getText().toString();
                 input.setText(mac);
                 if (mac != null) {
@@ -436,28 +441,51 @@ public class callBluetooth {
                     }
                     mHidDevice.connect(mHostDevice);
                 }
-            }
-        });
-        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
+                dialog.dismiss();
             }
         });
 
-        builder.show();
+        Button negativeBtn = view.findViewById(R.id.negative_button);
+        negativeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+//        // 设置按钮
+//        builder.setPositiveButton("点击连接", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                //mac = "B4:8C:9D:AD:9B:9A";
+//
+//            }
+//        });
+
+//        builder.setNegativeButton("放弃连接", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.cancel();
+//            }
+//        });
+        dialog.show();
+        //builder.show();
     }
 
     /*  重新组织连接函数  */
     @JavascriptInterface
     public void ConnectotherBluetooth() {
-        list_devices_name.add("mc1");
-        list_devices_name.add("mc2");
-        list_devices_mac.add("123");
-        list_devices_mac.add("456");
-        list_devices_state.add(true);
-        list_devices_state.add(false);
+//        list_devices_name.add("mc1");
+//        list_devices_name.add("mc2");
+//        list_devices_mac.add("123");
+//        list_devices_mac.add("456");
+//        list_devices_state.add(true);
+//        list_devices_state.add(false);
+
+        /*  处理前端信息  */
+        SelectPairedDevices();
         createDia();
+        StartScanDevice();
     }
     /*  2021/03/20  */
     /*  处理前端列表弹窗  */
@@ -469,7 +497,12 @@ public class callBluetooth {
                 BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(activity);
                 View view1 = activity.getLayoutInflater().inflate(R.layout.dialog_bottom,null);
                 bottomSheetDialog.setContentView(view1);
-                bottomSheetDialog.getWindow().findViewById(com.google.android.material.R.id.design_bottom_sheet).setBackgroundColor(Color.TRANSPARENT);
+                View bottomSheet =  bottomSheetDialog.getWindow().findViewById(com.google.android.material.R.id.design_bottom_sheet);
+                bottomSheet.setBackgroundColor(Color.TRANSPARENT);
+
+                // 设置一半屏幕高度
+                BottomSheetBehavior<View> behavior = BottomSheetBehavior.from(bottomSheet);
+                behavior.setPeekHeight(activity.getResources().getDisplayMetrics().heightPixels/2);
 
                 mrecyclerView = view1.findViewById(R.id.recycler_view);
                 myAdapter = new MyAdapter();
@@ -522,9 +555,24 @@ public class callBluetooth {
                     list_devices_name.add(str_name);
                     list_devices_mac.add(str_mac);
                     list_devices_state.add(true);// 蓝牙处于打开状态
+                    Log.d(TAG,"连接到新设备");
+
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            myAdapter.notifyDataSetChanged();
+                        }
+                    });
                 }
                 else if (list_devices_name.indexOf(str_name) != -1 && list_devices_mac.indexOf(str_mac) != -1) {// 在列表中，此时为配对的设备
                     list_devices_state.set(list_devices_name.indexOf(str_name),true);// 将state置为true
+                    Log.d(TAG,"原设备蓝牙打开");
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            myAdapter.notifyDataSetChanged();
+                        }
+                    });
                 }
                 // 后面做前端处理
             } else if (action.equals(BluetoothAdapter.ACTION_DISCOVERY_STARTED)) {
@@ -561,9 +609,11 @@ public class callBluetooth {
                 String str_name = device.getName();
                 String str_mac = device.getAddress();
                 // 统一存为false
-                list_devices_name.add(str_name);
-                list_devices_mac.add(str_mac);
-                list_devices_state.add(false);
+                if (list_devices_name.indexOf(str_name)==-1) {
+                    list_devices_name.add(str_name);
+                    list_devices_mac.add(str_mac);
+                    list_devices_state.add(false);
+                }
             }
         }
     }
@@ -594,7 +644,7 @@ public class callBluetooth {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull MyViewHolder holder,int position){
+        public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position){
             holder.Name.setText(list_devices_name.get(position));
             holder.Mac.setText(list_devices_mac.get(position));
             if (list_devices_state.get(position)==true){
@@ -603,6 +653,37 @@ public class callBluetooth {
             else if (list_devices_state.get(position)==false){
                 holder.State.setText("设备蓝牙未开启，已配对");
             }
+            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
+                holder.itemView.setBackground(context.getDrawable(R.drawable.ripple_effect));
+            }
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mac = list_devices_mac.get(position);
+                    ConnectotherBluetooth_temp();
+                }
+            });
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    return true;
+                }
+            });
+//            holder.itemView.setOnTouchListener(new View.OnTouchListener() {
+//                @Override
+//                public boolean onTouch(View v, MotionEvent event) {
+//                    switch (event.getAction()) {
+//                        case MotionEvent.ACTION_DOWN:
+//                            v.setBackgroundColor(Color.parseColor("#D3D3D3"));
+//                            break;
+//                        case MotionEvent.ACTION_UP:
+//                        case MotionEvent.ACTION_CANCEL:
+//                            v.setBackgroundColor(Color.TRANSPARENT);
+//                            break;
+//                    }
+//                    return false;
+//                }
+//            });
         }
 
         @Override

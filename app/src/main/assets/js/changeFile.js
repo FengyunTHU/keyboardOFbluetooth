@@ -87,4 +87,5 @@ function Showinformation(info) {
     let ptemp = document.createElement('p');
     ptemp.textContent = info;
     Infom.appendChild(ptemp);
+    Infom.scrollTop = Infom.scrollHeight;
 }

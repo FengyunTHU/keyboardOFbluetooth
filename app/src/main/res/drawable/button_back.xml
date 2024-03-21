@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <item android:state_pressed="false">
+        <shape>
+            <solid android:color="@color/ori_btn"/> <!-- 按钮的原始颜色 -->
+            <corners android:radius="10dp"/> <!-- 圆角半径 -->
+        </shape>
+    </item>
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/down_btn"/> <!-- 按钮被按下时的颜色 -->
+            <corners android:radius="10dp"/> <!-- 圆角半径 -->
+        </shape>
+    </item>
 </selector>
