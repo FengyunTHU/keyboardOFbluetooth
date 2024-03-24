@@ -89,3 +89,13 @@ function Showinformation(info) {
     Infom.appendChild(ptemp);
     Infom.scrollTop = Infom.scrollHeight;
 }
+
+
+// 提供个性化的键盘背景定制的JavaScript脚本
+function ChangeBackgroundPicture(base64Image,Type) {
+    // 调用已经写好的Java接口
+    setPictureOfKeyboard(base64Image, Type);
+    
+}
+
+// 渲染键位的函数

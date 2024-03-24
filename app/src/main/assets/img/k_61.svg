@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 10654 3465">
+ <defs>
+  <style type="text/css">
+    .fil0 {fill:black}
+  </style>
+ </defs>
+  <rect class="fil0" x="1005" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="1736" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="2468" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="3199" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="3931" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="4662" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="5394" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="6125" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="6857" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="7588" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="1222" y="1432" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="1954" y="1432" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="2685" y="1432" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="3417" y="1432" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="4148" y="1432" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="4880" y="1432" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="5611" y="1432" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="6343" y="1432" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="7074" y="1432" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="1420" y="2154" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="2152" y="2154" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="2883" y="2154" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="3615" y="2154" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="4346" y="2154" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="5078" y="2154" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="5809" y="2154" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="7806" y="1432" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="8537" y="1432" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="8320" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="9052" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="6541" y="2154" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="7272" y="2154" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="8004" y="2154" width="598" height="598" rx="49" ry="49"/>
+  <path class="fil0" d="m9833 716h772c27 0 49 22 49 49v499c0 27-22 49-49 49h-772c-27 0-49-22-49-49v-499c0-27 22-49 49-49z"/>
+  <path class="fil0" d="m9318 1432h1287c27 0 49 22 49 49v499c0 27-22 49-49 49h-1287c-27 0-49-22-49-49v-499c0-27 22-49 49-49z"/>
+  <path class="fil0" d="m8785 2154h1820c27 0 49 22 49 49v499c0 27-22 49-49 49h-1820c-27 0-49-22-49-49v-499c0-27 22-49 49-49z"/>
+  <path class="fil0" d="m49 716h772c27 0 49 22 49 49v499c0 27-22 49-49 49h-772c-27 0-49-22-49-49v-499c0-27 22-49 49-49z"/>
+  <path class="fil0" d="m49 1432h990c27 0 49 22 49 49v499c0 27-22 49-49 49h-990c-27 0-49-22-49-49v-499c0-27 22-49 49-49z"/>
+  <path class="fil0" d="m49 2154h1188c27 0 49 22 49 49v499c0 27-22 49-49 49h-1188c-27 0-49-22-49-49v-499c0-27 22-49 49-49z"/>
+  <path class="fil0" d="m49 2867h772c27 0 49 22 49 49v499c0 27-22 49-49 49h-772c-27 0-49-22-49-49v-499c0-27 22-49 49-49z"/>
+  <rect class="fil0" x="1005" y="2867" width="598" height="598" rx="49" ry="49"/>
+  <path class="fil0" d="m1786 2867h772c27 0 49 22 49 49v499c0 27-22 49-49 49h-772c-27 0-49-22-49-49v-499c0-27 22-49 49-49z"/>
+  <rect class="fil0" x="10056" y="2867" width="598" height="598" rx="49" ry="49"/>
+  <path class="fil0" d="m2791 2867h4665c27 0 49 22 49 49v499c0 27-22 49-49 49h-4665c-27 0-49-22-49-49v-499c0-27 22-49 49-49z"/>
+  <path class="fil0" d="m9101 2867h772c27 0 49 22 49 49v499c0 27-22 49-49 49h-772c-27 0-49-22-49-49v-499c0-27 22-49 49-49z"/>
+  <rect class="fil0" x="8320" y="2867" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="7588" y="2867" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="1005" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="1736" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="2468" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="3199" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="3931" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="4662" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="5394" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="6125" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="6857" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="7588" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="8320" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="9052" y="716" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="732" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="1463" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="2195" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="2926" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="3658" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="4389" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="5121" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="5852" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="6584" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="7315" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="8047" width="598" height="598" rx="49" ry="49"/>
+  <rect class="fil0" x="8778" width="598" height="598" rx="49" ry="49"/>
+  <path class="fil0" d="m9559 0h1046c27 0 49 22 49 49v499c0 27-22 49-49 49h-1046c-27 0-49-22-49-49v-499c0-27 22-49 49-49z"/>
+  </svg>
