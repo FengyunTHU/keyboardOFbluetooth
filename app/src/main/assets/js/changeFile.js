@@ -99,3 +99,6 @@ function ChangeBackgroundPicture(base64Image,Type) {
 }
 
 // 渲染键位的函数
+function SetKeyBoardOutLine() {
+    
+}
