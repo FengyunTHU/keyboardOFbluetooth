@@ -45,6 +45,7 @@
   <text x="381.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_26" font-family="'Saira'" font-weight="bold">F12</text>
   <rect x="398" y="8" width="25" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_27" rx="1"/>
   <text x="410.5" y="15.47393" text-anchor="middle" alignment-baseline="middle" font-size="5" id="svg_28" font-family="'Saira'" font-weight="bold">DELETE</text>
+
   <rect x="8" y="26" width="30" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_29" rx="1"/>
   <text x="23" y="43.25791" text-anchor="middle" alignment-baseline="middle" font-size="11" id="svg_30" font-family="'Saira'" font-weight="bold">`</text>
   <rect x="41" y="26" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_31" rx="1"/>
@@ -73,6 +74,7 @@
   <text style="cursor: move;" x="361.5" y="38.64451" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_54" font-family="'Saira'" font-weight="bold">=</text>
   <rect x="377" y="26" width="46" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_55" rx="1"/>
   <text x="403.33254" y="38.71603" text-anchor="middle" alignment-baseline="middle" font-size="5" id="svg_56" font-family="'Saira'" font-weight="bold">BACKSPACE</text>
+
   <rect x="8" y="55" width="41" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_57" rx="1"/>
   <text font-weight="bold" x="22.55595" y="67.84965" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_58" font-family="'Saira'">TAB</text>
   <rect x="52" y="55" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_59" rx="1"/>
@@ -101,6 +103,7 @@
   <text font-weight="bold" x="372.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_82" font-family="'Saira'">]</text>
   <rect x="388" y="55" width="35" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_83" rx="1"/>
   <text font-weight="bold" x="405.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_84" font-family="'Saira'">\</text>
+
   <rect x="8" y="84" width="51" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_85" rx="1"/>
   <text font-weight="bold" x="31.4021" y="96.5" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_86" font-family="'Saira'">CAPS LOCK</text>
   <rect x="62" y="84" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_87" rx="1"/>
@@ -127,6 +130,7 @@
   <text font-weight="bold" x="354.5" y="99.64685" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_108" font-family="'Quicksand'">'</text>
   <rect x="370" y="84" width="53" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_109" rx="1"/>
   <text font-weight="bold" x="406.31094" y="96.5" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_110" font-family="'Saira'">ENTER</text>
+
   <rect x="8" y="113" width="63" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_111" rx="1"/>
   <text font-weight="bold" x="25.16435" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="7" id="svg_112" font-family="'Saira'">SHIFT</text>
   <rect x="74" y="113" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_113" rx="1"/>
@@ -151,6 +155,7 @@
   <text font-weight="bold" x="338.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_132" font-family="'Saira'">/</text>
   <rect x="354" y="113" width="69" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_133" rx="1"/>
   <text font-weight="bold" x="402.13635" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="7" id="svg_134" font-family="'Saira'">SHIFT</text>
+
   <rect x="8" y="142" width="28" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_135" rx="1"/>
   <text font-weight="bold" x="22" y="155.1993" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_136" font-family="'Saira'">CTRL</text>
   <rect x="39" y="142" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_137" rx="1"/>
@@ -172,6 +177,7 @@
   <text font-weight="bold" x="379.5" y="148.6993" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_154" font-family="'Saira'">↑</text>
   <rect x="396" y="153" width="27" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_155" rx="1"/>
   <text font-weight="bold" x="410.1993" y="161.3986" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_156" font-family="'Saira'">→</text>
+  
   <text x="13.31792" y="31.4082" text-anchor="middle" alignment-baseline="middle" font-size="11" id="svg_157" font-family="'Saira'" font-weight="normal">~</text>
   <line id="svg_162" y2="95.95119" x2="377.48755" y1="90.2486" x1="380.94983" stroke-width="0.5" stroke="black" fill="none"/>
   <line id="svg_163" y2="101.45011" x2="380.74617" y1="95.74752" x1="377.48755" stroke-width="0.5" stroke="black" fill="none"/>
