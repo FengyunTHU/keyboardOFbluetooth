@@ -132,7 +132,7 @@ function changeBODY_black() {
 function changeBODY_ori() {
     document.body.style.backgroundColor = '';
     let imag = document.querySelector("img.Img");
-    imag.style.border = "2px solid wheat";
+    imag.style.border = "2px solid orangered";
 }
 
 // function changepic2() {

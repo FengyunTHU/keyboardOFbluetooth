@@ -3,7 +3,7 @@
     height: 100%;
     object-fit: cover;
     transition: border 0.3s ease;
-    border: 2px solid wheat;
+    border: 2px solid orangered;
 }
 
 div.KeyBoard {
