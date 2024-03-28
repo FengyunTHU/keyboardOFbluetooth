@@ -1,12 +1,15 @@
 // 定义图片原尺寸
-let width_origin = 511;
-let height_origin = 191;
+let width_origin = 431;
+let height_origin = 174;
 // 定义一个原图片的对比尺寸
 let lines = null;
 let linesReadyCallback = null;// 回调函数
 let img1 = document.querySelector("img.Img");
 let map1 = document.getElementById("image-map");
 let testc = document.querySelector("p.test");
+
+let svg = null;
+let svg_dark = null;
 
 function processCSVData(csvData) {
     lines = csvData.split('\n');
@@ -80,6 +83,7 @@ function setButton() {
         btn.style.borderColor = 'transparent';
         var Coords = AreaAll[i].coords.split(',');
         (function (i) {
+            // 目前已经没有圆形区域->放弃维护2024/3/28
             if (AreaAll[i].shape === 'circle') {
                 btn.style.left = ImageRect.left + parseInt(Coords[0]) - parseInt(Coords[2]) + 'px';
                 btn.style.top = ImageRect.top + parseInt(Coords[1]) - parseInt(Coords[2]) + 'px';
@@ -102,11 +106,20 @@ function setButton() {
                 btn.style.width = (parseInt(Coords[2]) - parseInt(Coords[0])) + 'px';
                 btn.style.height = (parseInt(Coords[3]) - parseInt(Coords[1])) + 'px';
                 btn.style.transition = "background-color 0.15s ease";
+                btn.className = AreaAll[i].className;
                 btn.addEventListener('mousedown', function () {
-                    this.style.backgroundColor = "rgba(211,211,211,0.5)";
+                    if (document.body.style.backgroundColor === '') {
+                        setSVG_Gery(i, 1);
+                    } else {
+                        setSVG_White(i, 1);
+                    }
                 });
                 btn.addEventListener('mouseup', function () {
-                    this.style.backgroundColor = 'transparent';
+                    if (document.body.style.backgroundColor === '') {
+                        setSVG_Gery(i, 0);
+                    } else {
+                        setSVG_White(i, 0);
+                    }
                 });
                 btn.onclick = function () {
                     Vibra.vibraOnce();
@@ -118,7 +131,79 @@ function setButton() {
     }
 }
 
+function setSVG_Gery(i,activity) {
+    if (svg === null) {
+        fetch('../img/svg.svg')
+            .then(Response => Response.text())
+            .then(data => {
+                let parser = new DOMParser();
+                let svgDoc = parser.parseFromString(data, 'image/svg+xml');
+                svg = svgDoc.querySelector("svg");
+                let rectElement = svg.querySelector('#svg_' + (2 * i + 1).toString());
+                if (activity === 1) {// 按下
+                    rectElement.setAttribute("fill", "rgba(211,211,211,0.5)");
+                } else if (activity === 0) {
+                    rectElement.setAttribute("fill", "transparent");
+                }
+                // 将修改后的SVG内容转换为数据URL
+                let svgData = new XMLSerializer().serializeToString(svg);
+                let svgDataURL = 'data:image/svg+xml; charset=utf8, ' + encodeURIComponent(svgData);
+                // 获取<img>元素并设置其src属性
+                let imgElement = document.getElementById('Img');
+                imgElement.src = svgDataURL;
+            });
+    } else if (svg != null) {
+        let rectElement = svg.querySelector('#svg_' + (2 * i + 1).toString());
+        if (activity === 1) {
+            rectElement.setAttribute("fill", "rgba(211,211,211,0.5)");
+        } else if (activity === 0) {
+            rectElement.setAttribute("fill", "transparent");
+        }
+        // 将修改后的SVG内容转换为数据URL
+        let svgData = new XMLSerializer().serializeToString(svg);
+        let svgDataURL = 'data:image/svg+xml; charset=utf8, ' + encodeURIComponent(svgData);
+        // 获取<img>元素并设置其src属性
+        let imgElement = document.getElementById('Img');
+        imgElement.src = svgDataURL;
+    }
+}
 
+function setSVG_White(i,activity) {
+    if (svg_dark === null) {
+        fetch('../img/svg_dark.svg')
+            .then(Response => Response.text())
+            .then(data => {
+                let parser = new DOMParser();
+                let svgDoc = parser.parseFromString(data, 'image/svg+xml');
+                svg_dark = svgDoc.querySelector("svg");
+                let rectElement = svg_dark.querySelector('#svg_' + (2 * i + 1).toString());
+                if (activity === 1) {
+                    rectElement.setAttribute("fill", "rgba(255,255,255,0.5)");
+                } else if (activity === 0) {
+                    rectElement.setAttribute("fill", "transparent");
+                }
+                // 将修改后的SVG内容转换为数据URL
+                let svgData = new XMLSerializer().serializeToString(svg_dark);
+                let svgDataURL = 'data:image/svg+xml; charset=utf8, ' + encodeURIComponent(svgData);
+                // 获取<img>元素并设置其src属性
+                let imgElement = document.getElementById('Img');
+                imgElement.src = svgDataURL;
+            });
+    } else if (svg_dark != null) {
+        let rectElement = svg_dark.querySelector('#svg_' + (2 * i + 1).toString());
+        if (activity === 1) {
+            rectElement.setAttribute("fill", "rgba(255,255,255,0.5)");
+        } else if (activity === 0) {
+            rectElement.setAttribute("fill", "transparent");
+        }
+        // 将修改后的SVG内容转换为数据URL
+        let svgData = new XMLSerializer().serializeToString(svg_dark);
+        let svgDataURL = 'data:image/svg+xml; charset=utf8, ' + encodeURIComponent(svgData);
+        // 获取<img>元素并设置其src属性
+        let imgElement = document.getElementById('Img');
+        imgElement.src = svgDataURL;
+    }
+}
 
 function Addd(area) {
     var key = area.className;

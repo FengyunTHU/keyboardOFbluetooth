@@ -17,200 +17,200 @@
       </defs>
  <g>
   <title>Layer 1</title>
-  <rect x="8" y="8" width="27" height="14" stroke="black" stroke-linejoin="round" fill="transparent" id="svg_1" stroke-width="0.38075" rx="1"/>
-  <text x="21.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_2" font-family="'Saira'" font-weight="bold">ESC</text>
-  <rect x="38" y="8" width="27" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_3" rx="1"/>
-  <text x="51.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_4" font-family="'Saira'" font-weight="bold">F1</text>
-  <rect x="68" y="8" width="27" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_5" rx="1"/>
-  <text x="81.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_6" font-family="'Saira'" font-weight="bold">F2</text>
-  <rect x="98" y="8" width="27" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_7" rx="1"/>
-  <text x="111.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_8" font-family="'Saira'" font-weight="bold">F3</text>
-  <rect x="128" y="8" width="27" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_9" rx="1"/>
-  <text x="141.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_10" font-family="'Saira'" font-weight="bold">F4</text>
-  <rect x="158" y="8" width="27" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_11" rx="1"/>
-  <text x="171.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_12" font-family="'Saira'" font-weight="bold">F5</text>
-  <rect x="188" y="8" width="27" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_13" rx="1"/>
-  <text x="201.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_14" font-family="'Saira'" font-weight="bold">F6</text>
-  <rect x="218" y="8" width="27" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_15" rx="1"/>
-  <text x="231.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_16" font-family="'Saira'" font-weight="bold">F7</text>
-  <rect x="248" y="8" width="27" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_17" rx="1"/>
-  <text x="261.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_18" font-family="'Saira'" font-weight="bold">F8</text>
-  <rect x="278" y="8" width="27" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_19" rx="1"/>
-  <text x="291.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_20" font-family="'Saira'" font-weight="bold">F9</text>
-  <rect x="308" y="8" width="27" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_21" rx="1"/>
-  <text x="321.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_22" font-family="'Saira'" font-weight="bold">F10</text>
-  <rect x="338" y="8" width="27" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_23" rx="1"/>
-  <text x="351.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_24" font-family="'Saira'" font-weight="bold">F11</text>
-  <rect x="368" y="8" width="27" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_25" rx="1"/>
-  <text x="381.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_26" font-family="'Saira'" font-weight="bold">F12</text>
-  <rect x="398" y="8" width="25" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_27" rx="1"/>
-  <text x="410.5" y="15.47393" text-anchor="middle" alignment-baseline="middle" font-size="5" id="svg_28" font-family="'Saira'" font-weight="bold">DELETE</text>
+  <rect x="8" y="8" width="27" height="14" stroke="white" stroke-linejoin="round" fill="transparent" id="svg_1" stroke-width="0.38075" rx="1"/>
+  <text fill="white" x="21.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_2" font-family="'Saira'" font-weight="bold">ESC</text>
+  <rect x="38" y="8" width="27" height="14" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_3" rx="1"/>
+  <text fill="white" x="51.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_4" font-family="'Saira'" font-weight="bold">F1</text>
+  <rect x="68" y="8" width="27" height="14" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_5" rx="1"/>
+  <text fill="white" x="81.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_6" font-family="'Saira'" font-weight="bold">F2</text>
+  <rect x="98" y="8" width="27" height="14" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_7" rx="1"/>
+  <text fill="white" x="111.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_8" font-family="'Saira'" font-weight="bold">F3</text>
+  <rect x="128" y="8" width="27" height="14" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_9" rx="1"/>
+  <text fill="white" x="141.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_10" font-family="'Saira'" font-weight="bold">F4</text>
+  <rect x="158" y="8" width="27" height="14" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_11" rx="1"/>
+  <text fill="white" x="171.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_12" font-family="'Saira'" font-weight="bold">F5</text>
+  <rect x="188" y="8" width="27" height="14" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_13" rx="1"/>
+  <text fill="white" x="201.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_14" font-family="'Saira'" font-weight="bold">F6</text>
+  <rect x="218" y="8" width="27" height="14" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_15" rx="1"/>
+  <text fill="white" x="231.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_16" font-family="'Saira'" font-weight="bold">F7</text>
+  <rect x="248" y="8" width="27" height="14" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_17" rx="1"/>
+  <text fill="white" x="261.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_18" font-family="'Saira'" font-weight="bold">F8</text>
+  <rect x="278" y="8" width="27" height="14" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_19" rx="1"/>
+  <text fill="white" x="291.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_20" font-family="'Saira'" font-weight="bold">F9</text>
+  <rect x="308" y="8" width="27" height="14" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_21" rx="1"/>
+  <text fill="white" x="321.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_22" font-family="'Saira'" font-weight="bold">F10</text>
+  <rect x="338" y="8" width="27" height="14" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_23" rx="1"/>
+  <text fill="white" x="351.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_24" font-family="'Saira'" font-weight="bold">F11</text>
+  <rect x="368" y="8" width="27" height="14" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_25" rx="1"/>
+  <text fill="white" x="381.5" y="15.80159" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_26" font-family="'Saira'" font-weight="bold">F12</text>
+  <rect x="398" y="8" width="25" height="14" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_27" rx="1"/>
+  <text fill="white" x="410.5" y="15.47393" text-anchor="middle" alignment-baseline="middle" font-size="5" id="svg_28" font-family="'Saira'" font-weight="bold">DELETE</text>
 
-  <rect x="8" y="26" width="30" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_29" rx="1"/>
-  <text x="23" y="43.25791" text-anchor="middle" alignment-baseline="middle" font-size="11" id="svg_30" font-family="'Saira'" font-weight="bold">`</text>
-  <rect x="41" y="26" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_31" rx="1"/>
-  <text x="53.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_32" font-family="'Saira'" font-weight="bold">1</text>
-  <rect x="69" y="26" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_33" rx="1"/>
-  <text x="81.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_34" font-family="'Saira'" font-weight="bold">2</text>
-  <rect x="97" y="26" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_35" rx="1"/>
-  <text x="109.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_36" font-family="'Saira'" font-weight="bold">3</text>
-  <rect x="125" y="26" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_37" rx="1"/>
-  <text x="137.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_38" font-family="'Saira'" font-weight="bold">4</text>
-  <rect x="153" y="26" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_39" rx="1"/>
-  <text x="165.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_40" font-family="'Saira'" font-weight="bold">5</text>
-  <rect x="181" y="26" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_41" rx="1"/>
-  <text x="193.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_42" font-family="'Saira'" font-weight="bold">6</text>
-  <rect x="209" y="26" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_43" rx="1"/>
-  <text x="221.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_44" font-family="'Saira'" font-weight="bold">7</text>
-  <rect x="237" y="26" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_45" rx="1"/>
-  <text x="249.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_46" font-family="'Saira'" font-weight="bold">8</text>
-  <rect x="265" y="26" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_47" rx="1"/>
-  <text x="277.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_48" font-family="'Saira'" font-weight="bold">9</text>
-  <rect x="293" y="26" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_49" rx="1"/>
-  <text x="305.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_50" font-family="'Saira'" font-weight="bold">0</text>
-  <rect x="321" y="26" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_51" rx="1"/>
-  <text style="cursor: move;" x="333.5" y="38.64451" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_52" font-family="'Quicksand'" font-weight="bold">-</text>
-  <rect x="349" y="26" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_53" rx="1"/>
-  <text style="cursor: move;" x="361.5" y="38.64451" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_54" font-family="'Saira'" font-weight="bold">=</text>
-  <rect x="377" y="26" width="46" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_55" rx="1"/>
-  <text x="403.33254" y="38.71603" text-anchor="middle" alignment-baseline="middle" font-size="5" id="svg_56" font-family="'Saira'" font-weight="bold">BACKSPACE</text>
+  <rect x="8" y="26" width="30" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_29" rx="1"/>
+  <text fill="white" x="23" y="43.25791" text-anchor="middle" alignment-baseline="middle" font-size="11" id="svg_30" font-family="'Saira'" font-weight="bold">`</text>
+  <rect x="41" y="26" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_31" rx="1"/>
+  <text fill="white" x="53.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_32" font-family="'Saira'" font-weight="bold">1</text>
+  <rect x="69" y="26" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_33" rx="1"/>
+  <text fill="white" x="81.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_34" font-family="'Saira'" font-weight="bold">2</text>
+  <rect x="97" y="26" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_35" rx="1"/>
+  <text fill="white" x="109.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_36" font-family="'Saira'" font-weight="bold">3</text>
+  <rect x="125" y="26" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_37" rx="1"/>
+  <text fill="white" x="137.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_38" font-family="'Saira'" font-weight="bold">4</text>
+  <rect x="153" y="26" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_39" rx="1"/>
+  <text fill="white" x="165.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_40" font-family="'Saira'" font-weight="bold">5</text>
+  <rect x="181" y="26" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_41" rx="1"/>
+  <text fill="white" x="193.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_42" font-family="'Saira'" font-weight="bold">6</text>
+  <rect x="209" y="26" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_43" rx="1"/>
+  <text fill="white" x="221.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_44" font-family="'Saira'" font-weight="bold">7</text>
+  <rect x="237" y="26" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_45" rx="1"/>
+  <text fill="white" x="249.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_46" font-family="'Saira'" font-weight="bold">8</text>
+  <rect x="265" y="26" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_47" rx="1"/>
+  <text fill="white" x="277.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_48" font-family="'Saira'" font-weight="bold">9</text>
+  <rect x="293" y="26" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_49" rx="1"/>
+  <text fill="white" x="305.5" y="39.03061" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_50" font-family="'Saira'" font-weight="bold">0</text>
+  <rect x="321" y="26" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_51" rx="1"/>
+  <text fill="white" style="cursor: move;" x="333.5" y="38.64451" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_52" font-family="'Quicksand'" font-weight="bold">-</text>
+  <rect x="349" y="26" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_53" rx="1"/>
+  <text fill="white" style="cursor: move;" x="361.5" y="38.64451" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_54" font-family="'Saira'" font-weight="bold">=</text>
+  <rect x="377" y="26" width="46" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_55" rx="1"/>
+  <text fill="white" x="403.33254" y="38.71603" text-anchor="middle" alignment-baseline="middle" font-size="5" id="svg_56" font-family="'Saira'" font-weight="bold">BACKSPACE</text>
 
-  <rect x="8" y="55" width="41" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_57" rx="1"/>
-  <text font-weight="bold" x="22.55595" y="67.84965" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_58" font-family="'Saira'">TAB</text>
-  <rect x="52" y="55" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_59" rx="1"/>
-  <text font-weight="bold" x="64.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_60" font-family="'Saira'">Q</text>
-  <rect x="80" y="55" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_61" rx="1"/>
-  <text font-weight="bold" x="92.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_62" font-family="'Saira'">W</text>
-  <rect x="108" y="55" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_63" rx="1"/>
-  <text font-weight="bold" x="120.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_64" font-family="'Saira'">E</text>
-  <rect x="136" y="55" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_65" rx="1"/>
-  <text font-weight="bold" x="148.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_66" font-family="'Saira'">R</text>
-  <rect x="164" y="55" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_67" rx="1"/>
-  <text font-weight="bold" x="176.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_68" font-family="'Saira'">T</text>
-  <rect x="192" y="55" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_69" rx="1"/>
-  <text font-weight="bold" x="204.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_70" font-family="'Saira'">Y</text>
-  <rect x="220" y="55" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_71" rx="1"/>
-  <text font-weight="bold" x="232.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_72" font-family="'Saira'">U</text>
-  <rect x="248" y="55" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_73" rx="1"/>
-  <text font-weight="bold" x="260.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_74" font-family="'Saira'">I</text>
-  <rect x="276" y="55" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_75" rx="1"/>
-  <text font-weight="bold" x="288.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_76" font-family="'Saira'">O</text>
-  <rect x="304" y="55" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_77" rx="1"/>
-  <text font-weight="bold" x="316.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_78" font-family="'Saira'">P</text>
-  <rect x="332" y="55" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_79" rx="1"/>
-  <text font-weight="bold" x="344.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_80" font-family="'Saira'">[</text>
-  <rect x="360" y="55" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_81" rx="1"/>
-  <text font-weight="bold" x="372.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_82" font-family="'Saira'">]</text>
-  <rect x="388" y="55" width="35" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_83" rx="1"/>
-  <text font-weight="bold" x="405.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_84" font-family="'Saira'">\</text>
+  <rect x="8" y="55" width="41" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_57" rx="1"/>
+  <text fill="white" font-weight="bold" x="22.55595" y="67.84965" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_58" font-family="'Saira'">TAB</text>
+  <rect x="52" y="55" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_59" rx="1"/>
+  <text fill="white" font-weight="bold" x="64.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_60" font-family="'Saira'">Q</text>
+  <rect x="80" y="55" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_61" rx="1"/>
+  <text fill="white" font-weight="bold" x="92.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_62" font-family="'Saira'">W</text>
+  <rect x="108" y="55" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_63" rx="1"/>
+  <text fill="white" font-weight="bold" x="120.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_64" font-family="'Saira'">E</text>
+  <rect x="136" y="55" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_65" rx="1"/>
+  <text fill="white" font-weight="bold" x="148.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_66" font-family="'Saira'">R</text>
+  <rect x="164" y="55" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_67" rx="1"/>
+  <text fill="white" font-weight="bold" x="176.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_68" font-family="'Saira'">T</text>
+  <rect x="192" y="55" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_69" rx="1"/>
+  <text fill="white" font-weight="bold" x="204.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_70" font-family="'Saira'">Y</text>
+  <rect x="220" y="55" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_71" rx="1"/>
+  <text fill="white" font-weight="bold" x="232.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_72" font-family="'Saira'">U</text>
+  <rect x="248" y="55" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_73" rx="1"/>
+  <text fill="white" font-weight="bold" x="260.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_74" font-family="'Saira'">I</text>
+  <rect x="276" y="55" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_75" rx="1"/>
+  <text fill="white" font-weight="bold" x="288.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_76" font-family="'Saira'">O</text>
+  <rect x="304" y="55" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_77" rx="1"/>
+  <text fill="white" font-weight="bold" x="316.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_78" font-family="'Saira'">P</text>
+  <rect x="332" y="55" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_79" rx="1"/>
+  <text fill="white" font-weight="bold" x="344.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_80" font-family="'Saira'">[</text>
+  <rect x="360" y="55" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_81" rx="1"/>
+  <text fill="white" font-weight="bold" x="372.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_82" font-family="'Saira'">]</text>
+  <rect x="388" y="55" width="35" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_83" rx="1"/>
+  <text fill="white" font-weight="bold" x="405.5" y="68.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_84" font-family="'Saira'">\</text>
 
-  <rect x="8" y="84" width="51" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_85" rx="1"/>
-  <text font-weight="bold" x="31.4021" y="96.5" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_86" font-family="'Saira'">CAPS LOCK</text>
-  <rect x="62" y="84" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_87" rx="1"/>
-  <text font-weight="bold" x="74.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_88" font-family="'Saira'">A</text>
-  <rect x="90" y="84" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_89" rx="1"/>
-  <text font-weight="bold" x="102.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_90" font-family="'Saira'">S</text>
-  <rect x="118" y="84" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_91" rx="1"/>
-  <text font-weight="bold" x="130.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_92" font-family="'Saira'">D</text>
-  <rect x="146" y="84" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_93" rx="1"/>
-  <text font-weight="bold" x="158.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_94" font-family="'Saira'">F</text>
-  <rect x="174" y="84" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_95" rx="1"/>
-  <text font-weight="bold" x="186.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_96" font-family="'Saira'">G</text>
-  <rect x="202" y="84" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_97" rx="1"/>
-  <text font-weight="bold" x="214.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_98" font-family="'Saira'">H</text>
-  <rect x="230" y="84" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_99" rx="1"/>
-  <text font-weight="bold" x="242.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_100" font-family="'Saira'">J</text>
-  <rect x="258" y="84" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_101" rx="1"/>
-  <text font-weight="bold" x="270.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_102" font-family="'Saira'">K</text>
-  <rect x="286" y="84" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_103" rx="1"/>
-  <text font-weight="bold" x="298.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_104" font-family="'Saira'">L</text>
-  <rect x="314" y="84" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_105" rx="1"/>
-  <text font-weight="bold" x="326.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_106" font-family="'Saira'">;</text>
-  <rect x="342" y="84" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_107" rx="1"/>
-  <text font-weight="bold" x="354.5" y="99.64685" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_108" font-family="'Quicksand'">'</text>
-  <rect x="370" y="84" width="53" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_109" rx="1"/>
-  <text font-weight="bold" x="406.31094" y="96.5" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_110" font-family="'Saira'">ENTER</text>
+  <rect x="8" y="84" width="51" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_85" rx="1"/>
+  <text fill="white" font-weight="bold" x="31.4021" y="96.5" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_86" font-family="'Saira'">CAPS LOCK</text>
+  <rect x="62" y="84" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_87" rx="1"/>
+  <text fill="white" font-weight="bold" x="74.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_88" font-family="'Saira'">A</text>
+  <rect x="90" y="84" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_89" rx="1"/>
+  <text fill="white" font-weight="bold" x="102.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_90" font-family="'Saira'">S</text>
+  <rect x="118" y="84" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_91" rx="1"/>
+  <text fill="white" font-weight="bold" x="130.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_92" font-family="'Saira'">D</text>
+  <rect x="146" y="84" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_93" rx="1"/>
+  <text fill="white" font-weight="bold" x="158.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_94" font-family="'Saira'">F</text>
+  <rect x="174" y="84" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_95" rx="1"/>
+  <text fill="white" font-weight="bold" x="186.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_96" font-family="'Saira'">G</text>
+  <rect x="202" y="84" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_97" rx="1"/>
+  <text fill="white" font-weight="bold" x="214.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_98" font-family="'Saira'">H</text>
+  <rect x="230" y="84" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_99" rx="1"/>
+  <text fill="white" font-weight="bold" x="242.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_100" font-family="'Saira'">J</text>
+  <rect x="258" y="84" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_101" rx="1"/>
+  <text fill="white" font-weight="bold" x="270.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_102" font-family="'Saira'">K</text>
+  <rect x="286" y="84" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_103" rx="1"/>
+  <text fill="white" font-weight="bold" x="298.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_104" font-family="'Saira'">L</text>
+  <rect x="314" y="84" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_105" rx="1"/>
+  <text fill="white" font-weight="bold" x="326.5" y="97.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_106" font-family="'Saira'">;</text>
+  <rect x="342" y="84" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_107" rx="1"/>
+  <text fill="white" font-weight="bold" x="354.5" y="99.64685" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_108" font-family="'Quicksand'">'</text>
+  <rect x="370" y="84" width="53" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_109" rx="1"/>
+  <text fill="white" font-weight="bold" x="406.31094" y="96.5" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_110" font-family="'Saira'">ENTER</text>
 
-  <rect x="8" y="113" width="63" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_111" rx="1"/>
-  <text font-weight="bold" x="25.16435" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="7" id="svg_112" font-family="'Saira'">SHIFT</text>
-  <rect x="74" y="113" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_113" rx="1"/>
-  <text font-weight="bold" x="86.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_114" font-family="'Saira'">Z</text>
-  <rect x="102" y="113" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_115" rx="1"/>
-  <text font-weight="bold" x="114.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_116" font-family="'Saira'">X</text>
-  <rect x="130" y="113" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_117" rx="1"/>
-  <text font-weight="bold" x="142.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_118" font-family="'Saira'">C</text>
-  <rect x="158" y="113" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_119" rx="1"/>
-  <text font-weight="bold" x="170.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_120" font-family="'Saira'">V</text>
-  <rect x="186" y="113" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_121" rx="1"/>
-  <text font-weight="bold" x="198.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_122" font-family="'Saira'">B</text>
-  <rect x="214" y="113" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_123" rx="1"/>
-  <text font-weight="bold" x="226.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_124" font-family="'Saira'">N</text>
-  <rect x="242" y="113" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_125" rx="1"/>
-  <text font-weight="bold" x="254.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_126" font-family="'Saira'">M</text>
-  <rect x="270" y="113" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_127" rx="1"/>
-  <text font-weight="bold" x="282.5" y="123.10484" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_128" font-family="'Saira'">,</text>
-  <rect x="298" y="113" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_129" rx="1"/>
-  <text font-weight="bold" x="310.5" y="123.2677" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_130" font-family="'Saira'">.</text>
-  <rect x="326" y="113" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_131" rx="1"/>
-  <text font-weight="bold" x="338.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_132" font-family="'Saira'">/</text>
-  <rect x="354" y="113" width="69" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_133" rx="1"/>
-  <text font-weight="bold" x="402.13635" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="7" id="svg_134" font-family="'Saira'">SHIFT</text>
+  <rect x="8" y="113" width="63" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_111" rx="1"/>
+  <text fill="white" font-weight="bold" x="25.16435" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="7" id="svg_112" font-family="'Saira'">SHIFT</text>
+  <rect x="74" y="113" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_113" rx="1"/>
+  <text fill="white" font-weight="bold" x="86.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_114" font-family="'Saira'">Z</text>
+  <rect x="102" y="113" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_115" rx="1"/>
+  <text fill="white" font-weight="bold" x="114.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_116" font-family="'Saira'">X</text>
+  <rect x="130" y="113" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_117" rx="1"/>
+  <text fill="white" font-weight="bold" x="142.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_118" font-family="'Saira'">C</text>
+  <rect x="158" y="113" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_119" rx="1"/>
+  <text fill="white" font-weight="bold" x="170.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_120" font-family="'Saira'">V</text>
+  <rect x="186" y="113" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_121" rx="1"/>
+  <text fill="white" font-weight="bold" x="198.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_122" font-family="'Saira'">B</text>
+  <rect x="214" y="113" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_123" rx="1"/>
+  <text fill="white" font-weight="bold" x="226.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_124" font-family="'Saira'">N</text>
+  <rect x="242" y="113" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_125" rx="1"/>
+  <text fill="white" font-weight="bold" x="254.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_126" font-family="'Saira'">M</text>
+  <rect x="270" y="113" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_127" rx="1"/>
+  <text fill="white" font-weight="bold" x="282.5" y="123.10484" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_128" font-family="'Saira'">,</text>
+  <rect x="298" y="113" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_129" rx="1"/>
+  <text fill="white" font-weight="bold" x="310.5" y="123.2677" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_130" font-family="'Saira'">.</text>
+  <rect x="326" y="113" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_131" rx="1"/>
+  <text fill="white" font-weight="bold" x="338.5" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_132" font-family="'Saira'">/</text>
+  <rect x="354" y="113" width="69" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_133" rx="1"/>
+  <text fill="white" font-weight="bold" x="402.13635" y="126.1993" text-anchor="middle" alignment-baseline="middle" font-size="7" id="svg_134" font-family="'Saira'">SHIFT</text>
 
-  <rect x="8" y="142" width="28" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_135" rx="1"/>
-  <text font-weight="bold" x="22" y="155.1993" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_136" font-family="'Saira'">CTRL</text>
-  <rect x="39" y="142" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_137" rx="1"/>
-  <text font-weight="bold" x="51.5" y="155.1993" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_138" font-family="'Saira'">FN</text>
-  <rect x="67" y="142" width="25" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_139" rx="1"/>
-  <text font-weight="bold" x="79.5" y="155.1993" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_140" font-family="'Saira'">HOME</text>
-  <rect x="95" y="142" width="27" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_141" rx="1"/>
-  <text font-weight="bold" x="108.5" y="155.1993" text-anchor="middle" alignment-baseline="middle" font-size="7" id="svg_142" font-family="'Saira'">ALT</text>
-  <rect x="125" y="142" width="146" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_143" rx="1"/>
-  <rect x="274" y="142" width="28" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_145" rx="1"/>
-  <text font-weight="bold" x="288" y="155.1993" text-anchor="middle" alignment-baseline="middle" font-size="7" id="svg_146" font-family="'Saira'">ALT</text>
-  <rect x="305" y="142" width="28" height="25" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_147" rx="1"/>
-  <text font-weight="bold" x="319" y="155.1993" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_148" font-family="'Saira'">CTRL</text>
-  <rect x="336" y="153" width="27" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_149" rx="1"/>
-  <text font-weight="bold" x="349.34965" y="161.3986" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_150" font-family="'Saira'">←</text>
-  <rect x="366" y="155" width="27" height="12" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_151" rx="1"/>
-  <text font-weight="bold" x="379.5" y="161.6993" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_152" font-family="'Saira'">↓</text>
-  <rect x="366" y="142" width="27" height="12" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_153" rx="1"/>
-  <text font-weight="bold" x="379.5" y="148.6993" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_154" font-family="'Saira'">↑</text>
-  <rect x="396" y="153" width="27" height="14" stroke="black" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_155" rx="1"/>
-  <text font-weight="bold" x="410.1993" y="161.3986" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_156" font-family="'Saira'">→</text>
+  <rect x="8" y="142" width="28" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_135" rx="1"/>
+  <text fill="white" font-weight="bold" x="22" y="155.1993" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_136" font-family="'Saira'">CTRL</text>
+  <rect x="39" y="142" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_137" rx="1"/>
+  <text fill="white" font-weight="bold" x="51.5" y="155.1993" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_138" font-family="'Saira'">FN</text>
+  <rect x="67" y="142" width="25" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_139" rx="1"/>
+  <text fill="white" font-weight="bold" x="79.5" y="155.1993" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_140" font-family="'Saira'">HOME</text>
+  <rect x="95" y="142" width="27" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_141" rx="1"/>
+  <text fill="white" font-weight="bold" x="108.5" y="155.1993" text-anchor="middle" alignment-baseline="middle" font-size="7" id="svg_142" font-family="'Saira'">ALT</text>
+  <rect x="125" y="142" width="146" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_143" rx="1"/>
+  <rect x="274" y="142" width="28" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_145" rx="1"/>
+  <text fill="white" font-weight="bold" x="288" y="155.1993" text-anchor="middle" alignment-baseline="middle" font-size="7" id="svg_146" font-family="'Saira'">ALT</text>
+  <rect x="305" y="142" width="28" height="25" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_147" rx="1"/>
+  <text fill="white" font-weight="bold" x="319" y="155.1993" text-anchor="middle" alignment-baseline="middle" font-size="6" id="svg_148" font-family="'Saira'">CTRL</text>
+  <rect x="336" y="153" width="27" height="14" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_149" rx="1"/>
+  <text fill="white" font-weight="bold" x="349.34965" y="161.3986" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_150" font-family="'Saira'">←</text>
+  <rect x="366" y="155" width="27" height="12" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_151" rx="1"/>
+  <text fill="white" font-weight="bold" x="379.5" y="161.6993" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_152" font-family="'Saira'">↓</text>
+  <rect x="366" y="142" width="27" height="12" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_153" rx="1"/>
+  <text fill="white" font-weight="bold" x="379.5" y="148.6993" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_154" font-family="'Saira'">↑</text>
+  <rect x="396" y="153" width="27" height="14" stroke="white" stroke-linejoin="round" stroke-width="0.38075" fill="transparent" id="svg_155" rx="1"/>
+  <text fill="white" font-weight="bold" x="410.1993" y="161.3986" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_156" font-family="'Saira'">→</text>
   
-  <text x="13.31792" y="31.4082" text-anchor="middle" alignment-baseline="middle" font-size="11" id="svg_157" font-family="'Saira'" font-weight="normal">~</text>
-  <line id="svg_162" y2="95.95119" x2="377.48755" y1="90.2486" x1="380.94983" stroke-width="0.5" stroke="black" fill="none"/>
-  <line id="svg_163" y2="101.45011" x2="380.74617" y1="95.74752" x1="377.48755" stroke-width="0.5" stroke="black" fill="none"/>
-  <line id="svg_164" y2="95.84935" x2="386.04388" y1="95.84935" x1="377.58938" stroke-width="0.5" stroke="black" fill="none"/>
-  <line id="svg_165" y2="94.32188" x2="385.83777" y1="95.95119" x1="385.83777" stroke-width="0.5" stroke="black" fill="none"/>
-  <line id="svg_166" y2="124" x2="385" y1="127" x1="380" stroke-width="0.5" stroke="black" fill="none"/>
-  <line id="svg_167" y2="127" x2="389.80564" y1="123.9034" x1="384.80564" stroke-width="0.5" stroke="black" fill="none"/>
-  <line id="svg_168" y2="124" x2="42" y1="127" x1="37" stroke-width="0.5" stroke="black" fill="none"/>
-  <line id="svg_169" y2="127" x2="46.96552" y1="124" x1="41.96552" stroke-width="0.5" stroke="black" fill="none"/>
-  <path stroke="black" id="svg_170" d="m43.32969,62.29183l-1.91969,-2.77122l1.26427,0l1.91969,2.77122l-1.91969,2.77122l-1.26427,0l1.91969,-2.77122z" stroke-width="0.5" fill="#000000"/>
-  <path stroke="black" id="svg_171" d="m42.37093,71.14151l1.70639,-2.83019l-1.12379,0l-1.70639,2.83019l1.70639,2.83019l1.12379,0l-1.70639,-2.83019z" stroke-width="0.5" fill="#000000"/>
-  <path stroke="black" id="svg_172" d="m383.79345,38.41077l1.89169,-5.86733l-3.40131,5.86733l3.40131,5.86732l-1.89169,-5.86732z" stroke-width="0.5" fill="#000000"/>
-  <text x="45" y="32" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_173" font-family="'Saira'" font-weight="normal">!</text>
-  <text x="74.62866" y="32" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_174" font-family="'Quicksand'" font-weight="normal">@</text>
-  <text x="101.81433" y="32" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_175" font-family="'Quicksand'" font-weight="normal">#</text>
-  <text x="129.16287" y="32" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_176" font-family="'Saira'" font-weight="normal">$</text>
-  <text x="158.16287" y="32" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_177" font-family="'Saira'" font-weight="normal">%</text>
-  <text x="185.83713" y="33.5114" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_178" font-family="'Quicksand'" font-weight="normal">^</text>
-  <text x="213.83713" y="32" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_179" font-family="'Quicksand'" font-weight="normal">&amp;</text>
-  <text x="241.5342" y="33.30293" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_180" font-family="'Saira'" font-weight="normal">*</text>
-  <text x="268.85994" y="32.16287" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_181" font-family="'Quicksand'" font-weight="normal">(</text>
-  <text x="297.83713" y="32" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_182" font-family="'Quicksand'" font-weight="normal">)</text>
-  <text x="327" y="27.60261" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_183" font-family="'Quicksand'" font-weight="normal">_</text>
-  <text x="354.34853" y="32" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_184" font-family="'Quicksand'" font-weight="normal">+</text>
-  <text x="336.7622" y="61.32573" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_185" font-family="'Quicksand'" font-weight="normal">{</text>
-  <text x="364.61235" y="61" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_186" font-family="'Quicksand'" font-weight="normal">}</text>
-  <text x="391.83713" y="61.65147" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_187" font-family="'Saira'" font-weight="normal">|</text>
-  <text x="318.05865" y="90" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_188" font-family="'Saira'" font-weight="normal">:</text>
-  <text x="346.32573" y="91.79153" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_189" font-family="'Quicksand'" font-weight="normal">"</text>
-  <text x="275.38765" y="118.67427" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_190" font-family="'Saira'" font-weight="normal">&lt;</text>
-  <text x="302.74921" y="118.67427" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_191" font-family="'Saira'" font-weight="normal">&gt;</text>
-  <text x="330.59936" y="120.10364" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_192" font-family="'Saira'" font-weight="normal">?</text>
-  <text x="364.31271" y="117.69707" text-anchor="middle" alignment-baseline="middle" font-size="5" id="svg_193" font-family="'Saira'" font-weight="bold">PAUSE</text>
+  <text fill="white" x="13.31792" y="31.4082" text-anchor="middle" alignment-baseline="middle" font-size="11" id="svg_157" font-family="'Saira'" font-weight="normal">~</text>
+  <line id="svg_162" y2="95.95119" x2="377.48755" y1="90.2486" x1="380.94983" stroke-width="0.5" stroke="white" fill="none"/>
+  <line id="svg_163" y2="101.45011" x2="380.74617" y1="95.74752" x1="377.48755" stroke-width="0.5" stroke="white" fill="none"/>
+  <line id="svg_164" y2="95.84935" x2="386.04388" y1="95.84935" x1="377.58938" stroke-width="0.5" stroke="white" fill="none"/>
+  <line id="svg_165" y2="94.32188" x2="385.83777" y1="95.95119" x1="385.83777" stroke-width="0.5" stroke="white" fill="none"/>
+  <line id="svg_166" y2="124" x2="385" y1="127" x1="380" stroke-width="0.5" stroke="white" fill="none"/>
+  <line id="svg_167" y2="127" x2="389.80564" y1="123.9034" x1="384.80564" stroke-width="0.5" stroke="white" fill="none"/>
+  <line id="svg_168" y2="124" x2="42" y1="127" x1="37" stroke-width="0.5" stroke="white" fill="none"/>
+  <line id="svg_169" y2="127" x2="46.96552" y1="124" x1="41.96552" stroke-width="0.5" stroke="white" fill="none"/>
+  <path stroke="white" id="svg_170" d="m43.32969,62.29183l-1.91969,-2.77122l1.26427,0l1.91969,2.77122l-1.91969,2.77122l-1.26427,0l1.91969,-2.77122z" stroke-width="0.5" fill="#ffffff"/>
+  <path stroke="white" id="svg_171" d="m42.37093,71.14151l1.70639,-2.83019l-1.12379,0l-1.70639,2.83019l1.70639,2.83019l1.12379,0l-1.70639,-2.83019z" stroke-width="0.5" fill="#ffffff"/>
+  <path stroke="white" id="svg_172" d="m383.79345,38.41077l1.89169,-5.86733l-3.40131,5.86733l3.40131,5.86732l-1.89169,-5.86732z" stroke-width="0.5" fill="#ffffff"/>
+  <text fill="white" x="45" y="32" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_173" font-family="'Saira'" font-weight="normal">!</text>
+  <text fill="white" x="74.62866" y="32" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_174" font-family="'Quicksand'" font-weight="normal">@</text>
+  <text fill="white" x="101.81433" y="32" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_175" font-family="'Quicksand'" font-weight="normal">#</text>
+  <text fill="white" x="129.16287" y="32" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_176" font-family="'Saira'" font-weight="normal">$</text>
+  <text fill="white" x="158.16287" y="32" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_177" font-family="'Saira'" font-weight="normal">%</text>
+  <text fill="white" x="185.83713" y="33.5114" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_178" font-family="'Quicksand'" font-weight="normal">^</text>
+  <text fill="white" x="213.83713" y="32" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_179" font-family="'Quicksand'" font-weight="normal">&amp;</text>
+  <text fill="white" x="241.5342" y="33.30293" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_180" font-family="'Saira'" font-weight="normal">*</text>
+  <text fill="white" x="268.85994" y="32.16287" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_181" font-family="'Quicksand'" font-weight="normal">(</text>
+  <text fill="white" x="297.83713" y="32" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_182" font-family="'Quicksand'" font-weight="normal">)</text>
+  <text fill="white" x="327" y="27.60261" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_183" font-family="'Quicksand'" font-weight="normal">_</text>
+  <text fill="white" x="354.34853" y="32" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_184" font-family="'Quicksand'" font-weight="normal">+</text>
+  <text fill="white" x="336.7622" y="61.32573" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_185" font-family="'Quicksand'" font-weight="normal">{</text>
+  <text fill="white" x="364.61235" y="61" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_186" font-family="'Quicksand'" font-weight="normal">}</text>
+  <text fill="white" x="391.83713" y="61.65147" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_187" font-family="'Saira'" font-weight="normal">|</text>
+  <text fill="white" x="318.05865" y="90" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_188" font-family="'Saira'" font-weight="normal">:</text>
+  <text fill="white" x="346.32573" y="91.79153" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_189" font-family="'Quicksand'" font-weight="normal">"</text>
+  <text fill="white" x="275.38765" y="118.67427" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_190" font-family="'Saira'" font-weight="normal">&lt;</text>
+  <text fill="white" x="302.74921" y="118.67427" text-anchor="middle" alignment-baseline="middle" font-size="10" id="svg_191" font-family="'Saira'" font-weight="normal">&gt;</text>
+  <text fill="white" x="330.59936" y="120.10364" text-anchor="middle" alignment-baseline="middle" font-size="9" id="svg_192" font-family="'Saira'" font-weight="normal">?</text>
+  <text fill="white" x="364.31271" y="117.69707" text-anchor="middle" alignment-baseline="middle" font-size="5" id="svg_193" font-family="'Saira'" font-weight="bold">PAUSE</text>
  </g>
 
 </svg>
