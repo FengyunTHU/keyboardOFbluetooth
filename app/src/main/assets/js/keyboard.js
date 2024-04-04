@@ -11,6 +11,15 @@ let testc = document.querySelector("p.test");
 let svg = null;
 let svg_dark = null;
 
+function preSVG(svg_, svg_dark_) {
+    svg = svg_;
+    svg_dark = svg_dark_;
+}
+
+function tarSVG() {
+    Android.setSVG();
+}
+
 function processCSVData(csvData) {
     lines = csvData.split('\n');
     for (var i = 0; i < lines.length; i++) {
@@ -91,7 +100,7 @@ function setButton() {
                 btn.style.height = parseInt(Coords[2]) * 2 + 'px';
                 btn.style.transition = "background-color 0.15s ease";
                 btn.addEventListener('mousedown', function () {
-                    this.style.backgroundColor = "rgba(211,211,211,0.5)";
+                    this.style.backgroundColor = "rgba(211,211,211,0.8)";
                 });
                 btn.addEventListener('mouseup', function () {
                     this.style.backgroundColor = 'transparent';
@@ -107,19 +116,27 @@ function setButton() {
                 btn.style.height = (parseInt(Coords[3]) - parseInt(Coords[1])) + 'px';
                 btn.style.transition = "background-color 0.15s ease";
                 btn.className = AreaAll[i].className;
-                btn.addEventListener('mousedown', function () {
+                btn.addEventListener('touchstart', function () {
+                    // if (document.body.style.backgroundColor === '') {
+                    //     console.log("enter in touchstart");
+                    //     setSVG_Gery(i, 1);
+                    // } else {
+                    //     setSVG_White(i, 1);
+                    // }
                     if (document.body.style.backgroundColor === '') {
-                        setSVG_Gery(i, 1);
+                        this.style.backgroundColor = "rgba(211,211,211,0.4)";
                     } else {
-                        setSVG_White(i, 1);
+                        this.style.backgroundColor = "rgba(255,255,255,0.4)";
                     }
                 });
-                btn.addEventListener('mouseup', function () {
-                    if (document.body.style.backgroundColor === '') {
-                        setSVG_Gery(i, 0);
-                    } else {
-                        setSVG_White(i, 0);
-                    }
+                btn.addEventListener('touchend', function () {
+                    // if (document.body.style.backgroundColor === '') {
+                    //     console.log("enter in touchend");
+                    //     setSVG_Gery(i, 0);
+                    // } else {
+                    //     setSVG_White(i, 0);
+                    // }
+                    this.style.backgroundColor = 'transparent';
                 });
                 btn.onclick = function () {
                     Vibra.vibraOnce();
@@ -131,31 +148,35 @@ function setButton() {
     }
 }
 
-function setSVG_Gery(i,activity) {
+function setSVG_Gery(i, activity) {
     if (svg === null) {
-        fetch('../img/svg.svg')
-            .then(Response => Response.text())
-            .then(data => {
-                let parser = new DOMParser();
-                let svgDoc = parser.parseFromString(data, 'image/svg+xml');
-                svg = svgDoc.querySelector("svg");
-                let rectElement = svg.querySelector('#svg_' + (2 * i + 1).toString());
-                if (activity === 1) {// 按下
-                    rectElement.setAttribute("fill", "rgba(211,211,211,0.5)");
-                } else if (activity === 0) {
-                    rectElement.setAttribute("fill", "transparent");
-                }
-                // 将修改后的SVG内容转换为数据URL
-                let svgData = new XMLSerializer().serializeToString(svg);
-                let svgDataURL = 'data:image/svg+xml; charset=utf8, ' + encodeURIComponent(svgData);
-                // 获取<img>元素并设置其src属性
-                let imgElement = document.getElementById('Img');
-                imgElement.src = svgDataURL;
-            });
+        // fetch('../img/svg.svg')
+        //     .then(Response => Response.text())
+        //     .then(data => {
+        console.log("fetch_done_gery");
+        // let parser = new DOMParser();
+        // let svgDoc = parser.parseFromString(data, 'image/svg+xml');
+        // svg = svgDoc.querySelector("svg");
+        tarSVG();
+        console.log(svg);
+        let rectElement = svg.querySelector('#svg_' + (2 * i + 1).toString());
+        if (activity === 1) {// 按下
+            rectElement.setAttribute("fill", "rgba(211,211,211,0.8)");
+        } else if (activity === 0) {
+            rectElement.setAttribute("fill", "transparent");
+        }
+        // 将修改后的SVG内容转换为数据URL
+        let svgData = new XMLSerializer().serializeToString(svg);
+        let svgDataURL = 'data:image/svg+xml; charset=utf8, ' + encodeURIComponent(svgData);
+        // 获取<img>元素并设置其src属性
+        let imgElement = document.getElementById('Img');
+        imgElement.src = svgDataURL;
+        // });
     } else if (svg != null) {
+        console.log("fetch_done_gery");
         let rectElement = svg.querySelector('#svg_' + (2 * i + 1).toString());
         if (activity === 1) {
-            rectElement.setAttribute("fill", "rgba(211,211,211,0.5)");
+            rectElement.setAttribute("fill", "rgba(211,211,211,0.8)");
         } else if (activity === 0) {
             rectElement.setAttribute("fill", "transparent");
         }
@@ -168,7 +189,7 @@ function setSVG_Gery(i,activity) {
     }
 }
 
-function setSVG_White(i,activity) {
+function setSVG_White(i, activity) {
     if (svg_dark === null) {
         fetch('../img/svg_dark.svg')
             .then(Response => Response.text())
@@ -178,7 +199,7 @@ function setSVG_White(i,activity) {
                 svg_dark = svgDoc.querySelector("svg");
                 let rectElement = svg_dark.querySelector('#svg_' + (2 * i + 1).toString());
                 if (activity === 1) {
-                    rectElement.setAttribute("fill", "rgba(255,255,255,0.5)");
+                    rectElement.setAttribute("fill", "rgba(255,255,255,0.8)");
                 } else if (activity === 0) {
                     rectElement.setAttribute("fill", "transparent");
                 }
@@ -192,7 +213,7 @@ function setSVG_White(i,activity) {
     } else if (svg_dark != null) {
         let rectElement = svg_dark.querySelector('#svg_' + (2 * i + 1).toString());
         if (activity === 1) {
-            rectElement.setAttribute("fill", "rgba(255,255,255,0.5)");
+            rectElement.setAttribute("fill", "rgba(255,255,255,0.8)");
         } else if (activity === 0) {
             rectElement.setAttribute("fill", "transparent");
         }

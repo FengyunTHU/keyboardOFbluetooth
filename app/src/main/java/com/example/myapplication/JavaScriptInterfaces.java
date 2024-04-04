@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
@@ -32,9 +33,10 @@ public class JavaScriptInterfaces {
     }
 
     @JavascriptInterface
+    // 修改用于更换键盘背景2024/4/4
     public void getImage() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");// pic
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
         requestLauncher.launch(intent);
     }
 
@@ -57,6 +59,8 @@ public class JavaScriptInterfaces {
         if (resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
             Log.d(TAG,"Url_img"+uri);
+            // 获取Uri后开启图片裁剪
+
             String Type = getFileType(uri);
             Log.d(TAG,"GetType_img: "+Type);
             String base64Image = convertImageToBase64(uri);
@@ -90,6 +94,43 @@ public class JavaScriptInterfaces {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @JavascriptInterface
+    public void setSVG() {
+        try (
+                InputStream inputStream = activity.getAssets().open("img/svg.svg");
+                InputStream inputStream1 = activity.getAssets().open("img/svg_dark.svg");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                BufferedReader reader1 = new BufferedReader(new InputStreamReader(inputStream1));
+        ) {
+            StringBuilder svgData = new StringBuilder();
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                // 转义单引号
+                line = line.replace("'", "\\'");
+                svgData.append(line).append("\\n"); // 使用双反斜杠来表示换行，以便在JavaScript中正确解析
+            }
+
+            StringBuilder svgData1 = new StringBuilder();
+            String line1;
+
+            while ((line1 = reader1.readLine()) != null) {
+                // 转义单引号
+                line1 = line1.replace("'", "\\'");
+                svgData1.append(line1).append("\\n"); // 使用双反斜杠来表示换行，以便在JavaScript中正确解析
+            }
+
+            // 将SVG内容传递给JavaScript函数
+//            String jsScript = "javascript:preSVG('" + svgData.toString() + "','" +svgData1.toString()+"')";
+//            Log.d(TAG,jsScript);
+            webView.loadUrl("javascript:preSVG('" + svgData.toString() + "','" +svgData1.toString()+"')");
+            Log.d(TAG,"oksvg");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private String readPositionFile(Uri uri) {

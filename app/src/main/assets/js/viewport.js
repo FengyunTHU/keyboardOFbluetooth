@@ -126,14 +126,14 @@ function changepic() {
 function changeBODY_black() {
     document.body.style.backgroundColor = "black";
     let imag = document.querySelector("img.Img");
-    imag.style.border = "2px solid wheat";
+    // imag.style.border = "2px solid wheat";
     imag.setAttribute('src', "./img/svg_dark.svg");
 }
 
 function changeBODY_ori() {
     document.body.style.backgroundColor = '';
     let imag = document.querySelector("img.Img");
-    imag.style.border = "2px solid orangered";
+    // imag.style.border = "2px solid orangered";
     imag.setAttribute('src', "./img/svg.svg");
 }
 

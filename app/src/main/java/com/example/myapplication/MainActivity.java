@@ -87,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
 //            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.BLUETOOTH_CONNECT}, 0);
 //        }
         Toast.makeText(this, "注意需要打开系统蓝牙", Toast.LENGTH_SHORT).show();
+        javaScriptInterfaces = new JavaScriptInterfaces(this,webView,resultLauncher);
+        webView.addJavascriptInterface(javaScriptInterfaces,"Android");
         callBluetooth = new callBluetooth(this,webView,this,this,mRequestLauncher,resultLauncher_forbluetooth);
         webView.addJavascriptInterface(callBluetooth,"bluetooth");
         vibrators = new Vibrators(this);
@@ -111,9 +113,6 @@ public class MainActivity extends AppCompatActivity {
 //            Toast.makeText(this,"系统不支持蓝牙HID",Toast.LENGTH_SHORT).show();
 //        }
 //        Log.d(TAG,"END_Main");
-
-        javaScriptInterfaces = new JavaScriptInterfaces(this,webView,resultLauncher);
-        webView.addJavascriptInterface(javaScriptInterfaces,"Android");
     }
 
     @Override
