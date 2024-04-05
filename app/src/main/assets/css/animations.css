@@ -11,6 +11,32 @@
     }
 }
 
+.rotates {
+    animation: rotation 0.5s linear;
+}
+
+.rotateBac {
+    animation: rotateBack 0.5s linear;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(90deg);
+    }
+}
+
+@keyframes rotateBack {
+    from {
+        transform: rotate(90deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
 @keyframes popdown {
     0% {
         opacity: 1;

@@ -67,6 +67,22 @@ body {
     padding: 16px;
 }
 
+.options {
+    display: flex;
+}
+
+.options button ,.options label {
+    border: none;
+    background-color: #dcd0ff;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.options * {
+    margin: 4px;
+}
+
 /* 在高度小于 450px 的较小屏幕上，更改 sidenav 的样式*/
 @media screen and (max-height: 450px) {
 
@@ -75,6 +91,18 @@ body {
     .settings {
         height: 30px;
         width: auto;
+    }
+
+    .options *{
+        margin: 2.5px;
+    }
+
+    .options button ,.options label {
+        border: none;
+        background-color: #dcd0ff;
+        font-weight: bold;
+        font-size: 15px;
+        border-radius: 2px;
     }
 
 

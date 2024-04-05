@@ -1,6 +1,16 @@
 // 导入文件所采用的js脚本
 function setPictureOfKeyboard(base64Image, Type) {
+
     let img = document.querySelector("img.Img");
+    s = 0;
+
+    let divc = document.querySelector("div.background");
+    let newImg = divc.querySelector("img");
+    if (newImg === null) {
+        newImg = document.createElement("img");
+        s = 1;
+    }
+    let div_ori = document.querySelector("div.KeyBoard");
     let src = '';
     if (Type === "image/png") {
         src = 'data:image/png;base64,' + base64Image;
@@ -23,7 +33,42 @@ function setPictureOfKeyboard(base64Image, Type) {
     else if (Type === "image/heif") {
         src = 'data:image/heif;base64,' + base64Image;
     }
-    img.setAttribute("src", src);
+    newImg.setAttribute("src", src);
+    newImg.style.width = "100%";
+    newImg.style.height = "100%";
+    newImg.style.objectFit = 'cover';
+    newImg.style.transition = 'border 0.3s ease';
+    newImg.className = "background";
+    // 调整div位置
+    divc.style.width = div_ori.offsetWidth + 'px';
+    divc.style.height = div_ori.offsetHeight + 'px';
+    if (s === 1) {
+        divc.appendChild(newImg);
+    }
+    ADDsetparent();
+}
+
+// 调整透明度
+function ADDsetparent() {
+    let range = document.createElement("input");
+    range.type = "range";
+    range.min = "0";
+    range.max = "1";
+    range.step = "0.01";
+    range.value = "0.5";
+
+    let label = document.createElement("label");
+    label.textContent = " 背景透明度 ";
+
+    let dvs = document.querySelector(".clp");
+    dvs.innerHTML = "";
+    dvs.appendChild(label);
+    dvs.appendChild(range);
+
+    let img = document.querySelector("img.background");
+    range.addEventListener('input', function () {
+        img.style.opacity = this.value;
+    })
 }
 
 
@@ -92,13 +137,42 @@ function Showinformation(info) {
 
 
 // 提供个性化的键盘背景定制的JavaScript脚本
-function ChangeBackgroundPicture(base64Image,Type) {
+function ChangeBackgroundPicture(base64Image, Type) {
     // 调用已经写好的Java接口
     setPictureOfKeyboard(base64Image, Type);
-    
+
 }
 
 // 渲染键位的函数
 function SetKeyBoardOutLine() {
-    
+
+}
+
+alpha = 1;
+// 展开选项的函数
+function openoptions() {
+    let label = document.querySelector("label.out");
+    label.style.transition = 'transform 1.5s';
+    if (alpha === 1) {
+        // 展开
+        label.style.transform = 'rotate(90deg)';
+        alpha = 0;
+        // 隐藏元素
+        let siblings = Array.from(label.parentNode.children).filter(child => child !== label);
+        siblings.forEach(sibling => {
+            sibling.style.transition = 'opacity 1.5s, visibility 1.5s';
+            sibling.style.opacity = '1';
+            sibling.style.visibility = 'visible';
+        });
+    }
+    else if (alpha === 0) {
+        label.style.transform = 'rotate(0deg)';
+        alpha = 1;
+        let siblings = Array.from(label.parentNode.children).filter(child => child !== label);
+        siblings.forEach(sibling => {
+            sibling.style.transition = 'opacity 1.5s, visibility 0s 1.5s';
+            sibling.style.opacity = '0';
+            sibling.style.visibility = 'hidden';
+        });
+    }
 }
