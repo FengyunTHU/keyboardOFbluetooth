@@ -1,0 +1,42 @@
+/* 下面是长按弹出按钮modal的样式 */
+.myModal {
+    visibility: hidden;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    background-color: transparent;
+}
+
+.modal-content-pick {
+    position: fixed;
+    background-color: rgb(235, 235, 235);
+    margin: 15% auto;
+    padding: 5px;
+    /* border: 2px solid rgba(180, 225, 225, 0.8); */
+    width: 80%;
+    height: 10vh;
+    border-radius: 10px;
+    overflow-x: auto;
+    position: relative;
+    box-sizing: border-box;
+    box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content-pick img {
+    /* margin-left: 5px;
+    margin-right: 5px; */
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media screen and (max-height: 450px) {
+    .modal-content-pick {
+        border-radius: 6px;
+        padding: 5px;
+    }
+}

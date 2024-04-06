@@ -8,6 +8,23 @@ let img1 = document.querySelector("img.Img");
 let map1 = document.getElementById("image-map");
 let testc = document.querySelector("p.test");
 
+// 定义一个设置按钮target
+let target_setButton = 1;//1->正常;2->set
+let how_byn = 1;
+let bttn = document.querySelector("label.label_set");
+bttn.addEventListener("click", function () {
+    if (how_byn === 1) {
+        target_setButton = 2;
+        bttn.innerHTML = "&nbsp;启用输入&nbsp;";
+        how_byn = 0;
+    } else if (how_byn === 0) {
+        target_setButton = 1;
+        bttn.innerHTML = "&nbsp;调整按键&nbsp;";
+        how_byn = 1;
+    }
+})
+
+
 let svg = null;
 let svg_dark = null;
 
@@ -104,12 +121,20 @@ function setButton() {
                 });
                 btn.addEventListener('mouseup', function () {
                     this.style.backgroundColor = 'transparent';
+                    // 在松开时发送
+                    if (target_setButton === 1) {
+                        Vibra.vibraOnce();
+                        Addd(AreaAll[i]);
+                    } else if (target_setButton === 2) {
+                        // 开启modal
+                        
+                    }
                 });
-                btn.onclick = function () {
-                    Vibra.vibraOnce();
-                    Addd(AreaAll[i]);
-                }
+                // btn.onclick = function () {
+                    
+                // }
             } else if (AreaAll[i].shape === 'rect') {
+                // 设置键盘button与按下效果
                 btn.style.left = ImageRect.left + parseInt(Coords[0]) + 'px';
                 btn.style.top = ImageRect.top + parseInt(Coords[1]) + 'px';
                 btn.style.width = (parseInt(Coords[2]) - parseInt(Coords[0])) + 'px';
@@ -129,7 +154,7 @@ function setButton() {
                         this.style.backgroundColor = "rgba(255,255,255,0.4)";
                     }
                 });
-                btn.addEventListener('touchend', function () {
+                btn.addEventListener('touchend', function (event) {
                     // if (document.body.style.backgroundColor === '') {
                     //     console.log("enter in touchend");
                     //     setSVG_Gery(i, 0);
@@ -137,11 +162,20 @@ function setButton() {
                     //     setSVG_White(i, 0);
                     // }
                     this.style.backgroundColor = 'transparent';
+                    // 在松开时发送
+                    if (target_setButton === 1) {
+                        Vibra.vibraOnce();
+                        Addd(AreaAll[i]);
+                    } else if (target_setButton === 2) {
+                        // var top = event.clientY;
+                        // 开启modal
+                        showModal(top);
+                    }
                 });
-                btn.onclick = function () {
-                    Vibra.vibraOnce();
-                    Addd(AreaAll[i]);
-                }
+                // btn.onclick = function () {
+                //     Vibra.vibraOnce();
+                //     Addd(AreaAll[i]);
+                // }
             }
         })(i);
         BTN_SET.appendChild(btn);
@@ -242,3 +276,17 @@ function showButton(target) {
         }
     }
 }
+
+var hows = 1;
+let bttns = document.querySelector("label.label_s");
+bttns.addEventListener("click", function () {
+    if (hows === 1) {
+        showButton(1);
+        bttns.innerHTML = "&nbsp;关闭显示&nbsp;";
+        hows = 0;
+    } else if (hows === 0) {
+        showButton(2);
+        bttns.innerHTML = "&nbsp;显示键位&nbsp;";
+        hows = 1;
+    }
+})

@@ -9,10 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.rect,maximum-scale=1.rect,user-scalable=no" />
     <!--    <script src="./js/readcsv.js" defer></script>无法用web直接读取文件-->
     <!--    <script src="./js/bluetooth.js" defer></script>-->
+    <script src="./js/modal.js" defer></script>
     <script src="./js/keyboard.js" defer></script>
     <script src="./js/viewport.js" defer></script>
     <script src="./js/changeFile.js" defer></script>
-    <script src="./js/getMac.js" defer></script>
     <!-- <script src="./js/bonus.js" defer></script> -->
     <script src="./js/flower.js" defer></script>
     <script src="./js/hiahia.js" defer></script>
@@ -20,6 +20,7 @@
     <link href="./css/keyboard.css" rel="stylesheet" />
     <link href="./css/style.css" rel="stylesheet" type="text/css" />
     <link href="./css/viewport.css" rel="stylesheet" />
+    <link href="./css/modal.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -134,15 +135,20 @@
             &nbsp;◆&nbsp;
         </label>
         <div class="d" style="visibility: hidden;">
-            <label onclick="showButton(1)">
+            <label class="label_s">
                 &nbsp;显示键位&nbsp;
             </label>
         </div>
-        <div class="f" style="visibility: hidden;">
+        <div class="fc" style="visibility: hidden;">
+            <label class="label_set">
+                &nbsp;调整按键&nbsp;
+            </label>
+        </div>
+        <!-- <div class="f" style="visibility: hidden;">
             <label onclick="showButton(2)" class="button_before_set">
                 &nbsp;关闭显示&nbsp;
             </label>
-        </div>
+        </div> -->
         <div class="clp" style="visibility: hidden;"></div>
     </div>
     <div class="BTN_SET" id="BTN_SET">
@@ -155,6 +161,14 @@
             Waiting informations...
         </p>
     </div>
+
+    <!-- 模态窗口 -->
+    <div id="myModal" class="myModal">
+        <div class="modal-content-pick" id="modal-content-pick">
+            <img src="./img/svg_choose.svg">
+        </div>
+    </div>
+    <!-- <canvas></canvas> -->
 </body>
 
 </html>

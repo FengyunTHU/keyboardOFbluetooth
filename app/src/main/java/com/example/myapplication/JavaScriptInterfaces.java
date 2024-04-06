@@ -11,6 +11,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 
@@ -143,6 +144,19 @@ public class JavaScriptInterfaces {
             return null;
         }
     }
+
+
+    // 写一个toast接口
+    @JavascriptInterface
+    public void myToast(String myMessage) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(activity,myMessage,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     @JavascriptInterface
     public void setSVG() {

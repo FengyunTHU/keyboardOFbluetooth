@@ -152,7 +152,7 @@ alpha = 1;
 // 展开选项的函数
 function openoptions() {
     let label = document.querySelector("label.out");
-    label.style.transition = 'transform 1.5s';
+    label.style.transition = 'transform 0.5s';
     if (alpha === 1) {
         // 展开
         label.style.transform = 'rotate(90deg)';
@@ -160,7 +160,7 @@ function openoptions() {
         // 隐藏元素
         let siblings = Array.from(label.parentNode.children).filter(child => child !== label);
         siblings.forEach(sibling => {
-            sibling.style.transition = 'opacity 1.5s, visibility 1.5s';
+            sibling.style.transition = 'opacity 0.5s, visibility 0.5s 0s';
             sibling.style.opacity = '1';
             sibling.style.visibility = 'visible';
         });
@@ -170,7 +170,7 @@ function openoptions() {
         alpha = 1;
         let siblings = Array.from(label.parentNode.children).filter(child => child !== label);
         siblings.forEach(sibling => {
-            sibling.style.transition = 'opacity 1.5s, visibility 0s 1.5s';
+            sibling.style.transition = 'opacity 0.5s, visibility 0s 0.5s';
             sibling.style.opacity = '0';
             sibling.style.visibility = 'hidden';
         });
