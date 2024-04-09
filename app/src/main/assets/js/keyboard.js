@@ -26,11 +26,11 @@ bttn.addEventListener("click", function () {
 
 
 let svg = null;
-let svg_dark = null;
+let svg_darkc = null;
 
 function preSVG(svg_, svg_dark_) {
     svg = svg_;
-    svg_dark = svg_dark_;
+    svg_darkc = svg_dark_;
 }
 
 function tarSVG() {
@@ -116,6 +116,7 @@ function setButton() {
                 btn.style.width = parseInt(Coords[2]) * 2 + 'px';
                 btn.style.height = parseInt(Coords[2]) * 2 + 'px';
                 btn.style.transition = "background-color 0.15s ease";
+                btn.className = AreaAll[i].className;
                 btn.addEventListener('mousedown', function () {
                     this.style.backgroundColor = "rgba(211,211,211,0.8)";
                 });
@@ -141,6 +142,7 @@ function setButton() {
                 btn.style.height = (parseInt(Coords[3]) - parseInt(Coords[1])) + 'px';
                 btn.style.transition = "background-color 0.15s ease";
                 btn.className = AreaAll[i].className;
+                btn.id = AreaAll[i].className;
                 btn.addEventListener('touchstart', function () {
                     // if (document.body.style.backgroundColor === '') {
                     //     console.log("enter in touchstart");
@@ -165,11 +167,11 @@ function setButton() {
                     // 在松开时发送
                     if (target_setButton === 1) {
                         Vibra.vibraOnce();
-                        Addd(AreaAll[i]);
+                        Addd(this.className);
                     } else if (target_setButton === 2) {
                         // var top = event.clientY;
                         // 开启modal
-                        showModal(top);
+                        showModal(this);
                     }
                 });
                 // btn.onclick = function () {
@@ -180,6 +182,21 @@ function setButton() {
         })(i);
         BTN_SET.appendChild(btn);
     }
+}
+
+function reset() {
+    setButton();
+    // 重设图片
+    let img = document.querySelector('img.Img');
+    let pict = document.querySelector('img.sunANDmoon');
+    if (document.body.style.backgroundColor === '') {
+        img.src = './img/svg.svg';
+    } else {
+        img.src = './img/svg_dark.svg';
+    }
+    pict.onclick = changepic;
+    svg_bri = null;
+    svg_dark = null;
 }
 
 function setSVG_Gery(i, activity) {
@@ -224,21 +241,21 @@ function setSVG_Gery(i, activity) {
 }
 
 function setSVG_White(i, activity) {
-    if (svg_dark === null) {
+    if (svg_darkc === null) {
         fetch('../img/svg_dark.svg')
             .then(Response => Response.text())
             .then(data => {
                 let parser = new DOMParser();
                 let svgDoc = parser.parseFromString(data, 'image/svg+xml');
-                svg_dark = svgDoc.querySelector("svg");
-                let rectElement = svg_dark.querySelector('#svg_' + (2 * i + 1).toString());
+                svg_darkc = svgDoc.querySelector("svg");
+                let rectElement = svg_darkc.querySelector('#svg_' + (2 * i + 1).toString());
                 if (activity === 1) {
                     rectElement.setAttribute("fill", "rgba(255,255,255,0.8)");
                 } else if (activity === 0) {
                     rectElement.setAttribute("fill", "transparent");
                 }
                 // 将修改后的SVG内容转换为数据URL
-                let svgData = new XMLSerializer().serializeToString(svg_dark);
+                let svgData = new XMLSerializer().serializeToString(svg_darkc);
                 let svgDataURL = 'data:image/svg+xml; charset=utf8, ' + encodeURIComponent(svgData);
                 // 获取<img>元素并设置其src属性
                 let imgElement = document.getElementById('Img');
@@ -260,8 +277,8 @@ function setSVG_White(i, activity) {
     }
 }
 
-function Addd(area) {
-    var key = area.className;
+function Addd(key) {
+    // var key = area.className;
     bluetooth.sendKey(key);
 }
 

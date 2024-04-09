@@ -9,7 +9,7 @@ function showCheck() {
     div_back.style.backgroundColor = "rgba(0,0,0,0.5)";
     let div_contain = document.createElement('div');
     div_contain.className = "Contain";
-    div_contain.innerHTML += "<a href='#' onclick='Android.getImage()'>更换键盘背景</a><a href='#' onclick='Android.getPosition()'>添加键位文件</a><a href='#'>按键反馈</a><a href='#'>恢复默认</a><a href='./html/appinfo.html'>APP INFO</a>";
+    div_contain.innerHTML += "<a href='#' onclick='Android.getImage()'>更换键盘背景</a><a href='#' onclick='Android.getPosition()'>添加键位文件</a><a href='#'>按键反馈</a><a href='#' onclick='reset()'>恢复默认</a><a href='./html/appinfo.html'>APP INFO</a>";
     if (window.innerHeight <= 450) {
         div_contain.style.width = "250px";
         div_contain.style.height = "300px";
