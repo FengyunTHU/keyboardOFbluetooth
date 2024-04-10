@@ -83,11 +83,14 @@ function chooseKEY(button) {// 点击按钮的button
 
                 // 覆写日月的onclick函数
                 let changeBD = document.querySelector('img.sunANDmoon');
-                changeBD.onclick = function () {
+                let pictBD = document.querySelector('img.sunANDmoon_intouchbar');
+                let handler = function () {
                     changeBD.style.opacity = 0;
+                    pictBD.style.opacity = 0;
                     setTimeout(function () {
                         if (changeBD.getAttribute('src') === "./img/sun.svg") {
                             changeBD.setAttribute('src', './img/moon.svg');
+                            pictBD.setAttribute('src', './img/moon.svg');
                             document.body.style.backgroundColor = "black";
                             let imag = document.querySelector("img.Img");
                             // imag.style.border = "2px solid wheat";
@@ -95,14 +98,18 @@ function chooseKEY(button) {// 点击按钮的button
                         }
                         else {
                             changeBD.setAttribute('src', './img/sun.svg');
+                            pictBD.setAttribute('src', './img/sun.svg');
                             document.body.style.backgroundColor = '';
                             let imag = document.querySelector("img.Img");
                             // imag.style.border = "2px solid orangered";
                             imag.src = dataUrl;
                         }
                         changeBD.style.opacity = 1;
+                        pictBD.style.opacity = 1;
                     }, 300);
                 };
+                changeBD.onclick = handler;
+                pictBD.onclick = handler;
                 // changeBD.removeEventListener('click', changeBDHandler);
             });
             map.appendChild(area);

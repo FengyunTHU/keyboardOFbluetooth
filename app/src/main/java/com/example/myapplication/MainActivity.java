@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private Vibrators vibrators;
     private ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result -> {
+                Log.d(TAG,"活动触发后");
                 javaScriptInterfaces.SendResult_pic(result.getResultCode(),result.getData());
             }
     );
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 //        }
         Toast.makeText(this, "注意需要打开系统蓝牙", Toast.LENGTH_SHORT).show();
         javaScriptInterfaces = new JavaScriptInterfaces(this,webView,resultLauncher);
-        webView.addJavascriptInterface(javaScriptInterfaces,"Android");
+        webView.addJavascriptInterface(javaScriptInterfaces,"Androids");
         callBluetooth = new callBluetooth(this,webView,this,this,mRequestLauncher,resultLauncher_forbluetooth);
         webView.addJavascriptInterface(callBluetooth,"bluetooth");
         vibrators = new Vibrators(this);

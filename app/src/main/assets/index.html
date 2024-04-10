@@ -15,6 +15,8 @@
     <script src="./js/keyboard.js" defer></script>
     <script src="./js/viewport.js" defer></script>
     <script src="./js/changeFile.js" defer></script>
+    <script src="./js/touchbar.js" defer></script>
+    <script src="./js/fetchweather.js" defer></script>
     <!-- <script src="./js/bonus.js" defer></script> -->
     <!-- <script src="./js/flower.js" defer></script>
     <script src="./js/hiahia.js" defer></script> -->
@@ -23,13 +25,22 @@
     <link href="./css/style.css" rel="stylesheet" type="text/css" />
     <link href="./css/viewport.css" rel="stylesheet" />
     <link href="./css/modal.css" rel="stylesheet" />
+    <link href="./css/touchbar.css" rel="stylesheet" />
 </head>
 
 <body>
     <div id="main">
-        <img src="./img/settings.gif" class="settings" onclick="showCheck()">
+        <img src="./img/settings.svg" class="settings" onclick="showCheck()">
         <img src="./img/bluetooth.svg" class="Init" onclick="SETBluetooth()">
         <img src="./img/sun.svg" class="sunANDmoon" onclick="changepic()">
+    </div>
+    <div id="touchbar" class="touchbar">
+        <div id="touchbar_in" class="touchbar_in">
+            <img src="./img/settings.svg" class="settings_intouchbar" onclick="showCheck()">
+            <img src="./img/bluetooth.svg" class="Init_intouchbar" onclick="SETBluetooth_forbar()">
+            <img src="./img/sun.svg" class="sunANDmoon_intouchbar" onclick="changepic()">
+            <div class="weather" onclick="Androids.getMyCity()">get weather</div>
+        </div>
     </div>
     <!--滑动菜单写一个-->
     <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">▲</a> -->
@@ -144,6 +155,11 @@
         <div class="fc" style="visibility: hidden;">
             <label class="label_set">
                 &nbsp;调整按键&nbsp;
+            </label>
+        </div>
+        <div class="tor" style="visibility: hidden;">
+            <label class="touchbar_set">
+                &nbsp;TouchBar&nbsp;
             </label>
         </div>
         <!-- <div class="f" style="visibility: hidden;">

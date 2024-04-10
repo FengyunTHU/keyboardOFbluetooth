@@ -9,7 +9,7 @@ function showCheck() {
     div_back.style.backgroundColor = "rgba(0,0,0,0.5)";
     let div_contain = document.createElement('div');
     div_contain.className = "Contain";
-    div_contain.innerHTML += "<a href='#' onclick='Android.getImage()'>更换键盘背景</a><a href='#' onclick='Android.getPosition()'>添加键位文件</a><a href='#'>按键反馈</a><a href='#' onclick='reset()'>恢复默认</a><a href='./html/appinfo.html'>APP INFO</a>";
+    div_contain.innerHTML += "<a href='#' onclick='Androids.getImage()'>更换键盘背景</a><a href='#' onclick='Androids.getPosition()'>添加键位文件</a><a href='#'>按键反馈</a><a href='#' onclick='reset()'>恢复默认</a><a href='./html/appinfo.html'>APP INFO</a>";
     if (window.innerHeight <= 450) {
         div_contain.style.width = "250px";
         div_contain.style.height = "300px";
@@ -109,17 +109,22 @@ function delayedRedirect(url, delay) {
 
 function changepic() {
     let pict = document.querySelector('img.sunANDmoon');
+    let pict2 = document.querySelector('img.sunANDmoon_intouchbar');
     pict.style.opacity = 0;
+    pict2.style.opacity = 0;
     setTimeout(function () {
         if (pict.getAttribute('src') === "./img/sun.svg") {
             pict.setAttribute('src', './img/moon.svg');
+            pict2.setAttribute('src', './img/moon.svg');
             changeBODY_black();
         }
         else {
             pict.setAttribute('src', './img/sun.svg');
+            pict2.setAttribute('src', './img/sun.svg');
             changeBODY_ori();
         }
         pict.style.opacity = 1;
+        pict2.style.opacity = 1;
     }, 300);
 }
 

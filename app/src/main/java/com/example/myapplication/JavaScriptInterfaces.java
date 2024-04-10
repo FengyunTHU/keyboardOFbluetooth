@@ -1,9 +1,18 @@
 package com.example.myapplication;
 
+import static androidx.core.app.ActivityCompat.requestPermissions;
+
+import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.media.audiofx.DynamicsProcessing;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -14,6 +23,7 @@ import android.webkit.WebView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
 
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.io.IOUtils;
 import com.yalantis.ucrop.UCrop;
@@ -24,12 +34,15 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
+import java.util.Locale;
 
 // 定义一系列JavaScript接口
 public class JavaScriptInterfaces {
     private static final String TAG = "BtMain";
     private Activity activity;
     private WebView webView;
+    private LocationManager locationManager;
     private ActivityResultLauncher<Intent> requestLauncher;
 
     public JavaScriptInterfaces(Activity activity,WebView webView,ActivityResultLauncher<Intent> requestLauncher){
@@ -43,6 +56,7 @@ public class JavaScriptInterfaces {
     public void getImage() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        Log.d(TAG,"enter in pic");
         requestLauncher.launch(intent);
     }
 
@@ -63,6 +77,7 @@ public class JavaScriptInterfaces {
 
     public void SendResult_pic(int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
+            Log.d(TAG,"选择图片完毕");
             Uri uri = data.getData();
             Log.d(TAG,"Url_img"+uri);
             // 获取Uri后开启图片裁剪
@@ -213,6 +228,61 @@ public class JavaScriptInterfaces {
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+
+    // 获取定位
+    @JavascriptInterface
+    public void getMyCity() {
+        locationManager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
+        String locationProvider = LocationManager.GPS_PROVIDER;
+
+        try {
+            // 获取最后已知位置
+            Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
+            if (lastKnownLocation != null) {
+                getcity(lastKnownLocation);
+            }
+
+            locationManager.requestSingleUpdate(locationProvider, new LocationListener() {
+                @Override
+                public void onLocationChanged(@NonNull Location location) {
+                    getcity(location);
+                }
+            },null);
+        } catch (SecurityException e) {
+            String[] list = new String[]{
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.INTERNET
+            };
+            requestPermissions(activity, list, 1);
+            return;
+        }
+    }
+
+    private void getcity(Location location) {
+        double longitude = location.getLongitude();
+        double latitude = location.getLatitude();
+        String cityName = "";
+
+        Geocoder geocoder = new Geocoder(activity, Locale.CHINA);
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            if (!addresses.isEmpty()) {
+                cityName = addresses.get(0).getLocality();
+                Log.d(TAG,cityName);
+            }
+            String finalCityName = cityName;
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    webView.loadUrl("javascript:getweather('"+ finalCityName +"')");
+                }
+            });
+        } catch (IOException e){
+            e.printStackTrace();
         }
     }
 }
