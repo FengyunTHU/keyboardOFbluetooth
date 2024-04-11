@@ -65,3 +65,38 @@ bttns2.addEventListener("click", function () {
         hows2 = 1;
     }
 })
+
+let span = document.querySelector('span.nicewords');
+let input = document.querySelector("input.myInput");
+input.value = span.textContent;
+span.onclick = function () {
+    if (span.style.display !== 'none') {
+        span.style.display = 'none';
+        input.style.flexGrow = '1';
+        input.style.display = 'inline-flex';
+    }
+}
+
+document.addEventListener('click', function (event) {
+    if (event.target !== input && event.target !== span) {
+        input.style.display = 'none';
+        span.style.display = 'inline-flex';
+        span.textContent = input.value;
+        // 获取span元素nicewords
+
+        
+        // var nicewords = document.querySelector('span.nicewords');
+        // // 检测元素的总高度
+        // var totalHeight = nicewords.scrollHeight;
+        // // 如果总高度大于40px，缩小字体大小
+        // var maxHeight = nicewords.style.height ? parseInt(nicewords.style.height) : 40;
+        // if (totalHeight > maxHeight) {
+        //     var fontSize = parseInt(window.getComputedStyle(nicewords, null).getPropertyValue('font-size'));
+        //     while (totalHeight > maxHeight) {
+        //         fontSize--;
+        //         nicewords.style.fontSize = fontSize + 'px';
+        //         totalHeight = nicewords.scrollHeight;
+        //     }
+        // }
+    }
+})

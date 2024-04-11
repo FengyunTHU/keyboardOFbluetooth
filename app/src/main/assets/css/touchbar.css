@@ -43,3 +43,19 @@ img.Init_intouchbar {
 div.weather {
     margin-left: auto;
 }
+
+span.nicewords {
+    flex-grow: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    font-family: yuanyuanxingshu ,sans-serif;
+    font-size: 40px;
+    height: 40px;
+    text-shadow: 0 0 10px #94d2a9, 0 0 20px #94d2a9, 0 0 30px #94d2a9, 0 0 40px #94d2a9;
+}
+
+input#myInput {
+    display: none;
+}
