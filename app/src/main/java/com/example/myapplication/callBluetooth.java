@@ -420,9 +420,9 @@ public class callBluetooth {
             String[] keys = key.split("\\+");
             for (String k : keys) {
                 if (k.equalsIgnoreCase("LEFT_SHIFT")||k.equalsIgnoreCase("RIGHT_SHIFT")){
-                    b1 |= 1;
-                } else if (k.equalsIgnoreCase("LEFT_CTRL")||k.equalsIgnoreCase("RIGHT_CTRL")) {
                     b1 |= 2;
+                } else if (k.equalsIgnoreCase("LEFT_CTRL")||k.equalsIgnoreCase("RIGHT_CTRL")) {
+                    b1 |= 1;
                 } else if (k.equalsIgnoreCase("LEFT_ALT")||k.equalsIgnoreCase("RIGHT_ALT")) {
                     b1 |= 4;
                 } else if (k.equalsIgnoreCase("HOME")) {
