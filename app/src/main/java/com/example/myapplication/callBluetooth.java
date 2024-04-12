@@ -49,6 +49,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Executors;
@@ -84,6 +85,16 @@ public class callBluetooth {
     private static final int DEVICE_BONDING = 0x0C;
     private static final int DEVICE_BONDED = 0x0D;
 
+    List<String> xiushi = Arrays.asList(
+            "RIGHT_SHIFT",
+            "LEFT_SHIFT",
+            "LEFT_CTRL",
+            "RIGHT_CTRL",
+            "LEFT_ALT",
+            "RIGHT_ALT",
+            "HOME"
+    );
+
     private BluetoothHidDevice mHidDevice;
     private BluetoothDevice mHostDevice;
     public BluetoothAdapter mBtAdapter;
@@ -99,6 +110,9 @@ public class callBluetooth {
     private List<String> list_devices_name = new ArrayList<>();// 名称
     private List<String> list_devices_mac = new ArrayList<>();// mac地址
     private List<Boolean> list_devices_state = new ArrayList<>();// 状态
+
+    public int numofcombo = HidConfig.numofCOMBO;// 此时为5
+    public int numofchoose = 5;// 选择位数(默认)
 
     public callBluetooth(MainActivity mainActivity,WebView webView, Context context, Activity activity, ActivityResultLauncher<Intent> requestLauncher, ActivityResultLauncher<Intent> requestLauncher_for_bluetooth) {
         this.webView = webView;
@@ -119,6 +133,23 @@ public class callBluetooth {
 //        Log.d(TAG, (mBtAdapter.isEnabled() ? "open" : "no"));
 //        CallBluetooth();
 //        Log.d(TAG, "RUN_End");
+    }
+
+    @JavascriptInterface
+    public void createoptions() {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                webView.loadUrl("javascript:showCombo("+numofcombo+")");
+                Log.d(TAG,"num "+numofcombo);
+            }
+        });
+    }
+
+    @JavascriptInterface
+    public void getnum(int num) {
+        numofchoose = num;
+        Log.d(TAG,"choose"+numofchoose);
     }
 
     // 实例化
@@ -158,12 +189,13 @@ public class callBluetooth {
                     Log.d(TAG, "Connecting HID…");
                     mHidDevice = (BluetoothHidDevice) proxy;
                     Log.d(TAG, "proxyOK");
+
                     BluetoothHidDeviceAppSdpSettings Sdpsettings = new BluetoothHidDeviceAppSdpSettings(
                             HidConfig.KEYBOARD_NAME,
                             HidConfig.DESCRIPTION,
                             HidConfig.PROVIDER,
                             BluetoothHidDevice.SUBCLASS1_KEYBOARD,
-                            HidConfig.KEYBOARD_COMBO
+                            HidConfig.KEYBOARD_COMBO[numofchoose-1]
                     );
                     if (mHidDevice != null) {
                         Toast.makeText(context, "OK for HID profile", Toast.LENGTH_SHORT).show();
@@ -381,19 +413,42 @@ public class callBluetooth {
     @SuppressLint("MissingPermission")
     public void sendKey(String key) {
         byte b1 = 0;
-        if (key.length() <= 1) {
-            char keychar = key.charAt(0);
-            if ((keychar >= 65) && (keychar <= 90)) {
+        byte keyByte = 0;
+        Log.d(TAG,key);
+        // 修饰键处理
+        if (key.contains("+")||xiushi.contains(key)) {
+            String[] keys = key.split("\\+");
+            for (String k : keys) {
+                if (k.equalsIgnoreCase("LEFT_SHIFT")||k.equalsIgnoreCase("RIGHT_SHIFT")){
+                    b1 |= 1;
+                } else if (k.equalsIgnoreCase("LEFT_CTRL")||k.equalsIgnoreCase("RIGHT_CTRL")) {
+                    b1 |= 2;
+                } else if (k.equalsIgnoreCase("LEFT_ALT")||k.equalsIgnoreCase("RIGHT_ALT")) {
+                    b1 |= 4;
+                } else if (k.equalsIgnoreCase("HOME")) {
+                    b1 |= 8;
+                } else {
+                    keyByte = keyMap.KEY2BYTE.get(k.toUpperCase());
+                }
+            }
+        } else {// 其实貌似没啥用
+            if (key.length() <= 1) {
+                char keychar = key.charAt(0);
+                if ((keychar >= 65) && (keychar <= 90)) {
+                    b1 = 2;
+                }
+            }
+            if (keyMap.SHITBYTE.containsKey(key)) {
                 b1 = 2;
             }
+            keyByte = keyMap.KEY2BYTE.get(key.toUpperCase());
         }
-        if (keyMap.SHITBYTE.containsKey(key)) {
-            b1 = 2;
-        }
-        Log.d(TAG, "pre_send: " + key);
+        //Log.d(TAG, "pre_send: " + key);
+        Log.d(TAG,"b1="+b1);
+        Log.d(TAG,"keybyte="+keyByte);
 
         mHidDevice.sendReport(mHostDevice, 8, new byte[]{
-                b1, 0, keyMap.KEY2BYTE.get(key.toUpperCase()), 0, 0, 0, 0, 0
+                b1, 0, keyByte, 0, 0, 0, 0, 0
         });
         mHidDevice.sendReport(mHostDevice, 8, new byte[]{
                 0, 0, 0, 0, 0, 0, 0, 0
@@ -847,7 +902,7 @@ public class callBluetooth {
                 HidConfig.DESCRIPTION,
                 HidConfig.PROVIDER,
                 BluetoothHidDevice.SUBCLASS1_KEYBOARD,
-                HidConfig.KEYBOARD_COMBO
+                HidConfig.KEYBOARD_COMBO5
         );
 
         // 创建一个BluetoothHidDeviceAppQosSettings对象，随机设置的(

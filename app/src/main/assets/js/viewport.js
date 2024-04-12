@@ -1,3 +1,78 @@
+let laslclick = 0;
+
+function showCombo(num) {
+    // 创建背景div
+    let div_back = document.createElement('div');
+    div_back.setAttribute('class', 'modal2');
+    div_back.style.position = 'fixed';
+    div_back.style.width = "100%";
+    div_back.style.height = "100%";
+    div_back.style.left = "0";
+    div_back.style.top = "0";
+    div_back.style.backgroundColor = "rgba(0,0,0,0.5)";
+    div_back.onclick = function () { // 点击背景div时，移除背景div
+        div_back.style.opacity = "0";
+        // 使用setTimeout来延迟移除div_back，以确保消失的平滑效果可以完全显示
+        setTimeout(function () {
+            document.body.removeChild(div_back);
+        }, 500); // 500毫秒是transition的持续时间
+    }
+
+    // 创建内容div
+    let div_contain = document.createElement('div');
+    div_contain.className = "Contain2";
+    div_contain.style.backgroundColor = "#fff";
+    div_contain.style.position = "absolute";
+    div_contain.style.left = "25%";
+    div_contain.style.right = "25%";
+    div_contain.style.bottom = "25%";
+    div_contain.style.top = "25%";
+    div_contain.style.margin = "auto";
+    div_contain.style.boxSizing = "border-box";
+    div_contain.style.display = "flex"; // 纵向排列
+    div_contain.style.flexDirection = "column"; // 纵向排列
+    div_contain.style.alignItems = "center"; // 纵向排列
+    div_contain.style.justifyContent = "center"; // 纵向排列
+    div_back.style.borderRadius = '10px';
+    div_back.style.transition = "opacity 0.5s"; // 添加平滑效果
+    div_back.style.opacity = "0"; // 初始透明度为0
+    div_contain.style.borderRadius = '10px';
+    div_contain.style.transition = "opacity 0.5s"; // 添加平滑效果
+
+    // 添加选项
+    for (let i = 1; i <= num; i++) {
+        let a = document.createElement('a');
+        a.href = '#';
+        a.textContent = 'KEYCOMBO ' + i;
+        a.className = i;
+        if (a.className === laslclick) {
+            a.style.color = 'blue';
+        }
+        a.style.textDecoration = "none"; // 去除下划线
+        a.style.fontWeight = "bold"; // 字体加粗
+        a.style.fontSize = '35px';
+        a.style.lineHeight = '50px';
+        a.onclick = function () { // 点击选项时，移除背景div
+            laslclick = a.className;
+            bluetooth.getnum(parseInt(laslclick));
+            div_back.style.opacity = "0";
+            // 使用setTimeout来延迟移除div_back，以确保消失的平滑效果可以完全显示
+            setTimeout(function () {
+                document.body.removeChild(div_back);
+            }, 500); // 500毫秒是transition的持续时间
+        }
+        div_contain.appendChild(a);
+    }
+    setTimeout(function() {
+        div_back.style.opacity = "1";
+    }, 0);
+    // 将内容div添加到背景div
+    div_back.appendChild(div_contain);
+
+    // 将背景div添加到body
+    document.body.appendChild(div_back);
+}
+
 function showCheck() {
     let div_back = document.createElement('div');
     div_back.setAttribute('class', 'modal');
@@ -9,7 +84,7 @@ function showCheck() {
     div_back.style.backgroundColor = "rgba(0,0,0,0.5)";
     let div_contain = document.createElement('div');
     div_contain.className = "Contain";
-    div_contain.innerHTML += "<a href='#' onclick='Androids.getImage()'>更换键盘背景</a><a href='#' onclick='Androids.getPosition()'>添加键位文件</a><a href='#'>按键反馈</a><a href='#' onclick='reset()'>恢复默认</a><a href='./html/appinfo.html'>APP INFO</a>";
+    div_contain.innerHTML += "<a href='#' onclick='Androids.getImage()'>更换键盘背景</a><a href='#' onclick='Androids.getPosition()'>添加键位文件</a><a href='#' onclick='bluetooth.createoptions()'>描述符切换</a><a href='#' onclick='reset()'>恢复默认</a><a href='./html/appinfo.html'>APP INFO</a>";
     if (window.innerHeight <= 450) {
         div_contain.style.width = "250px";
         div_contain.style.height = "300px";

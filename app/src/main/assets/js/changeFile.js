@@ -133,6 +133,10 @@ function Showinformation(info) {
     ptemp.textContent = info;
     Infom.appendChild(ptemp);
     Infom.scrollTop = Infom.scrollHeight;
+    let lines = Infom.getElementsByTagName('p');
+    if (lines.length > 50) {
+        Infom.removeChild(lines[0]);
+    }
 }
 
 

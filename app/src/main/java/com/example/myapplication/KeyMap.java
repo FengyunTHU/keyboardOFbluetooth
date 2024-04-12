@@ -10,7 +10,7 @@ public class KeyMap {
     public void initHashMap() {
         KEY2BYTE.put("LEFT_SHIFT", (byte) 0x02);
         KEY2BYTE.put("RIGHT_SHIFT", (byte) 0x20);
-        KEY2BYTE.put("A", (byte) 4);
+        KEY2BYTE.put("A", (byte)4);
         KEY2BYTE.put("B",(byte)5);
         KEY2BYTE.put("C",(byte)6);
         KEY2BYTE.put("D",(byte)7);
@@ -81,8 +81,8 @@ public class KeyMap {
         KEY2BYTE.put(".",(byte)55);
         KEY2BYTE.put("/",(byte)56);
         KEY2BYTE.put("SCROLL_LOCK",(byte)71);
-        KEY2BYTE.put("INSERT ",(byte)73);
-        KEY2BYTE.put("HOME ",(byte)74);
+        KEY2BYTE.put("INSERT",(byte)73);
+        KEY2BYTE.put("HOME ",(byte)0x08);
         KEY2BYTE.put("PAGE_UP",(byte)75);
         KEY2BYTE.put("DELETE",(byte)76);
         KEY2BYTE.put("END",(byte)77);

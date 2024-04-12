@@ -128,11 +128,11 @@ function setButton() {
                         Addd(AreaAll[i]);
                     } else if (target_setButton === 2) {
                         // 开启modal
-                        
+
                     }
                 });
                 // btn.onclick = function () {
-                    
+
                 // }
             } else if (AreaAll[i].shape === 'rect') {
                 // 设置键盘button与按下效果
@@ -143,17 +143,48 @@ function setButton() {
                 btn.style.transition = "background-color 0.15s ease";
                 btn.className = AreaAll[i].className;
                 btn.id = AreaAll[i].className;
-                btn.addEventListener('touchstart', function () {
+                btn.addEventListener('touchstart', function (event) {
                     // if (document.body.style.backgroundColor === '') {
                     //     console.log("enter in touchstart");
                     //     setSVG_Gery(i, 1);
                     // } else {
                     //     setSVG_White(i, 1);
                     // }
+                    this.isPressed = true;
+                    event.stopPropagation();
                     if (document.body.style.backgroundColor === '') {
                         this.style.backgroundColor = "rgba(211,211,211,0.4)";
                     } else {
                         this.style.backgroundColor = "rgba(255,255,255,0.4)";
+                    }
+
+                    if (target_setButton === 1) {
+                        if (xiushi.includes(this.className)) {// 存在修饰键
+                            keyset.push(this.className);
+                            console.log(1);
+                            oneordouble = 1;
+                        }
+                        else {// 不在
+                            if (keyset.length === 0) {// 没有修饰键
+                                Vibra.vibraOnce();
+                                console.log(2);
+                                ifsetxiushi = 1;// 发送了修饰键
+                                Addd(this.className);
+                                this.timeoutId = setTimeout(() => {
+                                    this.intervalId = setInterval(() => {
+                                        Vibra.vibraOnce();
+                                        Addd(this.className);
+                                    }, 500);
+                                }, 300);
+                                // keyset = [];
+                            } else if (keyset.length >= 1) {
+                                keyset.push(this.className);
+                                // 发送修饰键
+                                console.log(3);
+                                Addd(keyset.join('+'));
+                                keyset = [];
+                            }
+                        }
                     }
                 });
                 btn.addEventListener('touchend', function (event) {
@@ -163,17 +194,42 @@ function setButton() {
                     // } else {
                     //     setSVG_White(i, 0);
                     // }
+                    // 清除计时
+                    // 对于修饰键在结束时按下
                     this.style.backgroundColor = 'transparent';
+                    if (!this.isPressed) {
+                        return;
+                    }
+                    if (xiushi.includes(this.className)) {
+                        if (keyset.length >= 2) {
+                            if (oneordouble === 1) {
+                                oneordouble = 0;
+                                console.log(4);
+                                Addd(keyset.join('+'));
+                                keyset = [];
+                            }
+                            // 发送组合键
+                        } else if (keyset.length === 1) {
+                            // 直接发送
+                            Vibra.vibraOnce();
+                            console.log(5);
+                            Addd(this.className);
+                            keyset = [];
+                        }
+                    } else {
+                        keyset = [];
+                    }
+                    clearTimeout(this.timeoutId);
+                    clearInterval(this.intervalId);
+                    
                     // 在松开时发送
-                    if (target_setButton === 1) {
-                        Vibra.vibraOnce();
-                        Addd(this.className);
-                    } else if (target_setButton === 2) {
+                    if (target_setButton === 2) {
                         // var top = event.clientY;
                         // 开启modal
                         showModal(this);
                     }
                 });
+                this.isPressed = false;
                 // btn.onclick = function () {
                 //     Vibra.vibraOnce();
                 //     Addd(AreaAll[i]);
@@ -183,6 +239,11 @@ function setButton() {
         BTN_SET.appendChild(btn);
     }
 }
+
+// 存储组合键的集合
+let keyset = [];
+let ifsetxiushi = 0;// 是否发送修饰键
+let oneordouble = 0;
 
 function reset() {
     setButton();
@@ -281,6 +342,41 @@ function Addd(key) {
     // var key = area.className;
     bluetooth.sendKey(key);
 }
+
+// 存储shift信息
+let mapofshift = {
+    '1': '!',
+    '2': '@',
+    '3': '#',
+    '4': '$',
+    '5': '%',
+    '6': '^',
+    '7': '&',
+    '8': '*',
+    '9': '(',
+    '0': ')',
+    '-': '_',
+    '=': '+',
+    '[': '{',
+    ']': '}',
+    '\\': '|',
+    ';': ':',
+    '\'': '"',
+    ',': '<',
+    '.': '>',
+    '/': '?'
+}
+
+// 存储修饰键集合
+let xiushi = [
+    'RIGHT_SHIFT',
+    'LEFT_SHIFT',
+    'LEFT_CTRL',
+    'RIGHT_CTRL',
+    'LEFT_ALT',
+    'RIGHT_ALT',
+    'HOME'
+]
 
 function showButton(target) {
     let BTN_SET = document.getElementById('BTN_SET');
