@@ -61,3 +61,43 @@ span.nicewords {
 input#myInput {
     display: none;
 }
+
+@media screen and (max-height: 450px) {
+    .touchbar img {
+        height: 35px;
+        width: auto;
+        margin-right: 6px;
+    }
+
+    .touchbar {
+        display: none;
+        padding: 3px;
+        background: repeating-linear-gradient(270deg, #000428 0%, #004e92 50%, #000428 100%);
+        border-radius: 10px;
+        /* box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); */
+    }
+
+    .touchbar_in {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        background: linear-gradient(160deg, #562B7C 0%, #2B86C5 52%, #562B7C 100%);
+        border-radius: 10px;
+        padding: 7px;
+    }
+
+    span.nicewords {
+        flex-grow: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: aliceblue;
+        font-family: yuanyuanxingshu ,sans-serif;
+        /* font-size: 100%; */
+        line-height: 22px;
+        height: 35px;
+        text-shadow: 0 0 6px #94d2a9, 0 0 12px #94d2a9, 0 0 18px #94d2a9, 0 0 24px #94d2a9;
+        transition: all 0.5s ease;
+    }
+    
+}

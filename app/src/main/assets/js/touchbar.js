@@ -115,7 +115,12 @@ document.addEventListener('click', function (event) {
             span.textContent = input.value;
             if (span.textContent !== lastcontent || lastif !== if_bueisopen) {
                 var height = span.clientHeight;
-                span.style.fontSize = 35 + 'px';
+                if (window.innerHeight <= 450) {
+                    span.style.fontSize = 35 + 'px';
+                } else {
+                    span.style.fontSize = 22 + 'px';
+                }
+
                 console.log(span.textContent);
                 // 获取span元素nicewords
 
@@ -123,7 +128,11 @@ document.addEventListener('click', function (event) {
                 var temp = document.createElement('span');
                 temp.style.visibility = 'hidden';
                 temp.style.whiteSpace = 'nowrap';
-                temp.style.fontSize = '35px';
+                if (window.innerHeight <= 450) {
+                    temp.style.fontSize = '35px';
+                } else {
+                    temp.style.fontSize = '22px';
+                }
                 temp.textContent = span.textContent;
                 let size = window.getComputedStyle(span, null).getPropertyValue('font-size');
                 console.log("size" + size);
