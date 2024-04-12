@@ -42,6 +42,9 @@ function getweather(location) {
                     let texthumidity = svgElementinfo.getElementById("humidity");
                     textcity.textContent = location;
                     textweather.textContent = weather;
+                    let count = weather.length;
+                    let size = textweather.style.fontSize;
+                    textweather.style.fontSize = size / count;
                     texttemperature.textContent = temperature+'℃';
                     texthumidity.textContent = "湿度: " + humidity;
                     let serializer = new XMLSerializer();

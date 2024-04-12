@@ -51,9 +51,11 @@ span.nicewords {
     justify-content: center;
     color: aliceblue;
     font-family: yuanyuanxingshu ,sans-serif;
-    font-size: 40px;
-    height: 40px;
+    /* font-size: 100%; */
+    line-height: 35px;
+    height: 50px;
     text-shadow: 0 0 10px #94d2a9, 0 0 20px #94d2a9, 0 0 30px #94d2a9, 0 0 40px #94d2a9;
+    transition: all 0.5s ease;
 }
 
 input#myInput {

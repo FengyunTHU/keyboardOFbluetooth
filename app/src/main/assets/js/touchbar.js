@@ -4,8 +4,15 @@ function settouchbar() {
     oridiv.style.display = 'none';
     let divnew = document.querySelector('div#touchbar');
     divnew.style.display = 'flex';
+    spanWidth0 = span.getBoundingClientRect().width;
+    var imgStyle = window.getComputedStyle(document.querySelector('.touchbar img'));
+    var height = parseInt(imgStyle.height);
+    var marginRight = parseInt(imgStyle.marginRight);
+    spanWidth02 = spanWidth0 - 2 * (height + marginRight);
     reset();
 }
+var spanWidth0;
+var spanWidth02;
 
 function closetouchbar() {
     let oridiv = document.querySelector('div#main');
@@ -40,13 +47,17 @@ function deleteBle_forbar() {
     connect.parentNode.removeChild(connect);
 }
 
+var if_bueisopen = 0;
+
 cous = 0;
 function SETBluetooth_forbar() {
     if (cous === 0) {
         StartBluetooth_forbar();
+        if_bueisopen = 1;
         cous = 1;
     } else if (cous === 1) {
         deleteBle_forbar();
+        if_bueisopen = 0;
         cous = 0;
     }
 }
@@ -66,6 +77,21 @@ bttns2.addEventListener("click", function () {
     }
 })
 
+// var hows3 = 1;
+// let bttns3 = document.querySelector("label.ani");
+// bttns3.addEventListener("click", function () {
+//     if (hows3 === 1) {
+//         bttns3.innerHTML = "&nbsp;关闭特效&nbsp;";
+//         hows3 = 0;
+//     } else if (hows3 === 0) {
+//         bttns3.innerHTML = "&nbsp;开启特效&nbsp;";
+//         hows3 = 1;
+//     }
+// })
+
+// // 特效注入or去除函数
+
+
 let span = document.querySelector('span.nicewords');
 let input = document.querySelector("input.myInput");
 input.value = span.textContent;
@@ -77,26 +103,71 @@ span.onclick = function () {
     }
 }
 
+var lastcontent = null;
+var lastif = null;
 document.addEventListener('click', function (event) {
-    if (event.target !== input && event.target !== span) {
-        input.style.display = 'none';
-        span.style.display = 'inline-flex';
-        span.textContent = input.value;
-        // 获取span元素nicewords
+    let divnew = document.querySelector('div.touchbar');
+    if (event.target !== input && event.target !== span && divnew.style.display === 'flex') {
+        if (divnew.style.display === 'flex') {
+            console.log(divnew.style.display);
+            input.style.display = 'none';
+            span.style.display = 'inline-flex';
+            span.textContent = input.value;
+            if (span.textContent !== lastcontent || lastif !== if_bueisopen) {
+                var height = span.clientHeight;
+                span.style.fontSize = 35 + 'px';
+                console.log(span.textContent);
+                // 获取span元素nicewords
 
-        
-        // var nicewords = document.querySelector('span.nicewords');
-        // // 检测元素的总高度
-        // var totalHeight = nicewords.scrollHeight;
-        // // 如果总高度大于40px，缩小字体大小
-        // var maxHeight = nicewords.style.height ? parseInt(nicewords.style.height) : 40;
-        // if (totalHeight > maxHeight) {
-        //     var fontSize = parseInt(window.getComputedStyle(nicewords, null).getPropertyValue('font-size'));
-        //     while (totalHeight > maxHeight) {
-        //         fontSize--;
-        //         nicewords.style.fontSize = fontSize + 'px';
-        //         totalHeight = nicewords.scrollHeight;
-        //     }
-        // }
+                // 创建一个临时元素来计算文字总长度
+                var temp = document.createElement('span');
+                temp.style.visibility = 'hidden';
+                temp.style.whiteSpace = 'nowrap';
+                temp.style.fontSize = '35px';
+                temp.textContent = span.textContent;
+                let size = window.getComputedStyle(span, null).getPropertyValue('font-size');
+                console.log("size" + size);
+                document.body.appendChild(temp);
+                var textWidth = temp.getBoundingClientRect().width;
+                console.log("text" + textWidth);
+                // 获取span的实际宽度
+                var spanWidth = span.getBoundingClientRect().width;
+                if (if_bueisopen === 1) {
+                    spanWidth = spanWidth02;
+                } else if (if_bueisopen === 0) {
+                    spanWidth = spanWidth0;
+                }
+                console.log("span" + spanWidth);
+                // 如果文字总长度大于span的实际宽度，缩小字体大小
+                if (textWidth > spanWidth) {
+                    var fontSize = parseInt(window.getComputedStyle(span, null).getPropertyValue('font-size'));
+                    while (textWidth > spanWidth) {
+                        fontSize--;
+                        span.style.fontSize = fontSize + 'px';
+                        temp.style.fontSize = fontSize + 'px';
+                        textWidth = temp.getBoundingClientRect().width;
+                    }
+                }
+                else {
+                    console.log("eeeee");
+                }
+                document.body.removeChild(temp);
+            }
+        }
+        lastcontent = span.textContent;
+        lastif = if_bueisopen;
     }
+    // var nicewords = document.querySelector('span.nicewords');
+    // // 检测元素的总高度
+    // var totalHeight = nicewords.scrollHeight;
+    // // 如果总高度大于40px，缩小字体大小
+    // var maxHeight = nicewords.style.height ? parseInt(nicewords.style.height) : 40;
+    // if (totalHeight > maxHeight) {
+    //     var fontSize = parseInt(window.getComputedStyle(nicewords, null).getPropertyValue('font-size'));
+    //     while (totalHeight > maxHeight) {
+    //         fontSize--;
+    //         nicewords.style.fontSize = fontSize + 'px';
+    //         totalHeight = nicewords.scrollHeight;
+    //     }
+    // }
 })
