@@ -6,7 +6,7 @@ let svg_temp = '<svg width="450" height="115" xmlns="http://www.w3.org/2000/svg"
     '<g id="Layer_1">' +
     '<title>Layer 1</title>' +
     '<text fill="#FFFFFF" stroke-width="0" x="141" y="41.38461" id="city" font-size="37" font-family="\'Bitter\'" text-anchor="start" xml:space="preserve" stroke="#000">攀枝花市</text>' +
-    '<text fill="#FFFFFF" stroke-width="0" x="349.65863" y="66.20025" id="weather" font-size="74" font-family="\'Bitter\'" text-anchor="start" xml:space="preserve" stroke="#000" transform="matrix(1.5183 0 0 1.42204 -201.375 1.10786)">晴</text>' +
+    '<text stroke="#000" xml:space="preserve" text-anchor="start" font-family="\'Bitter\'" font-size="106" id="weather" y="95" x="320" stroke-width="0" fill="#FFFFFF">晴</text>' +
     '<text fill="#FFFFFF" stroke="#000" stroke-width="0" x="7.69231" y="105.38461" id="temperature" font-size="65" font-family="\'Bitter\'" text-anchor="start" xml:space="preserve">21℃</text>' +
     '<text fill="#FFFFFF" stroke="#000" stroke-width="0" x="156.30769" y="98.61538" id="humidity" font-size="37" font-family="\'Bitter\'" text-anchor="start" xml:space="preserve">湿度: 1.5</text>' +
     '</g>' +
@@ -42,10 +42,15 @@ function getweather(location) {
                     let texthumidity = svgElementinfo.getElementById("humidity");
                     textcity.textContent = location;
                     textweather.textContent = weather;
-                    // let count = weather.length;
-                    // let size = textweather.style.fontSize;
-                    // textweather.style.fontSize = size / count;
-                    texttemperature.textContent = temperature+'℃';
+
+                    let count = weather.length;
+                    let size = parseFloat(textweather.getAttribute('font-size'));
+                    console.log("count: " + count + " size: " + size);
+                    if (count >= 2) {
+                        textweather.setAttribute('font-size', (size / (count * 0.8)).toString());
+                    }
+                    console.log("sizeafter: " + textweather.getAttribute('font-size'));
+                    texttemperature.textContent = temperature + '℃';
                     texthumidity.textContent = "湿度: " + humidity;
                     let serializer = new XMLSerializer();
                     let svgStr = serializer.serializeToString(svgElementinfo);

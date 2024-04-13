@@ -2,7 +2,7 @@
  <g id="Layer_1">
   <title>Layer 1</title>
   <text fill="#FFFFFF" stroke-width="0" x="141" y="41.38461" id="city" font-size="37" font-family="'Bitter'" text-anchor="start" xml:space="preserve" stroke="#000">攀枝花市</text>
-  <text fill="#FFFFFF" stroke-width="0" x="349.65863" y="66.20025" id="weather" font-size="74" font-family="'Bitter'" text-anchor="start" xml:space="preserve" stroke="#000" transform="matrix(1.5183 0 0 1.42204 -201.375 1.10786)">晴</text>
+  <text stroke="#000" xml:space="preserve" text-anchor="start" font-family="'Bitter'" font-size="106" id="weather" y="95" x="315" stroke-width="0" fill="#FFFFFF">晴</text>
   <text fill="#FFFFFF" stroke="#000" stroke-width="0" x="7.69231" y="105.38461" id="temperature" font-size="65" font-family="'Bitter'" text-anchor="start" xml:space="preserve">21℃</text>
   <text fill="#FFFFFF" stroke="#000" stroke-width="0" x="156.30769" y="98.61538" id="humidity" font-size="37" font-family="'Bitter'" text-anchor="start" xml:space="preserve">湿度: 1.5</text>
  </g>
