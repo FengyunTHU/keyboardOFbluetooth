@@ -44,7 +44,7 @@ function getweather(location) {
                     textweather.textContent = weather;
 
                     let count = weather.length;
-                    let size = parseFloat(textweather.getAttribute('font-size'));
+                    let size = parseFloat("106");
                     console.log("count: " + count + " size: " + size);
                     if (count >= 2) {
                         textweather.setAttribute('font-size', (size / (count * 0.8)).toString());
